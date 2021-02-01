@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Features &mdash; Esbonio 0.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Tutorial" href="../extensions/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Esbonio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Language Server</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#completion">Completion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directives">Directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directive-options">Directive Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#role-targets">Role Targets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inter-sphinx">Inter Sphinx</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#diagnostics">Diagnostics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">VSCode Extension</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/vscode_changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Esbonio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/lsp/features.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="features">
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<p>This page contains a quick overview of the features offered by the Language
+Server</p>
+<div class="section" id="completion">
+<h2>Completion<a class="headerlink" href="#completion" title="Permalink to this headline">¶</a></h2>
+<p>The Language Server can offer auto complete suggestions in a variety of contexts</p>
+<div class="section" id="directives">
+<h3>Directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id1">
+<img alt="../_images/complete-directive-demo.gif" src="../_images/complete-directive-demo.gif" />
+<p class="caption"><span class="caption-text">Completing directive names</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the Language Server makes a hardcoded assumption that your
+<code class="docutils literal notranslate"><span class="pre">primary_domain</span></code> is set to <code class="docutils literal notranslate"><span class="pre">python</span></code> and has no knowledge that other
+domains exist.</p>
+<p>Support for additional domains will come in a future release</p>
+</div>
+</div>
+<div class="section" id="directive-options">
+<h3>Directive Options<a class="headerlink" href="#directive-options" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id2">
+<img alt="../_images/complete-directive-options-demo.gif" src="../_images/complete-directive-options-demo.gif" />
+<p class="caption"><span class="caption-text">Completing a directive’s options</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id3">
+<img alt="../_images/complete-role-demo.gif" src="../_images/complete-role-demo.gif" />
+<p class="caption"><span class="caption-text">Completing role names</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the Language Server makes a hardcoded assumption that your
+<code class="docutils literal notranslate"><span class="pre">primary_domain</span></code> is set to <code class="docutils literal notranslate"><span class="pre">python</span></code> and has no knowledge that other
+domains exist.</p>
+<p>Support for additional domains will come in a future release</p>
+</div>
+</div>
+<div class="section" id="role-targets">
+<h3>Role Targets<a class="headerlink" href="#role-targets" title="Permalink to this headline">¶</a></h3>
+<p>The lanuguage server is able to offer completions for the targets to a number of
+different role types.</p>
+<div class="figure align-center" id="id4">
+<img alt="../_images/complete-role-target-demo.gif" src="../_images/complete-role-target-demo.gif" />
+<p class="caption"><span class="caption-text">Completing role targets</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>Currently supported roles include</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-doc" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-envvar" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">envvar</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-option" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">option</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-attr" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:attr</span></code></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-data" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:data</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-exc" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:exc</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-meth" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:meth</span></code></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-mod" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:mod</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-obj" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:obj</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-term" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">term</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-token" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">token</span></code></a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="inter-sphinx">
+<h3>Inter Sphinx<a class="headerlink" href="#inter-sphinx" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html" title="(in Sphinx v4.0.0+)"><span class="xref std std-doc">intersphinx</span></a> extension that
+comes bundled with Sphinx makes it easy to link to other Sphinx projects. If
+configured for your project, the language server will offer autocomplete
+suggestions when appropriate.</p>
+<div class="figure align-center" id="id5">
+<img alt="../_images/complete-intersphinx-demo.gif" src="../_images/complete-intersphinx-demo.gif" />
+<p class="caption"><span class="caption-text">Completing references to the Python documentation.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="diagnostics">
+<h2>Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h2>
+<p>The language server is able to catch some of the errors Sphinx outputs while
+building and publish them as diagnostic messages</p>
+<div class="figure align-center" id="id6">
+<img alt="../_images/diagnostic-sphinx-errors-demo.png" src="../_images/diagnostic-sphinx-errors-demo.png" />
+<p class="caption"><span class="caption-text">Example diagnostic messages from Sphinx</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../extensions/tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Swyddfa Developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
