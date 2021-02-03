@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Contributing &mdash; Esbonio 0.3.0 documentation</title>
+  <title>Development Environments &mdash; Esbonio 0.4.0 documentation</title>
   
 
   
@@ -38,8 +38,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Changelog" href="../changelog.html" />
-    <link rel="prev" title="Features" href="features.html" /> 
+    <link rel="prev" title="Changelog" href="../changelog.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,18 +88,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Language Server</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lsp/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lsp/editors/index.html">Editor Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
-<p class="caption"><span class="caption-text">VSCode Extension</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../code/contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code/vscode_changelog.html">Changelog</a></li>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#language-server">Language Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vscode">VSCode</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -149,13 +148,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Contributing</li>
+      <li>Development Environments</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/lsp/contributing.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/contributing/devenvs.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -168,10 +167,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="development-environment">
-<span id="lsp-devenv"></span><h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="development-environments">
+<h1>Development Environments<a class="headerlink" href="#development-environments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="language-server">
+<span id="devenv-lsp"></span><h2>Language Server<a class="headerlink" href="#language-server" title="Permalink to this headline">¶</a></h2>
 <p>Assuming that you already have <a class="reference external" href="https://www.python.org/">Python</a> available you can create a virtual
 environment in the root of the repository with the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m venv .env
@@ -186,6 +185,23 @@ $ pip install -e .[dev]
 </pre></div>
 </div>
 </div>
+<div class="section" id="vscode">
+<h2>VSCode<a class="headerlink" href="#vscode" title="Permalink to this headline">¶</a></h2>
+<p>As the VSCode extension relies on the Language Server for much of its
+functionality the first step in setting up your development environment would be
+to follow the setup guide for the <a class="reference internal" href="#devenv-lsp"><span class="std std-ref">Language Server</span></a>.</p>
+<p>Assuming that you have the language server up and running you will next need
+to ensure you have <a class="reference external" href="https://code.visualstudio.com/">VSCode</a> and <a class="reference external" href="https://www.npmjs.com/get-npm">npm</a> available on your system.</p>
+<p>Next open a terminal in the <code class="docutils literal notranslate"><span class="pre">code/</span></code> directory of the repository and run the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm install
+</pre></div>
+</div>
+<p>This will download all the dependencies required to work on the extension. Once
+completed open the root of the repository in VSCode and hit <kbd class="kbd docutils literal notranslate">F5</kbd>, this will
+build and open the extension in a separate instance that can be debugged from
+the main instance.</p>
+</div>
 </div>
 
 
@@ -194,8 +210,7 @@ $ pip install -e .[dev]
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="features.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
