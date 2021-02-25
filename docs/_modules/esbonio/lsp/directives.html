@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>esbonio.lsp.directives &mdash; Esbonio 0.4.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Esbonio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Language Server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../lsp/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lsp/editors/index.html">Editor Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/devenvs.html">Development Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/lsp.html">Language Server</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Esbonio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>esbonio.lsp.directives</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for esbonio.lsp.directives</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Logic around directive completions goes here.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">directives</span><span class="p">,</span> <span class="n">Directive</span>
+<span class="kn">from</span> <span class="nn">pygls.types</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CompletionItem</span><span class="p">,</span>
+    <span class="n">CompletionItemKind</span><span class="p">,</span>
+    <span class="n">InsertTextFormat</span><span class="p">,</span>
+    <span class="n">Position</span><span class="p">,</span>
+    <span class="n">Range</span><span class="p">,</span>
+    <span class="n">TextEdit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">LanguageFeature</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">get_domains</span>
+
+
+<span class="n">DIRECTIVE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s*\.\.[ ](?P&lt;domain&gt;[\w]+:)?(?P&lt;name&gt;[\w-]+)::&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches a complete, valid directive declaration. Not</span>
+<span class="sd">including the arguments or options.&quot;&quot;&quot;</span>
+
+
+<span class="n">PARTIAL_DIRECTIVE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (?P&lt;indent&gt;^\s*)          # directives can be indented</span>
+<span class="sd">    \.\.                      # start with a commment</span>
+<span class="sd">    (?P&lt;prefix&gt;[ ]?)          # may have a space</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?       # with an optional domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]+)?         # with an optional name</span>
+<span class="sd">    $</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches a partial directive declaraiton. Used when</span>
+<span class="sd">generating auto complete suggestions.&quot;&quot;&quot;</span>
+
+
+<span class="n">PARTIAL_DIRECTIVE_OPTION</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (?P&lt;indent&gt;\s+)   # directive options must only be preceeded by whitespace</span>
+<span class="sd">    :                 # they start with a &#39;:&#39;</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*)  # they have a name</span>
+<span class="sd">    $</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches a partial directive option. Used when generating</span>
+<span class="sd">auto complete suggestions.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Directives"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives">[docs]</a><span class="k">class</span> <span class="nc">Directives</span><span class="p">(</span><span class="n">LanguageFeature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Directive support for the language server.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Directives.initialize"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Directives.discover"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.discover">[docs]</a>    <span class="k">def</span> <span class="nf">discover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Build an index of all available directives and the their options.&quot;&quot;&quot;</span>
+        <span class="n">ignored_directives</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;restructuredtext-test-directive&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Find directives that have been registered directly with docutils.</span>
+        <span class="n">found_directives</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">directives</span><span class="o">.</span><span class="n">_directive_registry</span><span class="p">,</span> <span class="o">**</span><span class="n">directives</span><span class="o">.</span><span class="n">_directives</span><span class="p">}</span>
+
+        <span class="c1"># Find directives under Sphinx domains</span>
+        <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">get_domains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">):</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{prefix}</span><span class="s2">:</span><span class="si">{name}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">directive</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+                <span class="n">found_directives</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">directive</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">directives</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_directive</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found_directives</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignored_directives</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">options_to_completion_items</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">directives</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Discovered </span><span class="si">%s</span><span class="s2"> directives&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directives</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Directives: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">directives</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="Directives.resolve_directive"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.resolve_directive">[docs]</a>    <span class="k">def</span> <span class="nf">resolve_directive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Directive</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
+
+        <span class="c1"># &#39;Core&#39; docutils directives are returned as tuples (modulename, ClassName)</span>
+        <span class="c1"># so its up to us to resolve the reference</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">directive</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">mod</span><span class="p">,</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">directive</span>
+
+            <span class="n">modulename</span> <span class="o">=</span> <span class="s2">&quot;docutils.parsers.rst.directives.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">modulename</span><span class="p">)</span>
+            <span class="n">directive</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">directive</span></div>
+
+    <span class="n">suggest_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">PARTIAL_DIRECTIVE</span><span class="p">,</span> <span class="n">PARTIAL_DIRECTIVE_OPTION</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Regular expressions that match lines that we want to offer autocomplete</span>
+<span class="sd">    suggestions for.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Directives.suggest"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest">[docs]</a>    <span class="k">def</span> <span class="nf">suggest</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Trigger match: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&quot;domain&quot;</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_directives</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_options</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Directives.suggest_directives"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest_directives">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_directives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Suggesting directives&quot;</span><span class="p">)</span>
+
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">directive</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">directive_to_completion_item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">directive</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">items</span></div>
+
+<div class="viewcode-block" id="Directives.suggest_options"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest_options">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_options</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Suggesting options&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Match groups: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+
+        <span class="n">indent</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;indent&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Search backwards so that we can determine the context for our completion</span>
+        <span class="n">linum</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">line</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">linum</span><span class="p">]</span>
+
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">indent</span><span class="p">):</span>
+            <span class="n">linum</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">linum</span><span class="p">]</span>
+
+        <span class="c1"># Only offer completions if we&#39;re within a directive&#39;s option block</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">DIRECTIVE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Context line:  </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Context match: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}{</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">[])</span></div>
+
+<div class="viewcode-block" id="Directives.directive_to_completion_item"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.directive_to_completion_item">[docs]</a>    <span class="k">def</span> <span class="nf">directive_to_completion_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="n">Directive</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert an rst directive to its CompletionItem representation.</span>
+
+<span class="sd">        Previously, it was fine to pre-convert directives into their completion item</span>
+<span class="sd">        representation during the :meth:`discover` phase. However a number of factors</span>
+<span class="sd">        combined to force this to be something we have to compute specifically for each</span>
+<span class="sd">        completion site.</span>
+
+<span class="sd">        It all stems from directives that live under a namespaced domain e.g.</span>
+<span class="sd">        ``.. c:macro::``. First in order to get trigger character completions for</span>
+<span class="sd">        directives, we need to allow users to start typing the directive name</span>
+<span class="sd">        immediately after the second dot and have the CompletionItem insert the leading</span>
+<span class="sd">        space. Which is exactly what we used to do, setting</span>
+<span class="sd">        ``insert_text=&quot; directive::&quot;`` and we were done.</span>
+
+<span class="sd">        However with domain support, we introduced the possibility of a ``:`` character</span>
+<span class="sd">        in the name of a directive. You can imagine a scenario where a user types in a</span>
+<span class="sd">        domain namespace, say ``py:`` in order to filter down the list of options to</span>
+<span class="sd">        directives that belong to that namespace. With ``:`` being a trigger character</span>
+<span class="sd">        for role completions and the like, this would cause editors like VSCode to issue</span>
+<span class="sd">        a new completion request ignoring the old one.</span>
+
+<span class="sd">        That isn&#39;t necessarily the end of the world, but with CompletionItems assuming</span>
+<span class="sd">        that they were following the ``..`` characters, the ``insert_text`` was no</span>
+<span class="sd">        longer correct leading to broken completions like ``..py: py:function::``.</span>
+
+<span class="sd">        In order to handle the two scenarios, conceptually the easiest approach is to</span>
+<span class="sd">        switch to using a ``text_edit`` and replace the entire line with the correct</span>
+<span class="sd">        text. Unfortunately in practice this was rather fiddly.</span>
+
+<span class="sd">        Upon first setting the ``text_edit`` field VSCode suddenly stopped presenting</span>
+<span class="sd">        any options! After much debugging, head scratching and searching, I eventually</span>
+<span class="sd">        found a `couple &lt;https://github.com/microsoft/vscode/issues/38982&gt;`_ of</span>
+<span class="sd">        `issues &lt;https://github.com/microsoft/vscode/issues/41208&gt;`_ that hinted as to</span>
+<span class="sd">        what was happening.</span>
+
+<span class="sd">        I **think** what happens is that since the ``range`` of the text edit extends</span>
+<span class="sd">        back to the start of the line VSCode considers the entire line to be the filter</span>
+<span class="sd">        for the CompletionItems so it&#39;s looking to select items that start with ``..``</span>
+<span class="sd">        - which is none of them!</span>
+
+<span class="sd">        To work around this, we additionaly need to set the ``filter_text`` field so</span>
+<span class="sd">        that VSCode computes matches against that instead of the label. Then in order</span>
+<span class="sd">        for the items to be shown the value of that field needs to be ``..my:directive``</span>
+<span class="sd">        so it corresponds with what the user has actually written.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name:</span>
+<span class="sd">           The name of the directive as a user would type in an reStructuredText</span>
+<span class="sd">           document</span>
+<span class="sd">        directive:</span>
+<span class="sd">           The class definition that implements the Directive&#39;s behavior</span>
+<span class="sd">        match:</span>
+<span class="sd">           The regular expression match object that represents the line we are providing</span>
+<span class="sd">           the autocomplete suggestions for.</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position in the source code where the autocompletion request was sent</span>
+<span class="sd">           from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;prefix&quot;</span><span class="p">]</span>
+        <span class="n">indent</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;indent&quot;</span><span class="p">]</span>
+
+        <span class="n">documentation</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getdoc</span><span class="p">(</span><span class="n">directive</span><span class="p">)</span>
+
+        <span class="c1"># Ignore directives that do not provide their own documentation.</span>
+        <span class="k">if</span> <span class="n">documentation</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Base class for reStructedText directives.&quot;</span><span class="p">):</span>
+            <span class="n">documentation</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># TODO: Give better names to arguments based on what they represent.</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="s2">&quot;${{</span><span class="si">{0}</span><span class="s2">:arg</span><span class="si">{0}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">directive</span><span class="o">.</span><span class="n">required_arguments</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">CompletionItem</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;directive&quot;</span><span class="p">,</span>
+            <span class="n">documentation</span><span class="o">=</span><span class="n">documentation</span><span class="p">,</span>
+            <span class="n">filter_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;..</span><span class="si">{</span><span class="n">prefix</span><span class="si">}{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">insert_text_format</span><span class="o">=</span><span class="n">InsertTextFormat</span><span class="o">.</span><span class="n">Snippet</span><span class="p">,</span>
+            <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
+                    <span class="n">Position</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                    <span class="n">Position</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">character</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="p">),</span>
+                <span class="n">new_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">.. </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">:: </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Directives.options_to_completion_items"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.options_to_completion_items">[docs]</a>    <span class="k">def</span> <span class="nf">options_to_completion_items</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="n">Directive</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Convert a directive&#39;s options to a list of completion items.</span>
+
+<span class="sd">        Unfortunately, the ``autoxxx`` family of directives are a little different.</span>
+<span class="sd">        Each ``autoxxxx`` directive name resolves to the same ``AutodocDirective`` class.</span>
+<span class="sd">        That paricular directive does not have any options, instead the options are</span>
+<span class="sd">        held on the particular Documenter that documents that object type.</span>
+
+<span class="sd">        This method does the lookup in order to determine what those options are.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name:</span>
+<span class="sd">           The name of the directive as it appears in an rst file.</span>
+<span class="sd">        directive:</span>
+<span class="sd">           The directive whose options we are creating completions for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="n">directive</span><span class="o">.</span><span class="n">option_spec</span>
+
+        <span class="c1"># autoxxx directives require special handlng.</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Processing options for &#39;</span><span class="si">%s</span><span class="s2">&#39; directive&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Documenter name is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">documenter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">documenters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">documenter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">options</span> <span class="o">=</span> <span class="n">documenter</span><span class="o">.</span><span class="n">option_spec</span>
+
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">CompletionItem</span><span class="p">(</span>
+                <span class="n">opt</span><span class="p">,</span>
+                <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;option&quot;</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span>
+                <span class="n">insert_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">opt</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">options</span>
+        <span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">):</span>
+
+    <span class="n">directive_completion</span> <span class="o">=</span> <span class="n">Directives</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+    <span class="n">rst</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">directive_completion</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Swyddfa Developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

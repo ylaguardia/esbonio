@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Tutorial &mdash; Esbonio 0.4.0 documentation</title>
+  <title>Language Server &mdash; Esbonio 0.4.0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Features" href="../lsp/features.html" />
-    <link rel="prev" title="Esbonio" href="../index.html" /> 
+    <link rel="next" title="Directives" href="lsp/directives.html" />
+    <link rel="prev" title="Development Environments" href="devenvs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,11 +85,8 @@
             
             
               <p class="caption"><span class="caption-text">Extensions</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#solutions">Solutions</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Language Server</span></p>
 <ul>
@@ -98,9 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/devenvs.html">Development Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/lsp.html">Language Server</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="devenvs.html">Development Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Language Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lsp/directives.html">Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lsp/roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lsp/testing.html">Testing</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -149,14 +151,14 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Tutorial</li>
+      <li>Language Server</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
             
-              <a href="https://github.com/swyddfa/esbonio/blob/release/docs/extensions/tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/swyddfa/esbonio/blob/release/docs/contributing/lsp.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -170,37 +172,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<p>The tutorial extension can be enabled by including <code class="code docutils literal notranslate"><span class="pre">esbonio.tutorial</span></code> in
-your extensions list</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
-   <span class="s2">&quot;esbonio.tutorial&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-<p>Has the ability to write tutorials and export them as Jupyter notebooks. These
-can then made available online through cli commands or a notebook hosting
-service like Binder.</p>
-<div class="section" id="solutions">
-<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
-<p>If you want your tutorials to include exercises</p>
-<p><strong>Example</strong></p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">solution</span><span class="p">::</span>
-
-<span class="p">   ..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">python</span>
-
-      <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-<details class="admonition note">
-<summary class="admonition-title"> Solution (click to reveal)</summary>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</details>
+  <div class="section" id="language-server">
+<h1>Language Server<a class="headerlink" href="#language-server" title="Permalink to this headline">¶</a></h1>
+<p>This section contains autogenerated implementation notes based on docstrings in
+the codebase.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lsp/directives.html">Directives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsp/roles.html">Roles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lsp/testing.html">Testing</a></li>
+</ul>
 </div>
 </div>
 
@@ -210,8 +191,8 @@ service like Binder.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../lsp/features.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="Esbonio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lsp/directives.html" class="btn btn-neutral float-right" title="Directives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="devenvs.html" class="btn btn-neutral float-left" title="Development Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

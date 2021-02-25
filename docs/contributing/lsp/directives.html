@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Directives &mdash; Esbonio 0.4.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Roles" href="roles.html" />
+    <link rel="prev" title="Language Server" href="../lsp.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Esbonio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Language Server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lsp/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lsp/editors/index.html">Editor Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../devenvs.html">Development Environments</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../lsp.html">Language Server</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Esbonio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../lsp.html">Language Server</a> &raquo;</li>
+        
+      <li>Directives</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/swyddfa/esbonio/blob/release/docs/contributing/lsp/directives.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-esbonio.lsp.directives">
+<span id="directives"></span><h1>Directives<a class="headerlink" href="#module-esbonio.lsp.directives" title="Permalink to this headline">¶</a></h1>
+<p>Logic around directive completions goes here.</p>
+<dl class="py data">
+<dt id="esbonio.lsp.directives.DIRECTIVE">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">DIRECTIVE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\\s*\\.\\.[</span> <span class="pre">](?P&lt;domain&gt;[\\w]+:)?(?P&lt;name&gt;[\\w-]+)::')</span></em><a class="headerlink" href="#esbonio.lsp.directives.DIRECTIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A regular expression that matches a complete, valid directive declaration. Not
+including the arguments or options.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="esbonio.lsp.directives.PARTIAL_DIRECTIVE">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A regular expression that matches a partial directive declaraiton. Used when
+generating auto complete suggestions.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE_OPTION</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>A regular expression that matches a partial directive option. Used when generating
+auto complete suggestions.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="esbonio.lsp.directives.Directives">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">Directives</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directive support for the language server.</p>
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.initialize">
+<code class="sig-name descname"><span class="pre">initialize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.discover">
+<code class="sig-name descname"><span class="pre">discover</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.discover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.discover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build an index of all available directives and the their options.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.resolve_directive">
+<code class="sig-name descname"><span class="pre">resolve_directive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.resolve_directive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.resolve_directive" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directive</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(in Sphinx v4.0.0+)"><em>docutils.parsers.rst.Directive</em></a><em>, </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="esbonio.lsp.directives.Directives.suggest_triggers">
+<code class="sig-name descname"><span class="pre">suggest_triggers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_triggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regular expressions that match lines that we want to offer autocomplete
+suggestions for.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.suggest">
+<code class="sig-name descname"><span class="pre">suggest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match</strong> (<em>re.Match</em>) – </p></li>
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – </p></li>
+<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.suggest_directives">
+<code class="sig-name descname"><span class="pre">suggest_directives</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_directives" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[pygls.types.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.suggest_options">
+<code class="sig-name descname"><span class="pre">suggest_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_options" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match</strong> (<em>re.Match</em>) – </p></li>
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – </p></li>
+<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.directive_to_completion_item">
+<code class="sig-name descname"><span class="pre">directive_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.directive_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.directive_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an rst directive to its CompletionItem representation.</p>
+<p>Previously, it was fine to pre-convert directives into their completion item
+representation during the <a class="reference internal" href="#esbonio.lsp.directives.Directives.discover" title="esbonio.lsp.directives.Directives.discover"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discover()</span></code></a> phase. However a number of factors
+combined to force this to be something we have to compute specifically for each
+completion site.</p>
+<p>It all stems from directives that live under a namespaced domain e.g.
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:macro::</span></code>. First in order to get trigger character completions for
+directives, we need to allow users to start typing the directive name
+immediately after the second dot and have the CompletionItem insert the leading
+space. Which is exactly what we used to do, setting
+<code class="docutils literal notranslate"><span class="pre">insert_text=&quot;</span> <span class="pre">directive::&quot;</span></code> and we were done.</p>
+<p>However with domain support, we introduced the possibility of a <code class="docutils literal notranslate"><span class="pre">:</span></code> character
+in the name of a directive. You can imagine a scenario where a user types in a
+domain namespace, say <code class="docutils literal notranslate"><span class="pre">py:</span></code> in order to filter down the list of options to
+directives that belong to that namespace. With <code class="docutils literal notranslate"><span class="pre">:</span></code> being a trigger character
+for role completions and the like, this would cause editors like VSCode to issue
+a new completion request ignoring the old one.</p>
+<p>That isn’t necessarily the end of the world, but with CompletionItems assuming
+that they were following the <code class="docutils literal notranslate"><span class="pre">..</span></code> characters, the <code class="docutils literal notranslate"><span class="pre">insert_text</span></code> was no
+longer correct leading to broken completions like <code class="docutils literal notranslate"><span class="pre">..py:</span> <span class="pre">py:function::</span></code>.</p>
+<p>In order to handle the two scenarios, conceptually the easiest approach is to
+switch to using a <code class="docutils literal notranslate"><span class="pre">text_edit</span></code> and replace the entire line with the correct
+text. Unfortunately in practice this was rather fiddly.</p>
+<p>Upon first setting the <code class="docutils literal notranslate"><span class="pre">text_edit</span></code> field VSCode suddenly stopped presenting
+any options! After much debugging, head scratching and searching, I eventually
+found a <a class="reference external" href="https://github.com/microsoft/vscode/issues/38982">couple</a> of
+<a class="reference external" href="https://github.com/microsoft/vscode/issues/41208">issues</a> that hinted as to
+what was happening.</p>
+<p>I <strong>think</strong> what happens is that since the <code class="docutils literal notranslate"><span class="pre">range</span></code> of the text edit extends
+back to the start of the line VSCode considers the entire line to be the filter
+for the CompletionItems so it’s looking to select items that start with <code class="docutils literal notranslate"><span class="pre">..</span></code>
+- which is none of them!</p>
+<p>To work around this, we additionaly need to set the <code class="docutils literal notranslate"><span class="pre">filter_text</span></code> field so
+that VSCode computes matches against that instead of the label. Then in order
+for the items to be shown the value of that field needs to be <code class="docutils literal notranslate"><span class="pre">..my:directive</span></code>
+so it corresponds with what the user has actually written.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the directive as a user would type in an reStructuredText
+document</p></li>
+<li><p><strong>directive</strong> (<a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(in Sphinx v4.0.0+)"><em>docutils.parsers.rst.Directive</em></a>) – The class definition that implements the Directive’s behavior</p></li>
+<li><p><strong>match</strong> (<em>re.Match</em>) – The regular expression match object that represents the line we are providing
+the autocomplete suggestions for.</p></li>
+<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – The position in the source code where the autocompletion request was sent
+from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.types.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.directives.Directives.options_to_completion_items">
+<code class="sig-name descname"><span class="pre">options_to_completion_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.options_to_completion_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.options_to_completion_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a directive’s options to a list of completion items.</p>
+<p>Unfortunately, the <code class="docutils literal notranslate"><span class="pre">autoxxx</span></code> family of directives are a little different.
+Each <code class="docutils literal notranslate"><span class="pre">autoxxxx</span></code> directive name resolves to the same <code class="docutils literal notranslate"><span class="pre">AutodocDirective</span></code> class.
+That paricular directive does not have any options, instead the options are
+held on the particular Documenter that documents that object type.</p>
+<p>This method does the lookup in order to determine what those options are.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the directive as it appears in an rst file.</p></li>
+<li><p><strong>directive</strong> (<a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(in Sphinx v4.0.0+)"><em>docutils.parsers.rst.Directive</em></a>) – The directive whose options we are creating completions for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.directives.setup">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.setup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<em>esbonio.lsp.RstLanguageServer</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="roles.html" class="btn btn-neutral float-right" title="Roles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../lsp.html" class="btn btn-neutral float-left" title="Language Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Swyddfa Developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

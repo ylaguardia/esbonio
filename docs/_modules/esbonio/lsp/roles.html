@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>esbonio.lsp.roles &mdash; Esbonio 0.4.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Esbonio
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Language Server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../lsp/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lsp/editors/index.html">Editor Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/devenvs.html">Development Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/lsp.html">Language Server</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Esbonio</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>esbonio.lsp.roles</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for esbonio.lsp.roles</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Role support.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
+<span class="kn">from</span> <span class="nn">pygls.types</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CompletionItem</span><span class="p">,</span>
+    <span class="n">CompletionItemKind</span><span class="p">,</span>
+    <span class="n">DidSaveTextDocumentParams</span><span class="p">,</span>
+    <span class="n">Position</span><span class="p">,</span>
+    <span class="n">Range</span><span class="p">,</span>
+    <span class="n">TextEdit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">LanguageFeature</span><span class="p">,</span> <span class="n">dump</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.directives</span> <span class="kn">import</span> <span class="n">DIRECTIVE</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">get_domains</span>
+
+
+<span class="n">PARTIAL_ROLE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (^|.*[ ])            # roles must be preceeded by a space, or start the line</span>
+<span class="sd">    (?P&lt;role&gt;:           # roles start with the &#39;:&#39; character</span>
+<span class="sd">    (?!:)                # make sure the next character is not &#39;:&#39;</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?  # there may be a domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*))    # match the role name</span>
+<span class="sd">    $                    # ensure pattern only matches incomplete roles</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches a partial role.</span>
+
+<span class="sd">For example::</span>
+
+<span class="sd">   :re</span>
+
+<span class="sd">Used when generating auto complete suggestions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="n">PARTIAL_PLAIN_TARGET</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (^|.*[ ])            # roles must be preceeded by a space, or start the line</span>
+<span class="sd">    (?P&lt;role&gt;:           # roles start with the &#39;:&#39; character</span>
+<span class="sd">    (?!:)                # make sure the next character is not &#39;:&#39;</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?  # there may be a domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*)     # followed by the role name</span>
+<span class="sd">    :)                   # the role name ends with a &#39;:&#39;</span>
+<span class="sd">    `                    # the target begins with a &#39;`&#39;</span>
+<span class="sd">    (?P&lt;target&gt;[^&lt;:`]*)  # match &quot;plain link&quot; targets</span>
+<span class="sd">    $</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches a partial &quot;plain&quot; role target.</span>
+
+<span class="sd">For example::</span>
+
+<span class="sd">   :ref:`som</span>
+
+<span class="sd">Used when generating auto complete suggestions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">PARTIAL_ALIASED_TARGET</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (^|.*[ ])            # roles must be preceeded by a space, or start the line</span>
+<span class="sd">    (?P&lt;role&gt;:           # roles start with the &#39;:&#39; character</span>
+<span class="sd">    (?!:)                # make sure the next character is not &#39;:&#39;</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?  # there may be a domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*)     # followed by the role name</span>
+<span class="sd">    :)                   # the role name ends with a &#39;:&#39;</span>
+<span class="sd">    `                    # the target begins with a &#39;`&#39;`</span>
+<span class="sd">    .*&lt;                  # the actual target name starts after a &#39;&lt;&#39;</span>
+<span class="sd">    (?P&lt;target&gt;[^`:]*)   # match &quot;aliased&quot; targets</span>
+<span class="sd">    $</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression that matches an &quot;aliased&quot; role target.</span>
+
+<span class="sd">For example::</span>
+
+<span class="sd">   :ref:`More info &lt;som</span>
+
+<span class="sd">Used when generating auto complete suggestions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="n">CompletionTarget</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;CompletionTarget&quot;</span><span class="p">,</span> <span class="s2">&quot;kind,insert_fmt&quot;</span><span class="p">)</span>
+
+<span class="n">DEFAULT_TARGET</span> <span class="o">=</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Reference</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">COMPLETION_TARGETS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">File</span><span class="p">,</span> <span class="s2">&quot;/</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;envvar&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Variable</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Function</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Method</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;module&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;term&quot;</span><span class="p">:</span> <span class="n">CompletionTarget</span><span class="p">(</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="Roles"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles">[docs]</a><span class="k">class</span> <span class="nc">Roles</span><span class="p">(</span><span class="n">LanguageFeature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Role support for the language server.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Roles.initialize"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discover_roles</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discover_targets</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Roles.save"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discover_targets</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Roles.discover_roles"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.discover_roles">[docs]</a>    <span class="k">def</span> <span class="nf">discover_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Look up for valid role defintions to to offer as autocomplete suggestions.</span>
+
+<span class="sd">        *This method only needs to be called once per application instance.*</span>
+
+<span class="sd">        This will look for all the roles registered with docutils as well as the</span>
+<span class="sd">        roles that are stored on a Sphinx domain object.</span>
+
+<span class="sd">        Additionally, while we are looping through the domain objects, we construct</span>
+<span class="sd">        the ``target_types`` dictionary. This is used when providing role target</span>
+<span class="sd">        completions by giving the list of object types the current role is able to</span>
+<span class="sd">        link with.</span>
+
+<span class="sd">        For example, consider the :rst:role:`sphinx:py:func` and</span>
+<span class="sd">        :rst:role:`sphinx:py:class` roles from the Python domain. As the ``func`` role</span>
+<span class="sd">        links to Python functions and the ``class`` role links to Python classes *and*</span>
+<span class="sd">        exceptions we would end up with</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">           {</span>
+<span class="sd">             &quot;func&quot;: [&quot;py:function&quot;],</span>
+<span class="sd">             &quot;class&quot;: [&quot;py:class&quot;, &quot;py:exception&quot;]</span>
+<span class="sd">           }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Find roles that have been registered directly with docutils</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">found_roles</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">roles</span><span class="o">.</span><span class="n">_roles</span><span class="p">,</span> <span class="o">**</span><span class="n">roles</span><span class="o">.</span><span class="n">_role_registry</span><span class="p">}</span>
+
+        <span class="c1"># Find roles under Sphinx domains</span>
+        <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">get_domains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">):</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{prefix}</span><span class="s2">:</span><span class="si">{name}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">roles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+                <span class="n">found_roles</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">role</span>
+
+            <span class="c1"># Also build a map we can use when looking up target completions.</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">item_type</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">object_types</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">item_type</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">role</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+                    <span class="n">target_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">target_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">target_types</span> <span class="o">=</span> <span class="p">[]</span>
+
+                    <span class="n">target_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_types</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">roles</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found_roles</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">roles</span><span class="o">.</span><span class="n">unimplemented_role</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Discovered </span><span class="si">%s</span><span class="s2"> roles&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Roles: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Discovered </span><span class="si">%s</span><span class="s2"> target types&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_types</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Target types: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Roles.discover_targets"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.discover_targets">[docs]</a>    <span class="k">def</span> <span class="nf">discover_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Look up all the targets we can offer as autocomplete suggestions.</span>
+
+<span class="sd">        *This method needs to be called each time a document has been saved.*</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_objects</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">get_domains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">):</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{prefix}</span><span class="s2">:</span><span class="si">{name}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">display_name</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">get_objects</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+                <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">items</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">target_objects</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span>
+
+                <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">target_object_to_completion_item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">display_name</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">)</span>
+                <span class="p">)</span></div>
+
+    <span class="n">suggest_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">PARTIAL_ROLE</span><span class="p">,</span> <span class="n">PARTIAL_PLAIN_TARGET</span><span class="p">,</span> <span class="n">PARTIAL_ALIASED_TARGET</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Roles.suggest"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.suggest">[docs]</a>    <span class="k">def</span> <span class="nf">suggest</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="n">indent</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;target&quot;</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_targets</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="c1"># If there&#39;s no indent, then this can only be a role defn</span>
+        <span class="k">if</span> <span class="n">indent</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_roles</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="c1"># Otherwise, search backwards until we find a blank line or an unindent</span>
+        <span class="c1"># so that we can determine the appropriate context.</span>
+        <span class="n">linum</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">line</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">linum</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_roles</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">indent</span><span class="p">):</span>
+            <span class="n">linum</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">linum</span><span class="p">]</span>
+
+        <span class="c1"># Unless we are within a directive&#39;s options block, we should offer role</span>
+        <span class="c1"># suggestions</span>
+        <span class="k">if</span> <span class="n">DIRECTIVE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_roles</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Roles.suggest_roles"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.suggest_roles">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_roles</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Suggesting roles&quot;</span><span class="p">)</span>
+
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">role</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">role_to_completion_item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">role</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">items</span></div>
+
+<div class="viewcode-block" id="Roles.suggest_targets"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.suggest_targets">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_targets</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Suggesting targets&quot;</span><span class="p">)</span>
+
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}{</span><span class="n">groups</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">object_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Getting suggestions for &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Role targets object types: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">object_types</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">object_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">targets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">type_</span> <span class="ow">in</span> <span class="n">object_types</span><span class="p">:</span>
+            <span class="n">targets</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">type_</span><span class="p">,</span> <span class="p">[])</span>
+
+        <span class="k">return</span> <span class="n">targets</span></div>
+
+<div class="viewcode-block" id="Roles.role_to_completion_item"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.role_to_completion_item">[docs]</a>    <span class="k">def</span> <span class="nf">role_to_completion_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert an rst role to its CompletionItem representation.</span>
+
+<span class="sd">        With domain support it&#39;s necessary to compute the CompletionItem representation</span>
+<span class="sd">        specifically for each completion site. See</span>
+<span class="sd">        :meth:`~esbonio.lsp.directives.Directives.directive_to_completion_item` for</span>
+<span class="sd">        more historical information.</span>
+
+<span class="sd">        For some reason, even though these completion items are constructed in the same</span>
+<span class="sd">        manner as the ones for directives using them in VSCode does not feel as nice....</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name:</span>
+<span class="sd">           The name of the role as a user would type into an reStructuredText document.</span>
+<span class="sd">        role:</span>
+<span class="sd">           The implementation of the role.</span>
+<span class="sd">        match:</span>
+<span class="sd">           The regular expression match object that represents the line we are providing</span>
+<span class="sd">           the autocomplete suggestions for.</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position in the source code where the autocompletion request was sent</span>
+<span class="sd">           from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">line</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">character</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">])</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">character</span>
+
+        <span class="n">insert_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">:&quot;</span>
+
+        <span class="n">item</span> <span class="o">=</span> <span class="n">CompletionItem</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Function</span><span class="p">,</span>
+            <span class="n">filter_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;role&quot;</span><span class="p">,</span>
+            <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span>
+                <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">start</span><span class="p">),</span> <span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="p">)),</span>
+                <span class="n">new_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Item </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">item</span></div>
+
+<div class="viewcode-block" id="Roles.target_object_to_completion_item"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.target_object_to_completion_item">[docs]</a>    <span class="k">def</span> <span class="nf">target_object_to_completion_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert a target object to its CompletionItem representation.&quot;&quot;&quot;</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="n">obj_type</span>
+
+        <span class="k">if</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+        <span class="n">target_type</span> <span class="o">=</span> <span class="n">COMPLETION_TARGETS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">DEFAULT_TARGET</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">CompletionItem</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">target_type</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">display_name</span><span class="p">),</span>
+            <span class="n">insert_text</span><span class="o">=</span><span class="n">target_type</span><span class="o">.</span><span class="n">insert_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">):</span>
+    <span class="n">role_completion</span> <span class="o">=</span> <span class="n">Roles</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span>
+    <span class="n">rst</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">role_completion</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Swyddfa Developers.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
