@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp.testing &mdash; Esbonio 0.4.0 documentation</title>
+  <title>esbonio.lsp.testing &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -146,6 +146,8 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../lsp.html">esbonio.lsp</a> &raquo;</li>
+        
       <li>esbonio.lsp.testing</li>
     
     
@@ -164,28 +166,54 @@
   <h1>Source code for esbonio.lsp.testing</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Utility functions to help with testing Language Server features.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
 
-<span class="kn">from</span> <span class="nn">pygls.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">LanguageFeature</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="role_target_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.role_target_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_target_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="directive_argument_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.directive_argument_patterns">[docs]</a><span class="k">def</span> <span class="nf">directive_argument_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Return a number of example directive argument patterns.</span>
+
+<span class="sd">    These correspond to test cases where directive argument suggestions should be</span>
+<span class="sd">    generated.</span>
+
+<span class="sd">    Paramters</span>
+<span class="sd">    ---------</span>
+<span class="sd">    name:</span>
+<span class="sd">       The name of the directive to generate suggestions for.</span>
+<span class="sd">    partial:</span>
+<span class="sd">       The partial argument that the user has already entered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">partial</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.. </span><span class="si">{}</span><span class="s2">:: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;   .. </span><span class="si">{}</span><span class="s2">:: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">]]</span></div>
+
+
+<div class="viewcode-block" id="role_target_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.role_target_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_target_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Return a number of example role target patterns.</span>
 
-<span class="sd">    These correspond to cases where role target completions may be generated.</span>
+<span class="sd">    These correspond to test cases where role target suggestions should be generated.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    name:</span>
-<span class="sd">       The name of the role to generate examples for</span>
+<span class="sd">       The name of the role to generate suggestions for.</span>
+<span class="sd">    partial:</span>
+<span class="sd">       The partial target that the user as already entered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`&quot;</span><span class="p">,</span> <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`More Info &lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`&quot;</span><span class="p">,</span> <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`Some Label &lt;&quot;</span><span class="p">]</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">partial</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`More Info &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`Some Label &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
     <span class="p">]</span></div>
 
 
@@ -213,11 +241,24 @@
 
 
 <div class="viewcode-block" id="completion_test"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.completion_test">[docs]</a><span class="k">def</span> <span class="nf">completion_test</span><span class="p">(</span>
-    <span class="n">feature</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">unexpected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+    <span class="n">feature</span><span class="p">:</span> <span class="n">LanguageFeature</span><span class="p">,</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;index.rst&quot;</span><span class="p">,</span>
+    <span class="n">expected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">unexpected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check to see if a feature provides the correct completion suggestions.</span>
 
-<span class="sd">    **Only checking CompletionItem labels is supported**</span>
+<span class="sd">    .. admonition:: Assumptions</span>
+
+<span class="sd">       - The ``feature`` has access to a valid Sphinx application via ``rst.app``</span>
+<span class="sd">       - If ``feature`` requires initialisation, it has already been done.</span>
+
+<span class="sd">    .. admonition:: Limitations</span>
+
+<span class="sd">       - Only checking ``CompletionItem`` labels is supported, if you want to check</span>
+<span class="sd">         other aspects of the results, write a dedicated test method.</span>
 
 <span class="sd">    This function takes the given ``feature`` and calls it in the same manner as the</span>
 <span class="sd">    real language server so that it can simulate real usage without being a full blown</span>
@@ -239,11 +280,16 @@
 <span class="sd">           ^</span>
 
 <span class="sd">    The ``text`` parameter should be set to</span>
-<span class="sd">    ``.. image:: filename.png\\n   :align: center\\n\\f   :``. It&#39;s important to note that</span>
-<span class="sd">    newlines **cannot** come after the ``\\f`` character.</span>
+<span class="sd">    ``.. image:: filename.png\\n   :align: center\\n\\f   :``. It&#39;s important to note</span>
+<span class="sd">    that newlines **cannot** come after the ``\\f`` character.</span>
 
-<span class="sd">    If you want to test the case where no completions should be suggested, pass ``None``</span>
-<span class="sd">    to both the ``expected`` and ``unexpected`` parameters.</span>
+<span class="sd">    If you want to test the case where no completions should be suggested, set</span>
+<span class="sd">    ``expected`` to ``None``.</span>
+
+<span class="sd">    By default completion suggestions will be asked for the main ``index.rst`` file at</span>
+<span class="sd">    the root of the docs project. If you want them to be asked for a file with a</span>
+<span class="sd">    different path (like for filepath completion tests) this can be overridden with the</span>
+<span class="sd">    ``filepath`` argument.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -251,6 +297,9 @@
 <span class="sd">       An instance of the language service feature to test.</span>
 <span class="sd">    text:</span>
 <span class="sd">       The text to offer completion suggestions for.</span>
+<span class="sd">    filepath:</span>
+<span class="sd">       The path of the file that completion suggestions are being asked for. Relative</span>
+<span class="sd">       to the Sphinx application&#39;s srcdir.</span>
 <span class="sd">    expected:</span>
 <span class="sd">       The set of completion item labels you expect to see in the output.</span>
 <span class="sd">    unexpected:</span>
@@ -263,11 +312,12 @@
         <span class="n">contents</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Context text:    &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Insertsion text: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Insertion text: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">assert</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">text</span><span class="p">,</span> <span class="s2">&quot;Insertion text cannot contain newlines&quot;</span>
 
-    <span class="n">document</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="s2">&quot;file:///test_doc.rst&quot;</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">lines</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">srcdir</span><span class="p">)</span> <span class="o">/</span> <span class="n">filepath</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;file://</span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">lines</span><span class="p">),</span> <span class="n">character</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="n">feature</span><span class="o">.</span><span class="n">suggest_triggers</span><span class="p">:</span>
@@ -278,6 +328,7 @@
             <span class="n">results</span> <span class="o">+=</span> <span class="n">feature</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
 
     <span class="n">items</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">}</span>
+    <span class="n">unexpected</span> <span class="o">=</span> <span class="n">unexpected</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Results:    </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Expected:   </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
@@ -299,7 +350,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>

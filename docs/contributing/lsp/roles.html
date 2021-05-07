@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Roles &mdash; Esbonio 0.4.0 documentation</title>
+  <title>Roles &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Testing" href="testing.html" />
-    <link rel="prev" title="Directives" href="directives.html" /> 
+    <link rel="next" title="Sphinx" href="sphinx.html" />
+    <link rel="prev" title="Logger" href="logger.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,7 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../devenvs.html">Development Environments</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../lsp.html">Language Server</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="directives.html">Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filepaths.html">Filepaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html">Intersphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">Logger</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
 </ul>
 </li>
@@ -232,16 +236,21 @@
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></code><code class="sig-name descname"><span class="pre">Roles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Role support for the language server.</p>
 <dl class="py method">
-<dt id="esbonio.lsp.roles.Roles.initialize">
-<code class="sig-name descname"><span class="pre">initialize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.initialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.initialize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="esbonio.lsp.roles.Roles.initialized">
+<code class="sig-name descname"><span class="pre">initialized</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.initialized" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.SphinxConfig" title="esbonio.lsp.SphinxConfig"><em>esbonio.lsp.SphinxConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="esbonio.lsp.roles.Roles.save">
 <code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.save" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> (<em>pygls.types.DidSaveTextDocumentParams</em>) – </p>
+<dd class="field-odd"><p><strong>params</strong> (<em>pygls.lsp.types.workspace.DidSaveTextDocumentParams</em>) – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -257,8 +266,8 @@ roles that are stored on a Sphinx domain object.</p>
 the <code class="docutils literal notranslate"><span class="pre">target_types</span></code> dictionary. This is used when providing role target
 completions by giving the list of object types the current role is able to
 link with.</p>
-<p>For example, consider the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a> and
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a> roles from the Python domain. As the <code class="docutils literal notranslate"><span class="pre">func</span></code> role
+<p>For example, consider the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a> and
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a> roles from the Python domain. As the <code class="docutils literal notranslate"><span class="pre">func</span></code> role
 links to Python functions and the <code class="docutils literal notranslate"><span class="pre">class</span></code> role links to Python classes <em>and</em>
 exceptions we would end up with</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -289,11 +298,11 @@ exceptions we would end up with</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>match</strong> (<em>re.Match</em>) – </p></li>
 <li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – </p></li>
-<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – </p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -305,11 +314,11 @@ exceptions we would end up with</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>match</strong> (<em>re.Match</em>) – </p></li>
-<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – </p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -321,11 +330,11 @@ exceptions we would end up with</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>match</strong> (<em>re.Match</em>) – </p></li>
-<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – </p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[pygls.types.CompletionItem]</p>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -347,12 +356,12 @@ manner as the ones for directives using them in VSCode does not feel as nice….
 <li><p><strong>role</strong> – The implementation of the role.</p></li>
 <li><p><strong>match</strong> (<em>re.Match</em>) – The regular expression match object that represents the line we are providing
 the autocomplete suggestions for.</p></li>
-<li><p><strong>position</strong> (<em>pygls.types.Position</em>) – The position in the source code where the autocompletion request was sent
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – The position in the source code where the autocompletion request was sent
 from.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>pygls.types.CompletionItem</p>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
 </dd>
 </dl>
 </dd></dl>
@@ -370,7 +379,7 @@ from.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>pygls.types.CompletionItem</p>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
 </dd>
 </dl>
 </dd></dl>
@@ -382,7 +391,7 @@ from.</p></li>
 <code class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></code><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.setup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rst</strong> (<em>esbonio.lsp.RstLanguageServer</em>) – </p>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.RstLanguageServer" title="esbonio.lsp.RstLanguageServer"><em>esbonio.lsp.RstLanguageServer</em></a>) – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -395,15 +404,15 @@ from.</p></li>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="testing.html" class="btn btn-neutral float-right" title="Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="directives.html" class="btn btn-neutral float-left" title="Directives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx.html" class="btn btn-neutral float-right" title="Sphinx" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="logger.html" class="btn btn-neutral float-left" title="Logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Features &mdash; Esbonio 0.4.0 documentation</title>
+  <title>Features &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -191,13 +191,6 @@ options that they expose.</p>
 <img alt="../_images/complete-directive-demo.gif" src="../_images/complete-directive-demo.gif" />
 <p class="caption"><span class="caption-text">Completing directive names</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Currently the Language Server makes a hardcoded assumption that your
-<code class="docutils literal notranslate"><span class="pre">primary_domain</span></code> is set to <code class="docutils literal notranslate"><span class="pre">python</span></code> and has no knowledge that other
-domains exist.</p>
-<p>Support for additional domains will come in a future release</p>
-</div>
 </div>
 <div class="section" id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
@@ -207,39 +200,33 @@ supported role types</p>
 <img alt="../_images/complete-role-demo.gif" src="../_images/complete-role-demo.gif" />
 <p class="caption"><span class="caption-text">Completing roles</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Currently the Language Server makes a hardcoded assumption that your
-<code class="docutils literal notranslate"><span class="pre">primary_domain</span></code> is set to <code class="docutils literal notranslate"><span class="pre">python</span></code> and has no knowledge that other
-domains exist.</p>
-<p>Support for additional domains will come in a future release</p>
-</div>
-<p>Target completionss are currently supported for the following role type</p>
+<p>Target completions are currently supported for the following roles</p>
 <table class="hlist"><tr><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-doc" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-envvar" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">envvar</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-option" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">option</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-attr" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:attr</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-doc" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-download" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">download</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-envvar" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">envvar</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-option" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">option</span></code></a></p></li>
 </ul>
 </td><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-data" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:data</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-exc" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:exc</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-meth" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:meth</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-attr" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:attr</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-data" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:data</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-exc" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:exc</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a></p></li>
 </ul>
 </td><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-mod" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:mod</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-obj" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:obj</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-term" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">term</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-token" title="(in Sphinx v4.0.0+)"><code class="docutils literal notranslate"><span class="pre">token</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-meth" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:meth</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-mod" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:mod</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-obj" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:obj</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-term" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">term</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-token" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">token</span></code></a></p></li>
 </ul>
 </td></tr></table>
 </div>
 <div class="section" id="inter-sphinx">
 <h3>Inter Sphinx<a class="headerlink" href="#inter-sphinx" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html" title="(in Sphinx v4.0.0+)"><span class="xref std std-doc">intersphinx</span></a> extension that
+<p>The <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html" title="(in Sphinx v5.0.0+)"><span class="xref std std-doc">intersphinx</span></a> extension that
 comes bundled with Sphinx makes it easy to link to other Sphinx projects. If
 configured for your project, the language server will offer autocomplete
 suggestions when appropriate.</p>
@@ -274,7 +261,7 @@ building and publish them as diagnostic messages</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>

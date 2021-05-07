@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Testing &mdash; Esbonio 0.4.0 documentation</title>
+  <title>Testing &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Roles" href="roles.html" /> 
+    <link rel="prev" title="Sphinx" href="sphinx.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,7 +98,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../devenvs.html">Development Environments</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../lsp.html">Language Server</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="directives.html">Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filepaths.html">Filepaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html">Intersphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">Logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="roles.html">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Testing</a></li>
 </ul>
 </li>
@@ -177,13 +181,41 @@
 <span id="testing"></span><h1>Testing<a class="headerlink" href="#module-esbonio.lsp.testing" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions to help with testing Language Server features.</p>
 <dl class="py function">
-<dt id="esbonio.lsp.testing.role_target_patterns">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">role_target_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#role_target_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_target_patterns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a number of example role target patterns.</p>
-<p>These correspond to cases where role target completions may be generated.</p>
+<dt id="esbonio.lsp.testing.directive_argument_patterns">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">directive_argument_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#directive_argument_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.directive_argument_patterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a number of example directive argument patterns.</p>
+<p>These correspond to test cases where directive argument suggestions should be
+generated.</p>
+<dl class="simple">
+<dt>name:</dt><dd><p>The name of the directive to generate suggestions for.</p>
+</dd>
+<dt>partial:</dt><dd><p>The partial argument that the user has already entered.</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the role to generate examples for</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.testing.role_target_patterns">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">role_target_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#role_target_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_target_patterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a number of example role target patterns.</p>
+<p>These correspond to test cases where role target suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the role to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The partial target that the user as already entered.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
@@ -211,9 +243,22 @@
 
 <dl class="py function">
 <dt id="esbonio.lsp.testing.completion_test">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">completion_test</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unexpected</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#completion_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_test" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">completion_test</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'index.rst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unexpected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#completion_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check to see if a feature provides the correct completion suggestions.</p>
-<p><strong>Only checking CompletionItem labels is supported</strong></p>
+<div class="admonition-assumptions admonition">
+<p class="admonition-title">Assumptions</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">feature</span></code> has access to a valid Sphinx application via <code class="docutils literal notranslate"><span class="pre">rst.app</span></code></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">feature</span></code> requires initialisation, it has already been done.</p></li>
+</ul>
+</div>
+<div class="admonition-limitations admonition">
+<p class="admonition-title">Limitations</p>
+<ul class="simple">
+<li><p>Only checking <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> labels is supported, if you want to check
+other aspects of the results, write a dedicated test method.</p></li>
+</ul>
+</div>
 <p>This function takes the given <code class="docutils literal notranslate"><span class="pre">feature</span></code> and calls it in the same manner as the
 real language server so that it can simulate real usage without being a full blown
 integration test.</p>
@@ -231,15 +276,21 @@ user’s cursor):</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter should be set to
-<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>&#160;&#160; <span class="pre">:align:</span> <span class="pre">center\n\f</span>&#160;&#160; <span class="pre">:</span></code>. It’s important to note that
-newlines <strong>cannot</strong> come after the <code class="docutils literal notranslate"><span class="pre">\f</span></code> character.</p>
-<p>If you want to test the case where no completions should be suggested, pass <code class="docutils literal notranslate"><span class="pre">None</span></code>
-to both the <code class="docutils literal notranslate"><span class="pre">expected</span></code> and <code class="docutils literal notranslate"><span class="pre">unexpected</span></code> parameters.</p>
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>&#160;&#160; <span class="pre">:align:</span> <span class="pre">center\n\f</span>&#160;&#160; <span class="pre">:</span></code>. It’s important to note
+that newlines <strong>cannot</strong> come after the <code class="docutils literal notranslate"><span class="pre">\f</span></code> character.</p>
+<p>If you want to test the case where no completions should be suggested, set
+<code class="docutils literal notranslate"><span class="pre">expected</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>By default completion suggestions will be asked for the main <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file at
+the root of the docs project. If you want them to be asked for a file with a
+different path (like for filepath completion tests) this can be overridden with the
+<code class="docutils literal notranslate"><span class="pre">filepath</span></code> argument.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>feature</strong> – An instance of the language service feature to test.</p></li>
+<li><p><strong>feature</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.LanguageFeature" title="esbonio.lsp.LanguageFeature"><em>esbonio.lsp.LanguageFeature</em></a>) – An instance of the language service feature to test.</p></li>
 <li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The text to offer completion suggestions for.</p></li>
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path of the file that completion suggestions are being asked for. Relative
+to the Sphinx application’s srcdir.</p></li>
 <li><p><strong>expected</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – The set of completion item labels you expect to see in the output.</p></li>
 <li><p><strong>unexpected</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – The set of completion item labels you do <em>not</em> expect to see in the output.</p></li>
 </ul>
@@ -255,14 +306,14 @@ to both the <code class="docutils literal notranslate"><span class="pre">expecte
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="roles.html" class="btn btn-neutral float-left" title="Roles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx.html" class="btn btn-neutral float-left" title="Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>

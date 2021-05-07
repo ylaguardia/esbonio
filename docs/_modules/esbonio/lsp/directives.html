@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp.directives &mdash; Esbonio 0.4.0 documentation</title>
+  <title>esbonio.lsp.directives &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -146,6 +146,8 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../lsp.html">esbonio.lsp</a> &raquo;</li>
+        
       <li>esbonio.lsp.directives</li>
     
     
@@ -170,7 +172,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">directives</span><span class="p">,</span> <span class="n">Directive</span>
-<span class="kn">from</span> <span class="nn">pygls.types</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CompletionItem</span><span class="p">,</span>
     <span class="n">CompletionItemKind</span><span class="p">,</span>
     <span class="n">InsertTextFormat</span><span class="p">,</span>
@@ -180,13 +182,24 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
-<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">LanguageFeature</span>
+<span class="kn">import</span> <span class="nn">esbonio.lsp</span> <span class="k">as</span> <span class="nn">lsp</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">get_domains</span>
 
 
-<span class="n">DIRECTIVE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s*\.\.[ ](?P&lt;domain&gt;[\w]+:)?(?P&lt;name&gt;[\w-]+)::&quot;</span><span class="p">)</span>
+<span class="n">DIRECTIVE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (?P&lt;indent&gt;\s*)             # directives can be indented</span>
+<span class="sd">    (?P&lt;directive&gt;\.\.          # start with a comment</span>
+<span class="sd">    [ ]                         # separated by a space</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?         # with an optional domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]+))           # with a name</span>
+<span class="sd">    ::</span>
+<span class="sd">    ([\s]+(?P&lt;argument&gt;.*$))?   # some directives may take an argument</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;A regular expression that matches a complete, valid directive declaration. Not</span>
-<span class="sd">including the arguments or options.&quot;&quot;&quot;</span>
+<span class="sd">including any options or content.&quot;&quot;&quot;</span>
 
 
 <span class="n">PARTIAL_DIRECTIVE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
@@ -217,10 +230,10 @@
 <span class="sd">auto complete suggestions.&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="Directives"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives">[docs]</a><span class="k">class</span> <span class="nc">Directives</span><span class="p">(</span><span class="n">LanguageFeature</span><span class="p">):</span>
+<div class="viewcode-block" id="Directives"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives">[docs]</a><span class="k">class</span> <span class="nc">Directives</span><span class="p">(</span><span class="n">lsp</span><span class="o">.</span><span class="n">LanguageFeature</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Directive support for the language server.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Directives.initialize"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Directives.initialized"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Directives.discover"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.Directives.discover">[docs]</a>    <span class="k">def</span> <span class="nf">discover</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -408,7 +421,7 @@
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">CompletionItem</span><span class="p">(</span>
-            <span class="n">name</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span>
             <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;directive&quot;</span><span class="p">,</span>
             <span class="n">documentation</span><span class="o">=</span><span class="n">documentation</span><span class="p">,</span>
@@ -416,8 +429,8 @@
             <span class="n">insert_text_format</span><span class="o">=</span><span class="n">InsertTextFormat</span><span class="o">.</span><span class="n">Snippet</span><span class="p">,</span>
             <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span>
                 <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
-                    <span class="n">Position</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-                    <span class="n">Position</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">character</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">position</span><span class="o">.</span><span class="n">character</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
                 <span class="p">),</span>
                 <span class="n">new_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">.. </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">:: </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">),</span>
@@ -461,7 +474,7 @@
 
         <span class="k">return</span> <span class="p">[</span>
             <span class="n">CompletionItem</span><span class="p">(</span>
-                <span class="n">opt</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span>
                 <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;option&quot;</span><span class="p">,</span>
                 <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span>
                 <span class="n">insert_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">opt</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">,</span>
@@ -470,7 +483,7 @@
         <span class="p">]</span></div></div>
 
 
-<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">):</span>
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/directives.html#esbonio.lsp.directives.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">RstLanguageServer</span><span class="p">):</span>
 
     <span class="n">directive_completion</span> <span class="o">=</span> <span class="n">Directives</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span>
     <span class="n">rst</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">directive_completion</span><span class="p">)</span></div>
@@ -485,7 +498,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>

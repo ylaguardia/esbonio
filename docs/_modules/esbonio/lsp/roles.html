@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp.roles &mdash; Esbonio 0.4.0 documentation</title>
+  <title>esbonio.lsp.roles &mdash; Esbonio 0.5.1 documentation</title>
   
 
   
@@ -146,6 +146,8 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../lsp.html">esbonio.lsp</a> &raquo;</li>
+        
       <li>esbonio.lsp.roles</li>
     
     
@@ -169,7 +171,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
-<span class="kn">from</span> <span class="nn">pygls.types</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CompletionItem</span><span class="p">,</span>
     <span class="n">CompletionItemKind</span><span class="p">,</span>
     <span class="n">DidSaveTextDocumentParams</span><span class="p">,</span>
@@ -179,7 +181,7 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
-<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">LanguageFeature</span><span class="p">,</span> <span class="n">dump</span>
+<span class="kn">import</span> <span class="nn">esbonio.lsp</span> <span class="k">as</span> <span class="nn">lsp</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.directives</span> <span class="kn">import</span> <span class="n">DIRECTIVE</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">get_domains</span>
 
@@ -268,10 +270,10 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="Roles"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles">[docs]</a><span class="k">class</span> <span class="nc">Roles</span><span class="p">(</span><span class="n">LanguageFeature</span><span class="p">):</span>
+<div class="viewcode-block" id="Roles"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles">[docs]</a><span class="k">class</span> <span class="nc">Roles</span><span class="p">(</span><span class="n">lsp</span><span class="o">.</span><span class="n">LanguageFeature</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Role support for the language server.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Roles.initialize"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Roles.initialized"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discover_roles</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">discover_targets</span><span class="p">()</span></div>
 
@@ -473,17 +475,20 @@
         <span class="n">insert_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">:&quot;</span>
 
         <span class="n">item</span> <span class="o">=</span> <span class="n">CompletionItem</span><span class="p">(</span>
-            <span class="n">name</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Function</span><span class="p">,</span>
             <span class="n">filter_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
             <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;role&quot;</span><span class="p">,</span>
             <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span>
-                <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">start</span><span class="p">),</span> <span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="p">)),</span>
+                <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">start</span><span class="p">),</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">end</span><span class="p">),</span>
+                <span class="p">),</span>
                 <span class="n">new_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Item </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Item </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">lsp</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">item</span></div>
 
 <div class="viewcode-block" id="Roles.target_object_to_completion_item"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.Roles.target_object_to_completion_item">[docs]</a>    <span class="k">def</span> <span class="nf">target_object_to_completion_item</span><span class="p">(</span>
@@ -499,14 +504,14 @@
         <span class="n">target_type</span> <span class="o">=</span> <span class="n">COMPLETION_TARGETS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">DEFAULT_TARGET</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">CompletionItem</span><span class="p">(</span>
-            <span class="n">name</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">kind</span><span class="o">=</span><span class="n">target_type</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span>
             <span class="n">detail</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">display_name</span><span class="p">),</span>
             <span class="n">insert_text</span><span class="o">=</span><span class="n">target_type</span><span class="o">.</span><span class="n">insert_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
         <span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">):</span>
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.setup">[docs]</a><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">RstLanguageServer</span><span class="p">):</span>
     <span class="n">role_completion</span> <span class="o">=</span> <span class="n">Roles</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span>
     <span class="n">rst</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">role_completion</span><span class="p">)</span></div>
 </pre></div>
@@ -520,7 +525,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020, Swyddfa Developers.
+        &#169; Copyright 2021, Alex Carney.
 
     </p>
   </div>
