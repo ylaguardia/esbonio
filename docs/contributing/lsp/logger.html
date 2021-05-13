@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Logger &mdash; Esbonio 0.5.1 documentation</title>
+  <title>Logger &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -183,12 +186,17 @@
 <p>This module defines a custom logging handler that publishes log messages to an LSP
 client.</p>
 <dl class="py class">
-<dt id="esbonio.lsp.logger.LspHandler">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.logger.</span></code><code class="sig-name descname"><span class="pre">LspHandler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/logger.html#LspHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.logger.LspHandler" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.logger.LspHandler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.logger.</span></span><span class="sig-name descname"><span class="pre">LspHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/logger.html#LspHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.logger.LspHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>A logging handler that will send log records to an LSP client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>server</strong> (<em>pygls.server.LanguageServer</em>) – </p>
+</dd>
+</dl>
 <dl class="py method">
-<dt id="esbonio.lsp.logger.LspHandler.emit">
-<code class="sig-name descname"><span class="pre">emit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/logger.html#LspHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.logger.LspHandler.emit" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.logger.LspHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/logger.html#LspHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.logger.LspHandler.emit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends the record to the client.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

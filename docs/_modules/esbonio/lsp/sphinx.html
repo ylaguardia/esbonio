@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp.sphinx &mdash; Esbonio 0.5.1 documentation</title>
+  <title>esbonio.lsp.sphinx &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -172,7 +175,7 @@
 <span class="kn">import</span> <span class="nn">re</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
-<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">unquote</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">quote</span>
 
 <span class="kn">import</span> <span class="nn">appdirs</span>
 
@@ -375,38 +378,62 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">diagnostics</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="sd">&quot;&quot;&quot;A place to keep track of diagnostics we can publish to the client.&quot;&quot;&quot;</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The client&#39;s ``esbonio.sphinx.*`` configuration.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conf_dir</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The directory containing Sphinx&#39;s ``conf.py``.</span>
+
+<span class="sd">        The source of truth for this value should be the Sphinx application itself,</span>
+<span class="sd">        **you should not depend on this value**.</span>
+
+<span class="sd">        The only use case for this field is when a user&#39;s config is broken and there</span>
+<span class="sd">        currently isn&#39;t a valid application object, we use this field to determine when</span>
+<span class="sd">        a user has edited their ``conf.py`` and we should try to restart the server.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;esbonio.sphinx&quot;</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The logger that should be used by a Sphinx application&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SphinxManagement.initialized"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_app</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">report_diagnostics</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_app</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="SphinxManagement.save"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-
         <span class="n">filepath</span> <span class="o">=</span> <span class="n">lsp</span><span class="o">.</span><span class="n">filepath_from_uri</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset_diagnostics</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">report_diagnostics</span><span class="p">()</span></div>
+        <span class="c1"># There may not be an application instance - the user&#39;s config could</span>
+        <span class="c1"># be broken...</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
+
+            <span class="c1"># ...did thry try to fix it?</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf_dir</span> <span class="ow">and</span> <span class="n">filepath</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_conf_dir</span> <span class="o">/</span> <span class="s2">&quot;conf.py&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">create_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="c1"># The user has updated their conf.py, we need to recreate the application.</span>
+        <span class="k">elif</span> <span class="n">filepath</span> <span class="o">==</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">confdir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;conf.py&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset_diagnostics</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_app</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="SphinxManagement.create_app"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.create_app">[docs]</a>    <span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a Sphinx application instance for the current workspace.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Workspace root </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">root_uri</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagnostics</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">find_conf_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">root_uri</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">conf_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">show_message</span><span class="p">(</span>
-                <span class="s1">&#39;Unable to find your project</span><span class="se">\&#39;</span><span class="s1">s &quot;conf.py&quot;, features wil be limited&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Unable to find your project</span><span class="se">\&#39;</span><span class="s1">s &quot;conf.py&quot;, features that depend on &#39;</span>
+                <span class="o">+</span> <span class="s2">&quot;Sphinx will be unavailable&quot;</span><span class="p">,</span>
                 <span class="n">msg_type</span><span class="o">=</span><span class="n">MessageType</span><span class="o">.</span><span class="n">Warning</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">return</span>
@@ -442,6 +469,7 @@
             <span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Unable to initialize Sphinx, see output window for details.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_conf_dir</span> <span class="o">=</span> <span class="n">conf_dir</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">show_message</span><span class="p">(</span>
@@ -449,15 +477,34 @@
                 <span class="n">msg_type</span><span class="o">=</span><span class="n">MessageType</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span>
             <span class="p">)</span></div>
 
+<div class="viewcode-block" id="SphinxManagement.build_app"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.build_app">[docs]</a>    <span class="k">def</span> <span class="nf">build_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Unable to build documentation, see output window for details.&quot;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">show_message</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+                <span class="n">msg_type</span><span class="o">=</span><span class="n">MessageType</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_diagnostics</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="SphinxManagement.report_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.report_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">report_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Publish the current set of diagnostics to the client.&quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">diagnostics</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">doc</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">):</span>
-                <span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">doc</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">doc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
 
-            <span class="n">uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;file://</span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;file://</span><span class="si">{</span><span class="n">quote</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Publishing diagnostics for document: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">publish_diagnostics</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">diagnostics</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SphinxManagement.reset_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.reset_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">reset_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -488,9 +535,8 @@
                 <span class="n">line_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">))</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-                    <span class="s2">&quot;Unable to parse line number: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+                    <span class="s2">&quot;Unable to parse line number: &#39;</span><span class="si">%s</span><span class="s2">&#39; - </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">),</span> <span class="n">exc</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
 
                 <span class="n">line_number</span> <span class="o">=</span> <span class="mi">1</span>
 

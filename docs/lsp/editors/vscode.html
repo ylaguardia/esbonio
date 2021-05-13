@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>VSCode &mdash; Esbonio 0.5.1 documentation</title>
+  <title>VSCode &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -97,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#commands">Commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#changelog">Changelog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07">v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#v0-5-1-2021-03-01">v0.5.1 - 2021-03-01</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#v0-5-0-2021-03-01">v0.5.0 - 2021-03-01</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#v0-4-0-2021-02-03">v0.4.0 - 2021-02-03</a></li>
@@ -200,10 +204,36 @@
 </div>
 <div class="section" id="changelog">
 <h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="v0-5-1-2021-03-01">
-<h3>v0.5.1 - 2021-03-01<a class="headerlink" href="#v0-5-1-2021-03-01" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="v0-6-0-2021-05-07v0-6-0-2021-05-07">
+<h3>v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07<a class="headerlink" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="features">
+<h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.confDir</span></code> option that allows for a project’s config
+directory to be explictly set should the automatic discovery in the Language
+Server fail. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/63">#63</a>)</p></li>
+<li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.srcDir</span></code> option that allows for overriding the
+language server’s assumption that source files are located in the same
+place as the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/142">#142</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h4>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Editor keybindings now only apply in <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> files. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/141">#141</a>)</p></li>
+</ul>
+</div>
 <div class="section" id="misc">
 <h4>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">vscode-languageclient</span></code> to v7.0.0 (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/152">#152</a>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-5-1-2021-03-01">
+<h3>v0.5.1 - 2021-03-01<a class="headerlink" href="#v0-5-1-2021-03-01" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>Misc<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix release pipeline (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/135">#135</a>)</p></li>
 </ul>
@@ -211,8 +241,8 @@
 </div>
 <div class="section" id="v0-5-0-2021-03-01">
 <h3>v0.5.0 - 2021-03-01<a class="headerlink" href="#v0-5-0-2021-03-01" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="features">
-<h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>Features<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.server.installBehavior</span></code> option that gives greater control
 over how Language Server installation is handled. <code class="docutils literal notranslate"><span class="pre">automatic</span></code> will install the
@@ -227,8 +257,8 @@ extension’s configuration is updated (<a class="reference external" href="http
 <li><p><code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">yaml</span></code> code blocks are now syntax highlighted. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/125">#125</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="fixes">
-<h4>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Fixes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The extension now checks that the configured Python verison is compatible with
 the Language Server. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/97">#97</a>)</p></li>
@@ -246,8 +276,8 @@ syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/
 syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/128">#128</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id16">
-<h4>Misc<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id23">
+<h4>Misc<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The language server’s logging level is set to match the logging level defined in
 the extension. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/86">#86</a>)</p></li>
@@ -261,8 +291,8 @@ on restarts. (<a class="reference external" href="https://github.com/swyddfa/esb
 </div>
 <div class="section" id="v0-4-0-2021-02-03">
 <h3>v0.4.0 - 2021-02-03<a class="headerlink" href="#v0-4-0-2021-02-03" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id20">
-<h4>Features<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id27">
+<h4>Features<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Expose an <code class="docutils literal notranslate"><span class="pre">esbonio.log.level</span></code> config option that allows the level of logging
 output to be configured (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/85">#85</a>)</p></li>
@@ -273,8 +303,8 @@ extension should check for updates. Valid values are <code class="docutils liter
 applied. Valid values are <code class="docutils literal notranslate"><span class="pre">promptAlways</span></code>, <code class="docutils literal notranslate"><span class="pre">promptMajor</span></code> and <code class="docutils literal notranslate"><span class="pre">automatic</span></code> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/89">#89</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id24">
-<h4>Fixes<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id31">
+<h4>Fixes<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix edge cases around syntax highlighting bold/italic elements. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/47">#47</a>)</p></li>
 <li><p>The extension now activates when it detects a sphinx project (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/49">#49</a>)</p></li>
@@ -286,8 +316,8 @@ pick up changes in the project’s <code class="docutils literal notranslate"><s
 </div>
 <div class="section" id="v0-3-1-2020-12-14">
 <h3>v0.3.1 - 2020-12-14<a class="headerlink" href="#v0-3-1-2020-12-14" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id29">
-<h4>Misc<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id36">
+<h4>Misc<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">vsix</span></code> packaging so that grammar tests are not included. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/44">#44</a>)</p></li>
 </ul>
@@ -295,16 +325,16 @@ pick up changes in the project’s <code class="docutils literal notranslate"><s
 </div>
 <div class="section" id="v0-3-0-2020-12-14">
 <h3>v0.3.0 - 2020-12-14<a class="headerlink" href="#v0-3-0-2020-12-14" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id31">
-<h4>Features<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id38">
+<h4>Features<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add 2 commands that can be used to insert links. One that uses the inline syntax
 <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd>, the other, the named reference syntax <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/37">#37</a>)</p></li>
 <li><p>Add command that will restart the language server (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/39">#39</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id34">
-<h4>Fixes<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id41">
+<h4>Fixes<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Support syntax highligting for more header styles. Support highligting python code
 under directives from Sphinx’s <code class="docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> extension (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/42">#42</a>)</p></li>
@@ -313,8 +343,8 @@ under directives from Sphinx’s <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="v0-2-1-2020-11-28">
 <h3>v0.2.1 - 2020-11-28<a class="headerlink" href="#v0-2-1-2020-11-28" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id36">
-<h4>Misc<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id43">
+<h4>Misc<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The published <code class="docutils literal notranslate"><span class="pre">vsix</span></code> now contains a changelog in a format that’s compatible with the
 VSCode marketplace. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/16">#16</a>)</p></li>
@@ -325,8 +355,8 @@ VSCode marketplace. (<a class="reference external" href="https://github.com/swyd
 </div>
 <div class="section" id="v0-2-0-2020-11-27">
 <h3>v0.2.0 - 2020-11-27<a class="headerlink" href="#v0-2-0-2020-11-27" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id40">
-<h4>Features<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id47">
+<h4>Features<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>If there is no Python interpreter configured and the
 <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension</a>
@@ -337,15 +367,15 @@ Python extension (<a class="reference external" href="https://github.com/swyddfa
 </div>
 <div class="section" id="v0-1-0-2020-11-23">
 <h3>v0.1.0 - 2020-11-23<a class="headerlink" href="#v0-1-0-2020-11-23" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id42">
-<h4>Features<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id49">
+<h4>Features<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>If the language server is not installed, the extension will now prompt to install it.
 It will also prompt to update it when new versions are available. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/12">#12</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id44">
-<h4>Misc<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id51">
+<h4>Misc<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Update build pipeline to use <code class="docutils literal notranslate"><span class="pre">towncrier</span></code> to autogenerate release notes and changelog
 entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/10">#10</a>)</p></li>

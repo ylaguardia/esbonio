@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp.directives &mdash; Esbonio 0.5.1 documentation</title>
+  <title>esbonio.lsp.directives &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
@@ -411,7 +414,12 @@
         <span class="n">documentation</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getdoc</span><span class="p">(</span><span class="n">directive</span><span class="p">)</span>
 
         <span class="c1"># Ignore directives that do not provide their own documentation.</span>
-        <span class="k">if</span> <span class="n">documentation</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Base class for reStructedText directives.&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">documentation</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Base class for reStructuredText directives.&quot;</span><span class="p">),</span>
+                <span class="n">documentation</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;A base class for Sphinx directives.&quot;</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">):</span>
             <span class="n">documentation</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># TODO: Give better names to arguments based on what they represent.</span>

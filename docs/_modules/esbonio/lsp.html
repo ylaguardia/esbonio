@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>esbonio.lsp &mdash; Esbonio 0.5.1 documentation</title>
+  <title>esbonio.lsp &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -167,6 +170,7 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">unquote</span>
@@ -194,7 +198,7 @@
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
 
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.5.1&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.6.0&quot;</span>
 
 
 <span class="n">BUILTIN_MODULES</span> <span class="o">=</span> <span class="p">[</span>
@@ -296,11 +300,10 @@
 
 <div class="viewcode-block" id="RstLanguageServer.run_hooks"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.RstLanguageServer.run_hooks">[docs]</a>    <span class="k">def</span> <span class="nf">run_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Run each hook registered of the given kind.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Runnning </span><span class="si">%s</span><span class="s2"> hooks&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="p">)</span>
         <span class="n">hooks</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;on_</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">_hooks&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hook</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Running &#39;</span><span class="si">%s</span><span class="s2">&#39; hook </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">hook</span><span class="p">)</span>
             <span class="n">hook</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div></div>
 
 
@@ -325,11 +328,23 @@
 <div class="viewcode-block" id="dump"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.dump">[docs]</a><span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Debug helper function that converts an object to JSON.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">value</span>
 
-        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Truncate long strings - but not uris!</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;uri&quot;</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">shorten</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+
+            <span class="n">fields</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+        <span class="k">return</span> <span class="n">fields</span>
 
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span></div>
 
@@ -353,22 +368,24 @@
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZE</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_initialize</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZE</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZE</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
         <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
 
         <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Language server started.&quot;</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZED</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">on_initialized</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">INITIALIZED</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZED</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
         <span class="n">config_params</span> <span class="o">=</span> <span class="n">ConfigurationParams</span><span class="p">(</span>
             <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigurationItem</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s2">&quot;esbonio.sphinx&quot;</span><span class="p">)]</span>
         <span class="p">)</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rst</span><span class="o">.</span><span class="n">get_configuration_async</span><span class="p">(</span><span class="n">config_params</span><span class="p">)</span>
 
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;SphinxConfig: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;initialized&quot;</span><span class="p">,</span> <span class="n">SphinxConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">config_items</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rst</span><span class="o">.</span><span class="n">get_configuration_async</span><span class="p">(</span><span class="n">config_params</span><span class="p">)</span>
+        <span class="n">sphinx_config</span> <span class="o">=</span> <span class="n">SphinxConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">config_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">dict</span><span class="p">())</span>
+
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;SphinxConfig: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">sphinx_config</span><span class="p">))</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;initialized&quot;</span><span class="p">,</span> <span class="n">sphinx_config</span><span class="p">)</span>
 
         <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;LSP server initialized&quot;</span><span class="p">)</span>
 
@@ -377,7 +394,7 @@
     <span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_completion</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CompletionParams</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Suggest completions based on the current context.&quot;&quot;&quot;</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">COMPLETION</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">COMPLETION</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
         <span class="n">uri</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">position</span>
@@ -397,29 +414,22 @@
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_OPEN</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_open</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidOpenTextDocumentParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">TEXT_DOCUMENT_DID_OPEN</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">TEXT_DOCUMENT_DID_OPEN</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_save</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 
-        <span class="n">conf_py</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">uri</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
-        <span class="n">filepath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">unquote</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
-            <span class="n">conf_py</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">confdir</span><span class="p">,</span> <span class="s2">&quot;conf.py&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Re-initialize everything if the app&#39;s config has changed.</span>
-        <span class="k">if</span> <span class="n">filepath</span> <span class="o">==</span> <span class="n">conf_py</span><span class="p">:</span>
-            <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;$/setTrace&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_set_trace</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dummy implementation, stops JsonRpcMethodNotFound exceptions.&quot;&quot;&quot;</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;$/setTrace: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;$/setTraceNotification&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">vscode_set_trace</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Dummy implementation, stops JsonRpcMethodNotFound exceptions.&quot;&quot;&quot;</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;$/setTraceNotification: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;$/setTraceNotification: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">server</span></div>
 </pre></div>

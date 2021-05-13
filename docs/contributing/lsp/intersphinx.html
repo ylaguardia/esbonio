@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Intersphinx &mdash; Esbonio 0.5.1 documentation</title>
+  <title>Intersphinx &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -182,8 +185,8 @@
 <span id="intersphinx"></span><h1>Intersphinx<a class="headerlink" href="#module-esbonio.lsp.intersphinx" title="Permalink to this headline">¶</a></h1>
 <p>Intersphinx support.</p>
 <dl class="py data">
-<dt id="esbonio.lsp.intersphinx.PARTIAL_INTER_PLAIN_TARGET">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_INTER_PLAIN_TARGET</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">,</span> <span class="pre">re.MULTILINE|re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.PARTIAL_INTER_PLAIN_TARGET" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.PARTIAL_INTER_PLAIN_TARGET">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></span><span class="sig-name descname"><span class="pre">PARTIAL_INTER_PLAIN_TARGET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">,</span> <span class="pre">re.MULTILINE|re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.PARTIAL_INTER_PLAIN_TARGET" title="Permalink to this definition">¶</a></dt>
 <dd><p>A regular expression that matches a partial “plain” intersphinx target.</p>
 <p>For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:ref:`python:som
@@ -193,8 +196,8 @@
 </dd></dl>
 
 <dl class="py data">
-<dt id="esbonio.lsp.intersphinx.PARTIAL_INTER_ALIASED_TARGET">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_INTER_ALIASED_TARGET</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.PARTIAL_INTER_ALIASED_TARGET" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.PARTIAL_INTER_ALIASED_TARGET">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></span><span class="sig-name descname"><span class="pre">PARTIAL_INTER_ALIASED_TARGET</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.PARTIAL_INTER_ALIASED_TARGET" title="Permalink to this definition">¶</a></dt>
 <dd><p>A regular expression that matches a partial “aliased” intersphinx target.</p>
 <p>For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:ref:`More Info&lt;python:som
@@ -204,12 +207,17 @@
 </dd></dl>
 
 <dl class="py class">
-<dt id="esbonio.lsp.intersphinx.InterSphinx">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></code><code class="sig-name descname"><span class="pre">InterSphinx</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></span><span class="sig-name descname"><span class="pre">InterSphinx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Intersphinx support for the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.RstLanguageServer" title="esbonio.lsp.RstLanguageServer"><em>RstLanguageServer</em></a>) – </p>
+</dd>
+</dl>
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.initialized">
-<code class="sig-name descname"><span class="pre">initialized</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.initialized" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.initialized">
+<span class="sig-name descname"><span class="pre">initialized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.initialized" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.SphinxConfig" title="esbonio.lsp.SphinxConfig"><em>esbonio.lsp.SphinxConfig</em></a>) – </p>
@@ -218,8 +226,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.discover_inventories">
-<code class="sig-name descname"><span class="pre">discover_inventories</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.discover_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.discover_inventories" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.discover_inventories">
+<span class="sig-name descname"><span class="pre">discover_inventories</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.discover_inventories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.discover_inventories" title="Permalink to this definition">¶</a></dt>
 <dd><p>Look up intersphinx inventories to offer as autocomplete suggestions.</p>
 <p><em>This method only needs to be called once per application instance.</em></p>
 <p>Assuming that the application has the <code class="docutils literal notranslate"><span class="pre">intersphinx</span></code> extension enabled and
@@ -236,13 +244,13 @@ the course of an editing session, it’s also safe to index them once on init.</
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.suggest_triggers">
-<code class="sig-name descname"><span class="pre">suggest_triggers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_triggers" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.suggest_triggers">
+<span class="sig-name descname"><span class="pre">suggest_triggers</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_triggers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.suggest">
-<code class="sig-name descname"><span class="pre">suggest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.suggest">
+<span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -258,18 +266,8 @@ the course of an editing session, it’s also safe to index them once on init.</
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.suggest_projects">
-<code class="sig-name descname"><span class="pre">suggest_projects</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest_projects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_projects" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.suggest_targets">
-<code class="sig-name descname"><span class="pre">suggest_targets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_targets" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.suggest_projects">
+<span class="sig-name descname"><span class="pre">suggest_projects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest_projects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_projects" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>match</strong> (<em>re.Match</em>) – </p>
@@ -281,8 +279,36 @@ the course of an editing session, it’s also safe to index them once on init.</
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.project_to_completion_item">
-<code class="sig-name descname"><span class="pre">project_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.project_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.project_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.suggest_targets">
+<span class="sig-name descname"><span class="pre">suggest_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.suggest_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.suggest_targets" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>match</strong> (<em>re.Match</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.get_target_types">
+<span class="sig-name descname"><span class="pre">get_target_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.get_target_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.get_target_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of target types that are targeted by the role we’re
+generating suggestions for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>match</strong> (<em>re.Match</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Optional[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.project_to_completion_item">
+<span class="sig-name descname"><span class="pre">project_to_completion_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.project_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.project_to_completion_item" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p>
@@ -294,8 +320,8 @@ the course of an editing session, it’s also safe to index them once on init.</
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.intersphinx.InterSphinx.target_to_completion_item">
-<code class="sig-name descname"><span class="pre">target_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.target_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.target_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.InterSphinx.target_to_completion_item">
+<span class="sig-name descname"><span class="pre">target_to_completion_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#InterSphinx.target_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.InterSphinx.target_to_completion_item" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -312,8 +338,8 @@ the course of an editing session, it’s also safe to index them once on init.</
 </dd></dl>
 
 <dl class="py function">
-<dt id="esbonio.lsp.intersphinx.setup">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></code><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.setup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.intersphinx.setup">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.intersphinx.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/intersphinx.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.intersphinx.setup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.RstLanguageServer" title="esbonio.lsp.RstLanguageServer"><em>esbonio.lsp.RstLanguageServer</em></a>) – </p>

@@ -7,12 +7,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Directives &mdash; Esbonio 0.5.1 documentation</title>
+  <title>Directives &mdash; Esbonio 0.6.0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +31,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -182,33 +185,38 @@
 <span id="directives"></span><h1>Directives<a class="headerlink" href="#module-esbonio.lsp.directives" title="Permalink to this headline">¶</a></h1>
 <p>Logic around directive completions goes here.</p>
 <dl class="py data">
-<dt id="esbonio.lsp.directives.DIRECTIVE">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">DIRECTIVE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;directive&gt;\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">comment\n</span>&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w],</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.DIRECTIVE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.DIRECTIVE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">DIRECTIVE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;directive&gt;\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">comment\n</span>&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w],</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.DIRECTIVE" title="Permalink to this definition">¶</a></dt>
 <dd><p>A regular expression that matches a complete, valid directive declaration. Not
 including any options or content.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt id="esbonio.lsp.directives.PARTIAL_DIRECTIVE">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.PARTIAL_DIRECTIVE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE" title="Permalink to this definition">¶</a></dt>
 <dd><p>A regular expression that matches a partial directive declaraiton. Used when
 generating auto complete suggestions.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt id="esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE_OPTION</span></code><em class="property"> <span class="pre">=</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">PARTIAL_DIRECTIVE_OPTION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.directives.PARTIAL_DIRECTIVE_OPTION" title="Permalink to this definition">¶</a></dt>
 <dd><p>A regular expression that matches a partial directive option. Used when generating
 auto complete suggestions.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="esbonio.lsp.directives.Directives">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">Directives</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">Directives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives" title="Permalink to this definition">¶</a></dt>
 <dd><p>Directive support for the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.RstLanguageServer" title="esbonio.lsp.RstLanguageServer"><em>RstLanguageServer</em></a>) – </p>
+</dd>
+</dl>
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.initialized">
-<code class="sig-name descname"><span class="pre">initialized</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.initialized" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.initialized">
+<span class="sig-name descname"><span class="pre">initialized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.initialized"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.initialized" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.SphinxConfig" title="esbonio.lsp.SphinxConfig"><em>esbonio.lsp.SphinxConfig</em></a>) – </p>
@@ -217,14 +225,14 @@ auto complete suggestions.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.discover">
-<code class="sig-name descname"><span class="pre">discover</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.discover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.discover" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.discover">
+<span class="sig-name descname"><span class="pre">discover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.discover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.discover" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build an index of all available directives and the their options.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.resolve_directive">
-<code class="sig-name descname"><span class="pre">resolve_directive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.resolve_directive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.resolve_directive" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.resolve_directive">
+<span class="sig-name descname"><span class="pre">resolve_directive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.resolve_directive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.resolve_directive" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>directive</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(in Sphinx v5.0.0+)"><em>docutils.parsers.rst.Directive</em></a><em>, </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – </p>
@@ -233,15 +241,15 @@ auto complete suggestions.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="esbonio.lsp.directives.Directives.suggest_triggers">
-<code class="sig-name descname"><span class="pre">suggest_triggers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_triggers" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.suggest_triggers">
+<span class="sig-name descname"><span class="pre">suggest_triggers</span></span><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">commment\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;prefix&gt;[</span> <span class="pre">]?)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">may</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w]+:)?</span>&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s+)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">directive</span> <span class="pre">options</span> <span class="pre">must</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">whitespace\n</span>&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;name&gt;[\\w-]*)</span>&#160; <span class="pre">#</span> <span class="pre">they</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">name\n</span>&#160;&#160;&#160; <span class="pre">$\n</span>&#160;&#160;&#160; <span class="pre">&quot;,</span> <span class="pre">re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_triggers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Regular expressions that match lines that we want to offer autocomplete
 suggestions for.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.suggest">
-<code class="sig-name descname"><span class="pre">suggest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.suggest">
+<span class="sig-name descname"><span class="pre">suggest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -257,8 +265,8 @@ suggestions for.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.suggest_directives">
-<code class="sig-name descname"><span class="pre">suggest_directives</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_directives" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.suggest_directives">
+<span class="sig-name descname"><span class="pre">suggest_directives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_directives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_directives" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
@@ -267,8 +275,8 @@ suggestions for.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.suggest_options">
-<code class="sig-name descname"><span class="pre">suggest_options</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_options" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.suggest_options">
+<span class="sig-name descname"><span class="pre">suggest_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.suggest_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.suggest_options" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -284,8 +292,8 @@ suggestions for.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.directive_to_completion_item">
-<code class="sig-name descname"><span class="pre">directive_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.directive_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.directive_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.directive_to_completion_item">
+<span class="sig-name descname"><span class="pre">directive_to_completion_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.directive_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.directive_to_completion_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert an rst directive to its CompletionItem representation.</p>
 <p>Previously, it was fine to pre-convert directives into their completion item
 representation during the <a class="reference internal" href="#esbonio.lsp.directives.Directives.discover" title="esbonio.lsp.directives.Directives.discover"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discover()</span></code></a> phase. However a number of factors
@@ -341,8 +349,8 @@ from.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="esbonio.lsp.directives.Directives.options_to_completion_items">
-<code class="sig-name descname"><span class="pre">options_to_completion_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.options_to_completion_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.options_to_completion_items" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.options_to_completion_items">
+<span class="sig-name descname"><span class="pre">options_to_completion_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.options_to_completion_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.options_to_completion_items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a directive’s options to a list of completion items.</p>
 <p>Unfortunately, the <code class="docutils literal notranslate"><span class="pre">autoxxx</span></code> family of directives are a little different.
 Each <code class="docutils literal notranslate"><span class="pre">autoxxxx</span></code> directive name resolves to the same <code class="docutils literal notranslate"><span class="pre">AutodocDirective</span></code> class.
@@ -365,8 +373,8 @@ held on the particular Documenter that documents that object type.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="esbonio.lsp.directives.setup">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></code><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.setup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.setup">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.setup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.RstLanguageServer" title="esbonio.lsp.RstLanguageServer"><em>esbonio.lsp.RstLanguageServer</em></a>) – </p>
