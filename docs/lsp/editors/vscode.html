@@ -1,209 +1,592 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>VSCode &mdash; Esbonio 0.6.0 documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VSCode &#8212; Esbonio 0.6.1 documentation</title>
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Changelog" href="../../changelog.html" />
-    <link rel="prev" title="Emacs" href="emacs.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
+    <link rel="prev" title="Emacs" href="emacs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-          
-            <a href="../../index.html" class="icon icon-home"> Esbonio
-          
+    
 
+    <div class="container-xl">
+      <div class="row">
           
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Extensions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../extensions/tutorial.html">Tutorial</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Language Server</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Editor Integrations</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="emacs.html">Emacs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">VSCode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#commands">Commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#changelog">Changelog</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07">v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-5-1-2021-03-01">v0.5.1 - 2021-03-01</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-5-0-2021-03-01">v0.5.0 - 2021-03-01</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-4-0-2021-02-03">v0.4.0 - 2021-02-03</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-3-1-2020-12-14">v0.3.1 - 2020-12-14</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-3-0-2020-12-14">v0.3.0 - 2020-12-14</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-2-1-2020-11-28">v0.2.1 - 2020-11-28</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-2-0-2020-11-27">v0.2.0 - 2020-11-27</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#v0-1-0-2020-11-23">v0.1.0 - 2020-11-23</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#common-setup">Common Setup</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contributing</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing/devenvs.html">Development Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing/lsp.html">Language Server</a></li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Esbonio</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="index.html">Editor Integrations</a> &raquo;</li>
-        
-      <li>VSCode</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            
-              <a href="https://github.com/swyddfa/esbonio/blob/release/docs/lsp/editors/vscode.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
-      </li>
-    
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Editor Integrations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     VSCode
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/filepaths.html">
+     Filepaths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/intersphinx.html">
+     Intersphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/logger.html">
+     Logger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-  
-  <hr/>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lsp/editors/vscode.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Flsp/editors/vscode.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/lsp/editors/vscode.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#commands">
+   Commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changelog">
+   Changelog
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-2-2021-05-14">
+     v0.6.2 - 2021-05-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fixes">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-1-2021-05-13">
+     v0.6.1 - 2021-05-13
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#misc">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07">
+     v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#features">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-5-1-2021-03-01">
+     v0.5.1 - 2021-03-01
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-5-0-2021-03-01">
+     v0.5.0 - 2021-03-01
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id31">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-4-0-2021-02-03">
+     v0.4.0 - 2021-02-03
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id35">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id39">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-3-1-2020-12-14">
+     v0.3.1 - 2020-12-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id44">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-3-0-2020-12-14">
+     v0.3.0 - 2020-12-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id46">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id49">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-2-1-2020-11-28">
+     v0.2.1 - 2020-11-28
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id51">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-2-0-2020-11-27">
+     v0.2.0 - 2020-11-27
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id55">
+       Features
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-1-0-2020-11-23">
+     v0.1.0 - 2020-11-23
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id57">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id59">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
   <div class="section" id="vscode">
 <span id="editor-itegration-vscode"></span><h1>VSCode<a class="headerlink" href="#vscode" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id63">
+<a class="reference internal image-reference" href="../../_images/vscode-screenshot.png"><img alt="../../_images/vscode-screenshot.png" src="../../_images/vscode-screenshot.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">The VSCode extension editing this page</span><a class="headerlink" href="#id63" title="Permalink to this image">¶</a></p>
+</div>
 <p>Integration with the <a class="reference external" href="https://code.visualstudio.com/">VSCode</a> editor is provided via the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=swyddfa.esbonio">Esbonio</a> extension.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the following options the VSCode extension also supports
+<a class="reference internal" href="index.html#editor-integration-config"><span class="std std-ref">Common Configuration</span></a> options.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.pythonPath</span></code> (string)</dt><dd><p>If the official <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> is available the extension will use the same
+Python environment as you have configured for your workspace. However, if you wish
+to use a different environment or do not have the Python extension installed this
+option can be set to tell the extension which environment to use.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.installBehavior</span></code> (string)</dt><dd><p>The VSCode extension can manage the installation of the language server for you.
+If the language server is missing from your current environment the extension will prompt
+by default to check if you want it to perform the installation. If you don’t like this
+behavior you can use this option to change it, the following values are valid</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nothing</span></code> - Don’t attempt to install the language server if it’s missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prompt</span></code> (default) - Ask for confirmation before installing the server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">automatic</span></code> - Never ask for confirmation, the language server will be installed
+automatically in new environments</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.updateFrequency</span></code> (string)</dt><dd><p>The VSCode extension can also automatically install updates to the language server
+as they are released. By default the extension will check on start up once a week,
+alternatively you can set this setting to one of the following values</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">never</span></code> - Never check for updates. Though you can still trigger an update
+manually if you wish.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monthly</span></code> - Check for updates once a month</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weekly</span></code> - Check for updates once a week</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">daily</span></code> - Check for updates once a day</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.updateBehavior</span></code> (string)</dt><dd><p>If an update is detected through one of the extension’s automated checks this option
+controls what the extension does next. By default the extension will automatically
+install it <strong>unless</strong> it is a major update (e.g <code class="docutils literal notranslate"><span class="pre">1.x.y</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">2.0.0</span></code>). The following
+options are available</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">promptAlways</span></code> - Always ask for confirmation before applying updates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">promptMajor</span></code> - Only ask for confirmation on major updates, minor versions will be
+installed automatically</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">automatic</span></code> - Never ask for confirmation, updates will always be installed.</p></li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p>The VSCode extension provides a number of commands accessible through VSCode’s command
+palette (<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd></kbd>) and in some cases via a default keybinding.</p>
+<dl>
+<dt>Insert Inline Link - <code class="docutils literal notranslate"><span class="pre">esbonio.insert.inlineLink</span></code> - <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">l</kbd></kbd></dt><dd><p>This inserts an inline link into the current document, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`Sphinx &lt;https://www.sphinx-doc.org/en/master&gt;`_ is a fantastic
+documentation tool
+</pre></div>
+</div>
+<p>Upon triggering the command vscode will first prompt you for the URL you wish to
+link to followed by the label you want the reader to see. It will then insert the link
+into the document at the position of your cursor.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you select some text before triggering the command, the text you selected will be
+used as the link’s label.</p>
+</div>
+</dd>
+<dt>Insert Link - <code class="docutils literal notranslate"><span class="pre">esbonio.insert.link</span></code> - <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">l</kbd></kbd></dt><dd><p>This inserts a “named link” into the current document, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`Sphinx`_ is a fantastic documentation tool
+
+.. _Sphinx: https://www.sphinx-doc.org/en/master
+</pre></div>
+</div>
+<p>Upon triggering the command vscode will first prompt you for the URL you wish to
+link to followed by the label you want the reader to see. It will then insert both
+the definition at the end of the document and the reference at the position of your
+cursor.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you select some text before triggering the command, the text you selected will be
+used as the link’s label.</p>
+</div>
+</dd>
+<dt>Install Language Server - <code class="docutils literal notranslate"><span class="pre">esbonio.server.install</span></code></dt><dd><p>This can be used to manually install the language server into the current environment</p>
+</dd>
+<dt>Restart Language Server - <code class="docutils literal notranslate"><span class="pre">esbonio.server.restart</span></code></dt><dd><p>The can be used to kill and restart the language server</p>
+</dd>
+<dt>Update Language Server - <code class="docutils literal notranslate"><span class="pre">esbonio.server.update</span></code></dt><dd><p>This can be used to manually trigger an update to the language server</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="changelog">
 <h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="v0-6-2-2021-05-14">
+<h3>v0.6.2 - 2021-05-14<a class="headerlink" href="#v0-6-2-2021-05-14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fixes">
+<h4>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Fix minimum required language server version (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/183">#183</a>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-6-1-2021-05-13">
+<h3>v0.6.1 - 2021-05-13<a class="headerlink" href="#v0-6-1-2021-05-13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Fixes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Literal blocks now have the correct syntax highlighting (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/138">#138</a>)</p></li>
+<li><p>The language server is now reloaded when the Python environment is changed. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/140">#140</a>)</p></li>
+<li><p>It’s now possible to test dev builds of the language server with the extension (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/168">#168</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="misc">
+<h4>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Improvements to the development experience (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/170">#170</a>)</p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="v0-6-0-2021-05-07v0-6-0-2021-05-07">
 <h3>v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07<a class="headerlink" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="features">
@@ -217,14 +600,14 @@ language server’s assumption that source files are located in the same
 place as the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/142">#142</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="fixes">
-<h4>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>Fixes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Editor keybindings now only apply in <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> files. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/141">#141</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="misc">
-<h4>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Misc<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">vscode-languageclient</span></code> to v7.0.0 (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/152">#152</a>)</p></li>
 </ul>
@@ -232,8 +615,8 @@ place as the <code class="docutils literal notranslate"><span class="pre">conf.p
 </div>
 <div class="section" id="v0-5-1-2021-03-01">
 <h3>v0.5.1 - 2021-03-01<a class="headerlink" href="#v0-5-1-2021-03-01" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id5">
-<h4>Misc<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Misc<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix release pipeline (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/135">#135</a>)</p></li>
 </ul>
@@ -241,8 +624,8 @@ place as the <code class="docutils literal notranslate"><span class="pre">conf.p
 </div>
 <div class="section" id="v0-5-0-2021-03-01">
 <h3>v0.5.0 - 2021-03-01<a class="headerlink" href="#v0-5-0-2021-03-01" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id7">
-<h4>Features<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id15">
+<h4>Features<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.server.installBehavior</span></code> option that gives greater control
 over how Language Server installation is handled. <code class="docutils literal notranslate"><span class="pre">automatic</span></code> will install the
@@ -257,8 +640,8 @@ extension’s configuration is updated (<a class="reference external" href="http
 <li><p><code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">yaml</span></code> code blocks are now syntax highlighted. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/125">#125</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id13">
-<h4>Fixes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id21">
+<h4>Fixes<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The extension now checks that the configured Python verison is compatible with
 the Language Server. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/97">#97</a>)</p></li>
@@ -276,8 +659,8 @@ syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/
 syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/128">#128</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id23">
-<h4>Misc<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id31">
+<h4>Misc<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The language server’s logging level is set to match the logging level defined in
 the extension. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/86">#86</a>)</p></li>
@@ -291,8 +674,8 @@ on restarts. (<a class="reference external" href="https://github.com/swyddfa/esb
 </div>
 <div class="section" id="v0-4-0-2021-02-03">
 <h3>v0.4.0 - 2021-02-03<a class="headerlink" href="#v0-4-0-2021-02-03" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id27">
-<h4>Features<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id35">
+<h4>Features<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Expose an <code class="docutils literal notranslate"><span class="pre">esbonio.log.level</span></code> config option that allows the level of logging
 output to be configured (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/85">#85</a>)</p></li>
@@ -303,8 +686,8 @@ extension should check for updates. Valid values are <code class="docutils liter
 applied. Valid values are <code class="docutils literal notranslate"><span class="pre">promptAlways</span></code>, <code class="docutils literal notranslate"><span class="pre">promptMajor</span></code> and <code class="docutils literal notranslate"><span class="pre">automatic</span></code> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/89">#89</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id31">
-<h4>Fixes<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id39">
+<h4>Fixes<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix edge cases around syntax highlighting bold/italic elements. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/47">#47</a>)</p></li>
 <li><p>The extension now activates when it detects a sphinx project (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/49">#49</a>)</p></li>
@@ -316,8 +699,8 @@ pick up changes in the project’s <code class="docutils literal notranslate"><s
 </div>
 <div class="section" id="v0-3-1-2020-12-14">
 <h3>v0.3.1 - 2020-12-14<a class="headerlink" href="#v0-3-1-2020-12-14" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id36">
-<h4>Misc<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id44">
+<h4>Misc<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">vsix</span></code> packaging so that grammar tests are not included. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/44">#44</a>)</p></li>
 </ul>
@@ -325,16 +708,16 @@ pick up changes in the project’s <code class="docutils literal notranslate"><s
 </div>
 <div class="section" id="v0-3-0-2020-12-14">
 <h3>v0.3.0 - 2020-12-14<a class="headerlink" href="#v0-3-0-2020-12-14" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id38">
-<h4>Features<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id46">
+<h4>Features<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Add 2 commands that can be used to insert links. One that uses the inline syntax
 <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd>, the other, the named reference syntax <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/37">#37</a>)</p></li>
 <li><p>Add command that will restart the language server (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/39">#39</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id41">
-<h4>Fixes<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id49">
+<h4>Fixes<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Support syntax highligting for more header styles. Support highligting python code
 under directives from Sphinx’s <code class="docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> extension (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/42">#42</a>)</p></li>
@@ -343,8 +726,8 @@ under directives from Sphinx’s <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="v0-2-1-2020-11-28">
 <h3>v0.2.1 - 2020-11-28<a class="headerlink" href="#v0-2-1-2020-11-28" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id43">
-<h4>Misc<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id51">
+<h4>Misc<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The published <code class="docutils literal notranslate"><span class="pre">vsix</span></code> now contains a changelog in a format that’s compatible with the
 VSCode marketplace. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/16">#16</a>)</p></li>
@@ -355,8 +738,8 @@ VSCode marketplace. (<a class="reference external" href="https://github.com/swyd
 </div>
 <div class="section" id="v0-2-0-2020-11-27">
 <h3>v0.2.0 - 2020-11-27<a class="headerlink" href="#v0-2-0-2020-11-27" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id47">
-<h4>Features<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h4>Features<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>If there is no Python interpreter configured and the
 <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension</a>
@@ -367,15 +750,15 @@ Python extension (<a class="reference external" href="https://github.com/swyddfa
 </div>
 <div class="section" id="v0-1-0-2020-11-23">
 <h3>v0.1.0 - 2020-11-23<a class="headerlink" href="#v0-1-0-2020-11-23" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id49">
-<h4>Features<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id57">
+<h4>Features<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>If the language server is not installed, the extension will now prompt to install it.
 It will also prompt to update it when new versions are available. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/12">#12</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id51">
-<h4>Misc<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id59">
+<h4>Misc<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Update build pipeline to use <code class="docutils literal notranslate"><span class="pre">towncrier</span></code> to autogenerate release notes and changelog
 entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/10">#10</a>)</p></li>
@@ -386,51 +769,36 @@ entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/
 </div>
 
 
-           </div>
-           
-          </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="emacs.html" class="btn btn-neutral float-left" title="Emacs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="emacs.html" title="previous page">Emacs</a>
+    <a class='right-next' id="next-link" href="../../changelog.html" title="next page">Changelog</a>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Alex Carney.
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
         </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Alex Carney<br/>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
       </div>
-
-    </section>
-
-  </div>
+    </div>
   
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
-  
-    
-   
-
-</body>
+  </body>
 </html>

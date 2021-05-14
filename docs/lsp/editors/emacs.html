@@ -1,188 +1,300 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Emacs &mdash; Esbonio 0.6.0 documentation</title>
-  
 
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emacs &#8212; Esbonio 0.6.1 documentation</title>
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="VSCode" href="vscode.html" />
-    <link rel="prev" title="Editor Integrations" href="index.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
+    <link rel="prev" title="Editor Integrations" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-          
-            <a href="../../index.html" class="icon icon-home"> Esbonio
-          
+    
 
+    <div class="container-xl">
+      <div class="row">
           
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Extensions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../extensions/tutorial.html">Tutorial</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Language Server</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Editor Integrations</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Emacs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#eglot-minimal-config">Eglot – Minimal Config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#eglot-extended-config">Eglot – Extended Config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lsp-mode-minimal-config">LSP Mode – Minimal Config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lsp-mode-extended-config">LSP Mode – Extended Config</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="vscode.html">VSCode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#common-setup">Common Setup</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contributing</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing/devenvs.html">Development Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing/lsp.html">Language Server</a></li>
-</ul>
-
-            
-          
-        </div>
-        
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Esbonio</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="index.html">Editor Integrations</a> &raquo;</li>
-        
-      <li>Emacs</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-          
-            
-              <a href="https://github.com/swyddfa/esbonio/blob/release/docs/lsp/editors/emacs.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
-      </li>
-    
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Editor Integrations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vscode.html">
+     VSCode
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/filepaths.html">
+     Filepaths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/intersphinx.html">
+     Intersphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/logger.html">
+     Logger
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-  
-  <hr/>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lsp/editors/emacs.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Flsp/editors/emacs.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/lsp/editors/emacs.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eglot-minimal-config">
+   Eglot – Minimal Config
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eglot-extended-config">
+   Eglot – Extended Config
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lsp-mode-minimal-config">
+   LSP Mode – Minimal Config
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lsp-mode-extended-config">
+   LSP Mode – Extended Config
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
   <div class="section" id="emacs">
 <h1>Emacs<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
@@ -217,7 +329,7 @@ it and that we want to use it with <code class="docutils literal notranslate"><s
 </div>
 <p>To try this config on your machine.</p>
 <ol class="arabic">
-<li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-common"><span class="std std-ref">Common Setup</span></a>.</p></li>
+<li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
 <li><p>Download <a class="reference download internal" download="" href="../../_downloads/8f699b4d217c9be515792863547f4faf/eglot-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code> to set the path to the Python executable to be the one in
@@ -260,7 +372,7 @@ configure packages with a single declaration</p>
 </div>
 <p>To try this config on your machine</p>
 <ol class="arabic">
-<li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-common"><span class="std std-ref">Common Setup</span></a>.</p></li>
+<li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
 <li><p>Download <a class="reference download internal" download="" href="../../_downloads/630e2fb8fb98ec07d627c49fe004270f/eglot-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-extended.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">eglot-extended.el</span></code> to set the path to the Python executable to be the one in
@@ -299,7 +411,7 @@ start the server and then tell it when it should be started.</p>
 </div>
 <p>To try this config on your machine</p>
 <ol class="arabic">
-<li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-common"><span class="std std-ref">Common Setup</span></a>.</p></li>
+<li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
 <li><p>Download <a class="reference download internal" download="" href="../../_downloads/0d4308782f9bf33a105e3f709381cf24/lsp-mode-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code> to set the path to the Python executable to be the one
@@ -339,7 +451,7 @@ can be achieved with some additional configuration.</p>
 configure packages with a single declaration</p>
 <p>To try this config on your machine</p>
 <ol class="arabic">
-<li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-common"><span class="std std-ref">Common Setup</span></a>.</p></li>
+<li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
 <li><p>Download <a class="reference download internal" download="" href="../../_downloads/696dc759424015e492d0401680b1b2c3/lsp-mode-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code> to set the path to the Python executable to be the one
@@ -355,51 +467,36 @@ usual configuration:</p>
 </div>
 
 
-           </div>
-           
-          </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="vscode.html" class="btn btn-neutral float-right" title="VSCode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Editor Integrations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Editor Integrations</a>
+    <a class='right-next' id="next-link" href="vscode.html" title="next page">VSCode</a>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Alex Carney.
-
-    </p>
-  </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
         </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Alex Carney<br/>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
       </div>
-
-    </section>
-
-  </div>
+    </div>
   
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
-  
-    
-   
-
-</body>
+  </body>
 </html>
