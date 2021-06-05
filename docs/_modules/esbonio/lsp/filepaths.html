@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -256,16 +270,21 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
-
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span><span class="p">,</span> <span class="n">CompletionItemKind</span><span class="p">,</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItemKind</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
 <span class="kn">import</span> <span class="nn">esbonio.lsp</span> <span class="k">as</span> <span class="nn">lsp</span>
-<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">LanguageFeature</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">LanguageFeature</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.directives</span> <span class="kn">import</span> <span class="n">DIRECTIVE</span>
-<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">PARTIAL_PLAIN_TARGET</span><span class="p">,</span> <span class="n">PARTIAL_ALIASED_TARGET</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">PARTIAL_ALIASED_TARGET</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">PARTIAL_PLAIN_TARGET</span>
+
 
 <span class="c1"># TODO: Would it be better to make the role and directive language features extensible</span>
 <span class="c1">#       and have this and the intersphinx feature contribute suggestions when they know</span>
@@ -325,7 +344,9 @@
 
         <span class="n">kind</span> <span class="o">=</span> <span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Folder</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="k">else</span> <span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">File</span>
         <span class="k">return</span> <span class="n">CompletionItem</span><span class="p">(</span>
-            <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">insert_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>
+            <span class="n">insert_text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 
 
@@ -347,8 +368,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

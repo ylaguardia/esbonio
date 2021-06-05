@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -249,36 +263,33 @@
   <h1>Source code for esbonio.lsp.intersphinx</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Intersphinx support.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">CompletionItem</span><span class="p">,</span>
-    <span class="n">CompletionItemKind</span><span class="p">,</span>
-    <span class="n">Position</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItemKind</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
 <span class="kn">import</span> <span class="nn">esbonio.lsp</span> <span class="k">as</span> <span class="nn">lsp</span>
-<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">COMPLETION_TARGETS</span><span class="p">,</span>
-    <span class="n">DEFAULT_TARGET</span><span class="p">,</span>
-    <span class="n">PARTIAL_PLAIN_TARGET</span><span class="p">,</span>
-    <span class="n">PARTIAL_ALIASED_TARGET</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">COMPLETION_TARGETS</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">DEFAULT_TARGET</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">PARTIAL_ALIASED_TARGET</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.roles</span> <span class="kn">import</span> <span class="n">PARTIAL_PLAIN_TARGET</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">get_domains</span>
 
 
 <span class="n">PARTIAL_INTER_PLAIN_TARGET</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    (^|.*[ ])               # roles must be preceeded by a space, or start the line</span>
-<span class="sd">    (?P&lt;role&gt;:              # roles start with the &#39;:&#39; character</span>
-<span class="sd">    (?!:)                   # make sure the next character is not &#39;:&#39;</span>
-<span class="sd">    (?P&lt;domain&gt;[\w]+:)?     # there may be a domain namespace</span>
-<span class="sd">    (?P&lt;name&gt;[\w-]*)        # followed by the role name</span>
-<span class="sd">    :)                      # the role name ends with a &#39;:&#39;</span>
-<span class="sd">    `                       # the target begins with a &#39;`&#39;</span>
-<span class="sd">    (?P&lt;project&gt;[^&lt;:`]*)    # match &quot;plain link&quot; targets</span>
-<span class="sd">    :                       # projects end with a &#39;:&#39;</span>
+<span class="sd">    (^|.*[^\w:])             # roles cannot be preceeded by certain chars</span>
+<span class="sd">    (?P&lt;role&gt;:               # roles start with the &#39;:&#39; character</span>
+<span class="sd">    (?!:)                    # make sure the next character is not &#39;:&#39;</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?      # there may be a domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*)         # followed by the role name</span>
+<span class="sd">    :)                       # the role name ends with a &#39;:&#39;</span>
+<span class="sd">    `                        # the target begins with a &#39;`&#39;</span>
+<span class="sd">    (?P&lt;project&gt;[^&lt;:`]*)     # match &quot;plain link&quot; targets</span>
+<span class="sd">    :                        # projects end with a &#39;:&#39;</span>
 <span class="sd">    $</span>
 <span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
@@ -294,16 +305,16 @@
 
 <span class="n">PARTIAL_INTER_ALIASED_TARGET</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    (^|.*[ ])            # roles must be preceeded by a space, or start the line</span>
-<span class="sd">    (?P&lt;role&gt;:           # roles start with the &#39;:&#39; character</span>
-<span class="sd">    (?!:)                # make sure the next character is not &#39;:&#39;</span>
-<span class="sd">    (?P&lt;domain&gt;[\w]+:)?  # there may be a domain namespace</span>
-<span class="sd">    (?P&lt;name&gt;[\w-]*)     # followed by the role name</span>
-<span class="sd">    :)                   # the role name ends with a &#39;:&#39;</span>
-<span class="sd">    `                    # the target begins with a &#39;`&#39;`</span>
-<span class="sd">    .*&lt;                  # the actual target name starts after a &#39;&lt;&#39;</span>
-<span class="sd">    (?P&lt;project&gt;[^`:]*)  # match &quot;aliased&quot; targets</span>
-<span class="sd">    :                    # projects end with a &#39;:&#39;</span>
+<span class="sd">    (^|.*[^\w:])          # roles cannot be preceeded by alpha chars</span>
+<span class="sd">    (?P&lt;role&gt;:            # roles start with the &#39;:&#39; character</span>
+<span class="sd">    (?!:)                 # make sure the next character is not &#39;:&#39;</span>
+<span class="sd">    (?P&lt;domain&gt;[\w]+:)?   # there may be a domain namespace</span>
+<span class="sd">    (?P&lt;name&gt;[\w-]*)      # followed by the role name</span>
+<span class="sd">    :)                    # the role name ends with a &#39;:&#39;</span>
+<span class="sd">    `                     # the target begins with a &#39;`&#39;`</span>
+<span class="sd">    .*&lt;                   # the actual target name starts after a &#39;&lt;&#39;</span>
+<span class="sd">    (?P&lt;project&gt;[^`:]*)   # match &quot;aliased&quot; targets</span>
+<span class="sd">    :                     # projects end with a &#39;:&#39;</span>
 <span class="sd">    $</span>
 <span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
@@ -321,7 +332,7 @@
 <div class="viewcode-block" id="InterSphinx"><a class="viewcode-back" href="../../../contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx">[docs]</a><span class="k">class</span> <span class="nc">InterSphinx</span><span class="p">(</span><span class="n">lsp</span><span class="o">.</span><span class="n">LanguageFeature</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Intersphinx support for the language server.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="InterSphinx.initialized"><a class="viewcode-back" href="../../../contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
+<div class="viewcode-block" id="InterSphinx.initialize"><a class="viewcode-back" href="../../../contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">InitializationOptions</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_types</span> <span class="o">=</span> <span class="p">{}</span>
@@ -510,8 +521,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

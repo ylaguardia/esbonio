@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -253,32 +267,33 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">unquote</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">unquote</span>
-
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">COMPLETION</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">INITIALIZE</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">INITIALIZED</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">TEXT_DOCUMENT_DID_OPEN</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">TEXT_DOCUMENT_DID_SAVE</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionList</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionOptions</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidOpenTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.server</span> <span class="kn">import</span> <span class="n">LanguageServer</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">COMPLETION</span><span class="p">,</span>
-    <span class="n">INITIALIZE</span><span class="p">,</span>
-    <span class="n">INITIALIZED</span><span class="p">,</span>
-    <span class="n">TEXT_DOCUMENT_DID_OPEN</span><span class="p">,</span>
-    <span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">CompletionList</span><span class="p">,</span>
-    <span class="n">CompletionOptions</span><span class="p">,</span>
-    <span class="n">CompletionParams</span><span class="p">,</span>
-    <span class="n">ConfigurationItem</span><span class="p">,</span>
-    <span class="n">ConfigurationParams</span><span class="p">,</span>
-    <span class="n">DidOpenTextDocumentParams</span><span class="p">,</span>
-    <span class="n">DidSaveTextDocumentParams</span><span class="p">,</span>
-    <span class="n">InitializeParams</span><span class="p">,</span>
-    <span class="n">InitializedParams</span><span class="p">,</span>
-    <span class="n">Position</span><span class="p">,</span>
-<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
+
+<span class="kn">from</span> <span class="nn">esbonio.lsp.logger</span> <span class="kn">import</span> <span class="n">LOG_LEVELS</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.logger</span> <span class="kn">import</span> <span class="n">LogFilter</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.logger</span> <span class="kn">import</span> <span class="n">LspHandler</span>
 
 <span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.6.1&quot;</span>
 
@@ -292,6 +307,50 @@
 <span class="p">]</span>
 
 
+<div class="viewcode-block" id="SphinxConfig"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.SphinxConfig">[docs]</a><span class="k">class</span> <span class="nc">SphinxConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents both the current Sphinx configuration and also the config options that</span>
+<span class="sd">    we should create Sphinx with.&quot;&quot;&quot;</span>
+
+    <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;Sphinx&#39;s version number.&quot;&quot;&quot;</span>
+
+    <span class="n">conf_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;confDir&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Can be used to override the default conf.py discovery mechanism.&quot;&quot;&quot;</span>
+
+    <span class="n">src_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;srcDir&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Can be used to override the default assumption on where the project&#39;s rst files are</span>
+<span class="sd">    located.&quot;&quot;&quot;</span>
+
+    <span class="n">build_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;buildDir&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Can be used to override the default location for storing build outputs.&quot;&quot;&quot;</span>
+
+    <span class="n">builder_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;builderName&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The currently used builder.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="ServerConfig"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.ServerConfig">[docs]</a><span class="k">class</span> <span class="nc">ServerConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configuration options for the server.&quot;&quot;&quot;</span>
+
+    <span class="n">log_level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logLevel&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The logging level for server messages&quot;&quot;&quot;</span>
+
+    <span class="n">log_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logFilter&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;A list of logger names to restrict output to.&quot;&quot;&quot;</span>
+
+    <span class="n">hide_sphinx_output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;hideSphinxOutput&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;A flag to indicate if Sphinx build output should be omitted from the log.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="InitializationOptions"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.InitializationOptions">[docs]</a><span class="k">class</span> <span class="nc">InitializationOptions</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The initialization options we can expect to receive from a client.&quot;&quot;&quot;</span>
+
+    <span class="n">sphinx</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SphinxConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">SphinxConfig</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The ``esbonio.sphinx.*`` namespace of options&quot;&quot;&quot;</span>
+
+    <span class="n">server</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ServerConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ServerConfig</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The ``esbonio.server.*`` namespace of options&quot;&quot;&quot;</span></div>
+
+
 <div class="viewcode-block" id="LanguageFeature"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.LanguageFeature">[docs]</a><span class="k">class</span> <span class="nc">LanguageFeature</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Base class for language features.&quot;&quot;&quot;</span>
 
@@ -300,35 +359,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="SphinxConfig"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.SphinxConfig">[docs]</a><span class="k">class</span> <span class="nc">SphinxConfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Represents the `esbonio.sphinx.*` configuration namespace.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conf_dir</span> <span class="o">=</span> <span class="n">conf_dir</span>
-        <span class="sd">&quot;&quot;&quot;Used to override the default &#39;conf.py&#39; discovery mechanism.&quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">src_dir</span> <span class="o">=</span> <span class="n">src_dir</span>
-        <span class="sd">&quot;&quot;&quot;Used to override the assumption that rst soruce files are</span>
-<span class="sd">        in the same folder as &#39;conf.py&#39;&quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="SphinxConfig.default"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.SphinxConfig.default">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">conf_dir</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">src_dir</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SphinxConfig.from_dict"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.SphinxConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="n">conf_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;confDir&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">src_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;srcDir&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">conf_dir</span><span class="o">=</span><span class="n">conf_dir</span><span class="p">,</span> <span class="n">src_dir</span><span class="o">=</span><span class="n">src_dir</span><span class="p">)</span></div></div>
-
-
 <div class="viewcode-block" id="RstLanguageServer"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.RstLanguageServer">[docs]</a><span class="k">class</span> <span class="nc">RstLanguageServer</span><span class="p">(</span><span class="n">LanguageServer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">cache_dir</span> <span class="o">=</span> <span class="n">cache_dir</span>
-        <span class="sd">&quot;&quot;&quot;The folder to store cached data in.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The logger that should be used for all Language Server log entries&quot;&quot;&quot;</span>
@@ -336,7 +369,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sphinx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="sd">&quot;&quot;&quot;Sphinx application instance configured for the current project.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">on_init_hooks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_initialize_hooks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="sd">&quot;&quot;&quot;A list of functions to run on initialization&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">on_initialized_hooks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -353,7 +386,7 @@
         <span class="sd">&quot;&quot;&quot;Add a new feature to the language server.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;initialize&quot;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">on_init_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">initialize</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on_initialize_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">initialize</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="s2">&quot;initialized&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">on_initialized_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">initialized</span><span class="p">)</span>
@@ -386,7 +419,34 @@
 
         <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Running &#39;</span><span class="si">%s</span><span class="s2">&#39; hook </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">hook</span><span class="p">)</span>
-            <span class="n">hook</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div></div>
+            <span class="n">hook</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_configure_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ServerConfig</span><span class="p">):</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">LOG_LEVELS</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">log_level</span><span class="p">]</span>
+
+        <span class="n">lsp_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;esbonio.lsp&quot;</span><span class="p">)</span>
+        <span class="n">lsp_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+        <span class="n">lsp_handler</span> <span class="o">=</span> <span class="n">LspHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">lsp_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">log_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_filter</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lsp_handler</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">LogFilter</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_filter</span><span class="p">))</span>
+
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(name)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">lsp_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">lsp_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">lsp_handler</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">hide_sphinx_output</span><span class="p">:</span>
+            <span class="n">sphinx_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;esbonio.sphinx&quot;</span><span class="p">)</span>
+            <span class="n">sphinx_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+            <span class="n">sphinx_handler</span> <span class="o">=</span> <span class="n">LspHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">sphinx_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">sphinx_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+            <span class="n">sphinx_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">sphinx_handler</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_line_til_position"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.get_line_til_position">[docs]</a><span class="k">def</span> <span class="nf">get_line_til_position</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -431,45 +491,34 @@
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_language_server"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.create_language_server">[docs]</a><span class="k">def</span> <span class="nf">create_language_server</span><span class="p">(</span>
-    <span class="n">modules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RstLanguageServer</span><span class="p">:</span>
+<div class="viewcode-block" id="create_language_server"><a class="viewcode-back" href="../../contributing/lsp.html#esbonio.lsp.create_language_server">[docs]</a><span class="k">def</span> <span class="nf">create_language_server</span><span class="p">(</span><span class="n">modules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">RstLanguageServer</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Create a new language server instance.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    modules:</span>
 <span class="sd">        The list of modules that should be loaded.</span>
-<span class="sd">    cache_dir:</span>
-<span class="sd">        The folder to use for cached data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">server</span> <span class="o">=</span> <span class="n">RstLanguageServer</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">)</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">RstLanguageServer</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
         <span class="n">server</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZE</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_initialize</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZE</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">InitializationOptions</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">)</span>
 
+        <span class="c1"># Let there be light...</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">_configure_logging</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">server</span><span class="p">)</span>
         <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Language server started.&quot;</span><span class="p">)</span>
 
+        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZE</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;initialize&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZED</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_initialized</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_initialized</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
         <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">INITIALIZED</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-        <span class="n">config_params</span> <span class="o">=</span> <span class="n">ConfigurationParams</span><span class="p">(</span>
-            <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigurationItem</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s2">&quot;esbonio.sphinx&quot;</span><span class="p">)]</span>
-        <span class="p">)</span>
-
-        <span class="n">config_items</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rst</span><span class="o">.</span><span class="n">get_configuration_async</span><span class="p">(</span><span class="n">config_params</span><span class="p">)</span>
-        <span class="n">sphinx_config</span> <span class="o">=</span> <span class="n">SphinxConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">config_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">dict</span><span class="p">())</span>
-
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;SphinxConfig: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dump</span><span class="p">(</span><span class="n">sphinx_config</span><span class="p">))</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;initialized&quot;</span><span class="p">,</span> <span class="n">sphinx_config</span><span class="p">)</span>
-
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;LSP server initialized&quot;</span><span class="p">)</span>
+        <span class="n">rst</span><span class="o">.</span><span class="n">run_hooks</span><span class="p">(</span><span class="s2">&quot;initialized&quot;</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span>
         <span class="n">COMPLETION</span><span class="p">,</span> <span class="n">CompletionOptions</span><span class="p">(</span><span class="n">trigger_characters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;`&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">])</span>
@@ -529,8 +578,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

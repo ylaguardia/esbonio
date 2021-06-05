@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -257,6 +271,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -266,6 +281,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -289,13 +305,17 @@
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.build_app">build_app() (esbonio.lsp.sphinx.SphinxManagement method)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.build_dir">build_dir (esbonio.lsp.SphinxConfig attribute)</a>
+</li>
+      <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.builder_name">builder_name (esbonio.lsp.SphinxConfig attribute)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.cache_dir">cache_dir (esbonio.lsp.RstLanguageServer attribute)</a>
-</li>
       <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.completion_handlers">completion_handlers (esbonio.lsp.RstLanguageServer attribute)</a>
 </li>
       <li><a href="contributing/lsp/testing.html#esbonio.lsp.testing.completion_test">completion_test() (in module esbonio.lsp.testing)</a>
@@ -318,8 +338,6 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.default">default() (esbonio.lsp.SphinxConfig class method)</a>
-</li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.DiagnosticList">DiagnosticList (class in esbonio.lsp.sphinx)</a>
 </li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.diagnostics">diagnostics (esbonio.lsp.sphinx.SphinxManagement attribute)</a>
@@ -424,9 +442,9 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.find_conf_dir">find_conf_dir() (in module esbonio.lsp.sphinx)</a>
+      <li><a href="contributing/lsp/logger.html#esbonio.lsp.logger.LogFilter.filter">filter() (esbonio.lsp.logger.LogFilter method)</a>
 </li>
-      <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.from_dict">from_dict() (esbonio.lsp.SphinxConfig class method)</a>
+      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.find_conf_dir">find_conf_dir() (in module esbonio.lsp.sphinx)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -434,12 +452,14 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.get_domains">get_domains() (in module esbonio.lsp.sphinx)</a>
+      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.get_build_dir">get_build_dir() (in module esbonio.lsp.sphinx)</a>
 </li>
-      <li><a href="contributing/lsp.html#esbonio.lsp.get_line_til_position">get_line_til_position() (in module esbonio.lsp)</a>
+      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.get_domains">get_domains() (in module esbonio.lsp.sphinx)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp.html#esbonio.lsp.get_line_til_position">get_line_til_position() (in module esbonio.lsp)</a>
+</li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.get_src_dir">get_src_dir() (in module esbonio.lsp.sphinx)</a>
 </li>
       <li><a href="contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx.get_target_types">get_target_types() (esbonio.lsp.intersphinx.InterSphinx method)</a>
@@ -447,21 +467,33 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp.html#esbonio.lsp.ServerConfig.hide_sphinx_output">hide_sphinx_output (esbonio.lsp.ServerConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.initialized">initialized() (esbonio.lsp.directives.Directives method)</a>
+      <li><a href="contributing/lsp.html#esbonio.lsp.InitializationOptions">InitializationOptions (class in esbonio.lsp)</a>
+</li>
+      <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.initialize">initialize() (esbonio.lsp.directives.Directives method)</a>
 
       <ul>
-        <li><a href="contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx.initialized">(esbonio.lsp.intersphinx.InterSphinx method)</a>
+        <li><a href="contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx.initialize">(esbonio.lsp.intersphinx.InterSphinx method)</a>
 </li>
-        <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.initialized">(esbonio.lsp.roles.Roles method)</a>
+        <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.initialize">(esbonio.lsp.roles.Roles method)</a>
 </li>
-        <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialized">(esbonio.lsp.sphinx.SphinxManagement method)</a>
+        <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialize">(esbonio.lsp.sphinx.SphinxManagement method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialized">initialized() (esbonio.lsp.sphinx.SphinxManagement method)</a>
+</li>
       <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.CompletionTarget.insert_fmt">insert_fmt (esbonio.lsp.roles.CompletionTarget attribute)</a>
 </li>
       <li><a href="contributing/lsp/intersphinx.html#esbonio.lsp.intersphinx.InterSphinx">InterSphinx (class in esbonio.lsp.intersphinx)</a>
@@ -486,8 +518,14 @@
 </li>
       <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.load_module">load_module() (esbonio.lsp.RstLanguageServer method)</a>
 </li>
+      <li><a href="contributing/lsp.html#esbonio.lsp.ServerConfig.log_filter">log_filter (esbonio.lsp.ServerConfig attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp.html#esbonio.lsp.ServerConfig.log_level">log_level (esbonio.lsp.ServerConfig attribute)</a>
+</li>
+      <li><a href="contributing/lsp/logger.html#esbonio.lsp.logger.LogFilter">LogFilter (class in esbonio.lsp.logger)</a>
+</li>
       <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.logger">logger (esbonio.lsp.RstLanguageServer attribute)</a>
 </li>
       <li><a href="contributing/lsp/logger.html#esbonio.lsp.logger.LspHandler">LspHandler (class in esbonio.lsp.logger)</a>
@@ -525,7 +563,7 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.on_init_hooks">on_init_hooks (esbonio.lsp.RstLanguageServer attribute)</a>
+      <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.on_initialize_hooks">on_initialize_hooks (esbonio.lsp.RstLanguageServer attribute)</a>
 </li>
       <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.on_initialized_hooks">on_initialized_hooks (esbonio.lsp.RstLanguageServer attribute)</a>
 </li>
@@ -575,10 +613,12 @@
 </li>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.resolve_directive">resolve_directive() (esbonio.lsp.directives.Directives method)</a>
 </li>
-      <li><a href="contributing/lsp/testing.html#esbonio.lsp.testing.role_target_patterns">role_target_patterns() (in module esbonio.lsp.testing)</a>
+      <li><a href="contributing/lsp/testing.html#esbonio.lsp.testing.role_patterns">role_patterns() (in module esbonio.lsp.testing)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp/testing.html#esbonio.lsp.testing.role_target_patterns">role_target_patterns() (in module esbonio.lsp.testing)</a>
+</li>
       <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.role_to_completion_item">role_to_completion_item() (esbonio.lsp.roles.Roles method)</a>
 </li>
       <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles">Roles (class in esbonio.lsp.roles)</a>
@@ -599,6 +639,10 @@
         <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.save">(esbonio.lsp.sphinx.SphinxManagement method)</a>
 </li>
       </ul></li>
+      <li><a href="contributing/lsp.html#esbonio.lsp.InitializationOptions.server">server (esbonio.lsp.InitializationOptions attribute)</a>
+</li>
+      <li><a href="contributing/lsp.html#esbonio.lsp.ServerConfig">ServerConfig (class in esbonio.lsp)</a>
+</li>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.setup">setup() (in module esbonio.lsp.directives)</a>
 
       <ul>
@@ -613,12 +657,18 @@
       </ul></li>
       <li><a href="contributing/lsp/filepaths.html#esbonio.lsp.filepaths.FilepathCompletions.should_suggest">should_suggest() (esbonio.lsp.filepaths.FilepathCompletions method)</a>
 </li>
+      <li><a href="contributing/lsp.html#esbonio.lsp.InitializationOptions.sphinx">sphinx (esbonio.lsp.InitializationOptions attribute)</a>
+</li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.sphinx_log">sphinx_log (esbonio.lsp.sphinx.SphinxManagement attribute)</a>
+</li>
+      <li><a href="contributing/lsp/testing.html#esbonio.lsp.testing.sphinx_version">sphinx_version() (in module esbonio.lsp.testing)</a>
 </li>
       <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig">SphinxConfig (class in esbonio.lsp)</a>
 </li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement">SphinxManagement (class in esbonio.lsp.sphinx)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.src_dir">src_dir (esbonio.lsp.SphinxConfig attribute)</a>
 </li>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest">suggest() (esbonio.lsp.directives.Directives method)</a>
@@ -631,8 +681,6 @@
         <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.suggest">(esbonio.lsp.roles.Roles method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest_directives">suggest_directives() (esbonio.lsp.directives.Directives method)</a>
 </li>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.suggest_options">suggest_options() (esbonio.lsp.directives.Directives method)</a>
@@ -672,6 +720,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp.html#esbonio.lsp.SphinxConfig.version">version (esbonio.lsp.SphinxConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -695,8 +751,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

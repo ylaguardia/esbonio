@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -249,10 +263,25 @@
   <h1>Source code for esbonio.lsp.logger</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;This module defines a custom logging handler that publishes log messages to an LSP</span>
 <span class="sd">client.&quot;&quot;&quot;</span>
-
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">pygls.server</span> <span class="kn">import</span> <span class="n">LanguageServer</span>
+
+<span class="n">LOG_LEVELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+    <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="LogFilter"><a class="viewcode-back" href="../../../contributing/lsp/logger.html#esbonio.lsp.logger.LogFilter">[docs]</a><span class="k">class</span> <span class="nc">LogFilter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A log filter that accepts message from any of the listed logger names.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="n">names</span>
+
+<div class="viewcode-block" id="LogFilter.filter"><a class="viewcode-back" href="../../../contributing/lsp/logger.html#esbonio.lsp.logger.LogFilter.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="LspHandler"><a class="viewcode-back" href="../../../contributing/lsp/logger.html#esbonio.lsp.logger.LspHandler">[docs]</a><span class="k">class</span> <span class="nc">LspHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
@@ -287,8 +316,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

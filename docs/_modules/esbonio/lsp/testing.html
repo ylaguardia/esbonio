@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -250,15 +264,38 @@
 <span></span><span class="sd">&quot;&quot;&quot;Utility functions to help with testing Language Server features.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Set</span>
 
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">__sphinx_version__</span>
 
 <span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">LanguageFeature</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sphinx_version"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.sphinx_version">[docs]</a><span class="k">def</span> <span class="nf">sphinx_version</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function for determining which version of Sphinx we are</span>
+<span class="sd">    testing with.</span>
+
+<span class="sd">    Currently this only cares about the major version number.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    eq:</span>
+<span class="sd">       When set returns ``True`` if the Sphinx version exactly matches</span>
+<span class="sd">       what&#39;s given.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">major</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">__sphinx_version__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">eq</span> <span class="ow">and</span> <span class="n">major</span> <span class="o">==</span> <span class="n">eq</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span></div>
 
 
 <div class="viewcode-block" id="directive_argument_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.directive_argument_patterns">[docs]</a><span class="k">def</span> <span class="nf">directive_argument_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -267,14 +304,39 @@
 <span class="sd">    These correspond to test cases where directive argument suggestions should be</span>
 <span class="sd">    generated.</span>
 
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 <span class="sd">    name:</span>
 <span class="sd">       The name of the directive to generate suggestions for.</span>
 <span class="sd">    partial:</span>
 <span class="sd">       The partial argument that the user has already entered.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">partial</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.. </span><span class="si">{}</span><span class="s2">:: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;   .. </span><span class="si">{}</span><span class="s2">:: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">]]</span></div>
+
+
+<div class="viewcode-block" id="role_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.role_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_patterns</span><span class="p">(</span><span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Return a number of example role patterns.</span>
+
+<span class="sd">    These correspond to when role suggestions should be generated.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    partial:</span>
+<span class="sd">       The partial role name that the user has already entered</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;(</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   (</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;some text </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;some text (</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   some text </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   some text (</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="role_target_patterns"><a class="viewcode-back" href="../../../contributing/lsp/testing.html#esbonio.lsp.testing.role_target_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_target_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -293,9 +355,13 @@
         <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">partial</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span>
             <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;(:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`More Info &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;(:</span><span class="si">{}</span><span class="s2">:`More Info &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   (:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`Some Label &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   (:</span><span class="si">{}</span><span class="s2">:`Some Label &lt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
     <span class="p">]</span></div>
 
@@ -316,9 +382,13 @@
         <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">project</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span>
             <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;(:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
             <span class="s2">&quot;:</span><span class="si">{}</span><span class="s2">:`More Info &lt;</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;(:</span><span class="si">{}</span><span class="s2">:`More Info &lt;</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
             <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   (:</span><span class="si">{}</span><span class="s2">:`</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
             <span class="s2">&quot;   :</span><span class="si">{}</span><span class="s2">:`Some Label &lt;</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   (:</span><span class="si">{}</span><span class="s2">:`Some Label &lt;</span><span class="si">{}</span><span class="s2">:&quot;</span><span class="p">,</span>
         <span class="p">]</span>
     <span class="p">]</span></div>
 
@@ -437,8 +507,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

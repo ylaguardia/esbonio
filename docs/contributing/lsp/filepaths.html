@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Intersphinx" href="intersphinx.html" />
@@ -56,6 +58,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -102,6 +106,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -280,7 +294,7 @@ the roles or directives that accept filepaths as arguments.</p>
 <dd><p>Filepath completion support.</p>
 <dl class="py attribute">
 <dt id="esbonio.lsp.filepaths.FilepathCompletions.suggest_triggers">
-<code class="sig-name descname"><span class="pre">suggest_triggers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;directive&gt;\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">comment\n</span>&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w],</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[</span> <span class="pre">])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space,</span> <span class="pre">or</span> <span class="pre">start</span> <span class="pre">the</span> <span class="pre">line\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">char,</span> <span class="pre">re.MULTILINE|re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.filepaths.FilepathCompletions.suggest_triggers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">suggest_triggers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;indent&gt;\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">directives</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">indented\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;directive&gt;\\.\\.</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">comment\n</span>&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">space\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;domain&gt;[\\w],</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[^\\w:])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">certain</span> <span class="pre">chars\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">character</span> <span class="pre">i,</span> <span class="pre">re.MULTILINE|re.VERBOSE),</span> <span class="pre">re.compile('\n</span>&#160;&#160;&#160; <span class="pre">(^|.*[^\\w:])</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">certain</span> <span class="pre">chars\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">\':\'</span> <span class="pre">character\n</span>&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">character</span> <span class="pre">i,</span> <span class="pre">re.MULTILINE|re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.filepaths.FilepathCompletions.suggest_triggers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -357,8 +371,6 @@ the roles or directives that accept filepaths as arguments.</p>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

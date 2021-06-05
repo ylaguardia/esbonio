@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Emacs" href="emacs.html" />
@@ -56,6 +58,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -102,6 +106,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -312,17 +326,18 @@ language server from your editor of choice.</p>
 <li><p><a class="reference internal" href="emacs.html"><span class="doc">Emacs</span></a></p></li>
 </ul>
 </td><td><ul class="simple">
-<li><p><a class="reference internal" href="vscode.html"><span class="doc">VSCode</span></a></p></li>
+<li><p><a class="reference internal" href="kate.html"><span class="doc">Kate</span></a></p></li>
 </ul>
 </td><td><ul class="simple">
+<li><p><a class="reference internal" href="vscode.html"><span class="doc">VSCode</span></a></p></li>
 </ul>
 </td></tr></table>
 </div>
 <div class="section" id="common-configuration">
 <span id="editor-integration-config"></span><h2>Common Configuration<a class="headerlink" href="#common-configuration" title="Permalink to this headline">¶</a></h2>
-<p>The following options are implemented directly by the language server and therefore
+<p>The following options are implemented directly by the language server and should be
 supported by any language client.</p>
-<dl>
+<dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.confDir</span></code> (string)</dt><dd><p>The language server attempts to automatically find the folder which contains your
 project’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>. If necessary this can be used to override the default discovery
 mechanism and force the server to use a folder of your choosing. Currently accepted
@@ -336,13 +351,29 @@ values include:</p>
 rst files) is the same as your projects’s <code class="docutils literal notranslate"><span class="pre">confDir</span></code>. If this assumption is not true,
 you can use this setting to tell the server where to look. Currently accepted values
 include:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/path/to/src/</span></code> - An absolute path</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">${workspaceRoot}/docs/src</span></code> - A path relative to the root of your workspace</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">${confDir}/../src/</span></code> - A path relative to your project’s <code class="docutils literal notranslate"><span class="pre">confDir</span></code></p></li>
 </ul>
-</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.buildDir</span></code> (string)</dt><dd><p>By default the language server will choose an appropriate location to cache the build
+output from Sphinx. This option can be used to force the language server to use a location
+of your choosing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.logLevel</span></code> (string)</dt><dd><p>This can be used to set the level of log messages emitted by the server. This can be set
+to one of the following values.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code> (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.logFilter</span></code> (string[])</dt><dd><p>The language server will typically include log output from all of its components. This
+option can be used to restrict the log output to be only those named.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">esbonio.server.hideSphinxOutput</span></code> (boolean)</dt><dd><p>Normally any build output from Sphinx will be forwarded to the client as log messages.
+If you prefer this flag can be used to exclude any Sphinx output from the log.</p>
 </dd>
 </dl>
 </div>
@@ -364,8 +395,6 @@ include:</p>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

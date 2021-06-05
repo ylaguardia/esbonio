@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Sphinx" href="sphinx.html" />
@@ -55,6 +57,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -101,6 +105,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -270,23 +284,49 @@
 <span id="testing"></span><h1>Testing<a class="headerlink" href="#module-esbonio.lsp.testing" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions to help with testing Language Server features.</p>
 <dl class="py function">
+<dt id="esbonio.lsp.testing.sphinx_version">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">sphinx_version</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#sphinx_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.sphinx_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function for determining which version of Sphinx we are
+testing with.</p>
+<p>Currently this only cares about the major version number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eq</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – When set returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the Sphinx version exactly matches
+what’s given.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="esbonio.lsp.testing.directive_argument_patterns">
 <code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">directive_argument_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#directive_argument_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.directive_argument_patterns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a number of example directive argument patterns.</p>
 <p>These correspond to test cases where directive argument suggestions should be
 generated.</p>
-<dl class="simple">
-<dt>name:</dt><dd><p>The name of the directive to generate suggestions for.</p>
-</dd>
-<dt>partial:</dt><dd><p>The partial argument that the user has already entered.</p>
-</dd>
-</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
-<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the directive to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The partial argument that the user has already entered.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.testing.role_patterns">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">role_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#role_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_patterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a number of example role patterns.</p>
+<p>These correspond to when role suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The partial role name that the user has already entered</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
@@ -404,8 +444,6 @@ to the Sphinx application’s srcdir.</p></li>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Editor Integrations" href="editors/index.html" />
@@ -56,6 +58,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -102,6 +106,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -292,71 +306,17 @@ Server</p>
 <div class="section" id="completion">
 <h2>Completion<a class="headerlink" href="#completion" title="Permalink to this headline">¶</a></h2>
 <p>The Language Server can offer auto complete suggestions in a variety of contexts</p>
-<div class="tabbed-set docutils">
-<input checked="checked" id="0e9f6415-d670-45b8-aa60-a441142aa992" name="e9503f9a-cd47-46e6-9123-ad3baaa16b6e" type="radio">
-</input><label class="tabbed-label" for="0e9f6415-d670-45b8-aa60-a441142aa992">
-Directives</label><div class="tabbed-content docutils">
-<p>Completion suggestions are offered for the directives themselves, as well as any
-options that they expose.</p>
-<div class="figure align-center" id="id1">
-<img alt="../_images/complete-directive-demo.gif" src="../_images/complete-directive-demo.gif" />
-<p class="caption"><span class="caption-text">Completing directives</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<input id="b620c0bc-a3d4-4ad2-8bbe-5f1f1927f244" name="e9503f9a-cd47-46e6-9123-ad3baaa16b6e" type="radio">
-</input><label class="tabbed-label" for="b620c0bc-a3d4-4ad2-8bbe-5f1f1927f244">
-Roles</label><div class="tabbed-content docutils">
-<p>In the case of roles, completions can also be offered for the targets of certain
-supported role types</p>
-<div class="figure align-center" id="id2">
-<img alt="../_images/complete-role-demo.gif" src="../_images/complete-role-demo.gif" />
-<p class="caption"><span class="caption-text">Completing roles</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Target completions are currently supported for the following roles</p>
-<table class="hlist"><tr><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-doc" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-download" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">download</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-envvar" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">envvar</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-option" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">option</span></code></a></p></li>
-</ul>
-</td><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-attr" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:attr</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-class" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:class</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-data" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:data</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-exc" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:exc</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-func" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:func</span></code></a></p></li>
-</ul>
-</td><td><ul class="simple">
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-meth" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:meth</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-mod" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:mod</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#role-py-obj" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">py:obj</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-term" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">term</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-token" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">token</span></code></a></p></li>
-</ul>
-</td></tr></table>
-</div>
-<input id="0df582e1-21fe-42f5-8e48-776c5e34007e" name="e9503f9a-cd47-46e6-9123-ad3baaa16b6e" type="radio">
-</input><label class="tabbed-label" for="0df582e1-21fe-42f5-8e48-776c5e34007e">
-Intersphinx</label><div class="tabbed-content docutils">
-<p>The <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html" title="(in Sphinx v5.0.0+)"><span class="xref std std-doc">intersphinx</span></a> extension that
-comes bundled with Sphinx makes it easy to link to other Sphinx projects. If
-configured for your project, the language server will offer autocomplete
-suggestions when appropriate.</p>
-<div class="figure align-center" id="id3">
-<img alt="../_images/complete-intersphinx-demo.gif" src="../_images/complete-intersphinx-demo.gif" />
-<p class="caption"><span class="caption-text">Completing references to the Python documentation.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
+<div class="figure align-center">
+<img alt="../_images/completion-demo.gif" src="../_images/completion-demo.gif" />
 </div>
 </div>
 <div class="section" id="diagnostics">
 <h2>Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h2>
 <p>The language server is able to catch some of the errors Sphinx outputs while
 building and publish them as diagnostic messages</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id1">
 <img alt="../_images/diagnostic-sphinx-errors-demo.png" src="../_images/diagnostic-sphinx-errors-demo.png" />
-<p class="caption"><span class="caption-text">Example diagnostic messages from Sphinx</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Example diagnostic messages from Sphinx</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -377,8 +337,6 @@ building and publish them as diagnostic messages</p>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

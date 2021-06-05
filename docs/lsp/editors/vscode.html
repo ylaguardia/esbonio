@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,10 +36,11 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Changelog" href="../../changelog.html" />
-    <link rel="prev" title="Emacs" href="emacs.html" />
+    <link rel="prev" title="Vim/Neovim" href="vim.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -56,6 +58,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -102,6 +106,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -309,8 +323,8 @@
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07">
-     v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07
+    <a class="reference internal nav-link" href="#v0-6-0-2021-05-07">
+     v0.6.0 - 2021-05-07
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -467,7 +481,7 @@
   <div class="section" id="vscode">
 <span id="editor-itegration-vscode"></span><h1>VSCode<a class="headerlink" href="#vscode" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-center" id="id63">
-<a class="reference internal image-reference" href="../../_images/vscode-screenshot.png"><img alt="../../_images/vscode-screenshot.png" src="../../_images/vscode-screenshot.png" style="width: 80%;" /></a>
+<img alt="../../_images/vscode-screenshot.png" src="../../_images/vscode-screenshot.png" />
 <p class="caption"><span class="caption-text">The VSCode extension editing this page</span><a class="headerlink" href="#id63" title="Permalink to this image">¶</a></p>
 </div>
 <p>Integration with the <a class="reference external" href="https://code.visualstudio.com/">VSCode</a> editor is provided via the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=swyddfa.esbonio">Esbonio</a> extension.</p>
@@ -551,6 +565,14 @@ cursor.</p>
 used as the link’s label.</p>
 </div>
 </dd>
+<dt>Open Preview - <code class="docutils literal notranslate"><span class="pre">esbonio.preview.open</span></code></dt><dd><p>This will open a webview in the current editor window showing the latest html build of the
+document being edited.</p>
+</dd>
+<dt>Open Preview to the Side - <code class="docutils literal notranslate"><span class="pre">esbonio.preview.openSide</span></code></dt><dd><p>Much like the <em>Open Preview</em> command, this will open a webview showing the latest build
+for the current document but to the side of the editor window. Additionally, as you change
+between source files the preview will automatically update to show the page you are
+currently working on.</p>
+</dd>
 <dt>Install Language Server - <code class="docutils literal notranslate"><span class="pre">esbonio.server.install</span></code></dt><dd><p>This can be used to manually install the language server into the current environment</p>
 </dd>
 <dt>Restart Language Server - <code class="docutils literal notranslate"><span class="pre">esbonio.server.restart</span></code></dt><dd><p>The can be used to kill and restart the language server</p>
@@ -587,8 +609,8 @@ used as the link’s label.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="v0-6-0-2021-05-07v0-6-0-2021-05-07">
-<h3>v0.6.0 - 2021-05-07v0.6.0 - 2021-05-07<a class="headerlink" href="#v0-6-0-2021-05-07v0-6-0-2021-05-07" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="v0-6-0-2021-05-07">
+<h3>v0.6.0 - 2021-05-07<a class="headerlink" href="#v0-6-0-2021-05-07" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="features">
 <h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -774,7 +796,7 @@ entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="emacs.html" title="previous page">Emacs</a>
+    <a class='left-prev' id="prev-link" href="vim.html" title="previous page">Vim/Neovim</a>
     <a class='right-next' id="next-link" href="../../changelog.html" title="next page">Changelog</a>
 
         </div>
@@ -784,8 +806,6 @@ entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

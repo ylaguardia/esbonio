@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,9 +36,10 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="VSCode" href="vscode.html" />
+    <link rel="next" title="Kate" href="kate.html" />
     <link rel="prev" title="Editor Integrations" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -56,6 +58,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -102,6 +106,16 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -265,24 +279,28 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eglot-minimal-config">
-   Eglot – Minimal Config
+  <a class="reference internal nav-link" href="#eglot">
+   Eglot
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#server-configuration">
+     Server Configuration
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eglot-extended-config">
-   Eglot – Extended Config
+  <a class="reference internal nav-link" href="#lsp-mode">
+   LSP Mode
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lsp-mode-minimal-config">
-   LSP Mode – Minimal Config
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lsp-mode-extended-config">
-   LSP Mode – Extended Config
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Server Configuration
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -297,11 +315,6 @@
                 
   <div class="section" id="emacs">
 <h1>Emacs<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>While I like to play around now and again with Emacs, I’m hardly an expert! If you
-know of a better way to set this up, feel free to open a pull request!</p>
-</div>
 <p>There are multiple LSP clients available in the Emacs ecosystem.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/joaotavora/eglot">eglot</a> a more minimal Language Client that integrates tightly with features built
@@ -310,16 +323,15 @@ into Emacs such as <code class="docutils literal notranslate"><span class="pre">
 wider Emacs ecosystem with packages like <code class="docutils literal notranslate"><span class="pre">projectile</span></code>, <code class="docutils literal notranslate"><span class="pre">treemacs</span></code> and <code class="docutils literal notranslate"><span class="pre">ivy</span></code>.</p></li>
 </ul>
 <p>This page contains a number of sample configurations that you can use to get started.</p>
-<div class="section" id="eglot-minimal-config">
-<h2>Eglot – Minimal Config<a class="headerlink" href="#eglot-minimal-config" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id1">
-<a class="reference internal image-reference" href="../../_images/emacs-eglot-minimal.png"><img alt="../../_images/emacs-eglot-minimal.png" src="../../_images/emacs-eglot-minimal.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Using Esbonio with Emacs and the <code class="docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code> configuration.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<div class="section" id="eglot">
+<h2>Eglot<a class="headerlink" href="#eglot" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/emacs-eglot-extended.png"><img alt="../../_images/emacs-eglot-extended.png" src="../../_images/emacs-eglot-extended.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Using Esbonio and Emacs with the <code class="docutils literal notranslate"><span class="pre">eglot-extended.el</span></code> configuration</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>This barebones configuration should be just enough to get things up and running with
-Emacs, Esbonio and Eglot, might be useful to help track down configuration issues.</p>
-<p>The key to setting up <code class="docutils literal notranslate"><span class="pre">eglot</span></code> is to tell it about the language server, how to start
-it and that we want to use it with <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> files</p>
+<p>Configuring <code class="docutils literal notranslate"><span class="pre">eglot</span></code> involves updating the <code class="docutils literal notranslate"><span class="pre">eglot-server-programs</span></code> list to tell it about
+the language server and how to start it. As well as adding an <code class="docutils literal notranslate"><span class="pre">rst-mode-hook</span></code> that runs
+<code class="docutils literal notranslate"><span class="pre">eglot</span></code> in <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> files.</p>
 <div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;eglot</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;eglot-server-programs</span>
              <span class="o">`</span><span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="p">(</span><span class="s">&quot;/path/to/virtualenv/bin/python&quot;</span>
@@ -327,53 +339,52 @@ it and that we want to use it with <code class="docutils literal notranslate"><s
 <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;rst-mode-hook</span> <span class="ss">&#39;eglot-ensure</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To try this config on your machine.</p>
+<p>We provide a barebones configuration <code class="docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code> that you can use either to experiment
+with Eglot and Esbonio or as a basis for your own configuration. To try it out on your machine.</p>
 <ol class="arabic">
 <li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
-<li><p>Download <a class="reference download internal" download="" href="../../_downloads/8f699b4d217c9be515792863547f4faf/eglot-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code></a>
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/952eee1e61fbf16219866bf8a543b1ad/eglot-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">eglot-minimal.el</span></code> to set the path to the Python executable to be the one in
 the virtual environment you just installed the language server into.</p></li>
 <li><p>Run the following command to launch a separate instance of Emacs isolated from your
-usual configuraiton:</p>
+usual configuration:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">emacs</span> <span class="o">-</span><span class="n">Q</span> <span class="o">-</span><span class="n">l</span> <span class="n">eglot</span><span class="o">-</span><span class="n">minimal</span><span class="o">.</span><span class="n">el</span>
 </pre></div>
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="eglot-extended-config">
-<h2>Eglot – Extended Config<a class="headerlink" href="#eglot-extended-config" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id2">
-<a class="reference internal image-reference" href="../../_images/emacs-eglot-extended.png"><img alt="../../_images/emacs-eglot-extended.png" src="../../_images/emacs-eglot-extended.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Using Esbonio and Emacs with the <code class="docutils literal notranslate"><span class="pre">eglot-extended.el</span></code> configuration</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>Here is a configuration with a few more bells and whistles that aims to showcase what
-can be achieved with some additional configuration.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There seems to be a bug in this config where <code class="docutils literal notranslate"><span class="pre">project.el</span></code> is not being loaded
-correctly preventing <code class="docutils literal notranslate"><span class="pre">eglot</span></code> from starting. However, this only appears to be an
-issue on the first run so if you encounter this try restarting Emacs and it should
-magically fix itself.</p>
-</div>
-<p>This time the configuration makes use of <a class="reference external" href="https://github.com/jwiegley/use-package">use-package</a> to install (if necessary) and
-configure packages with a single declaration</p>
-<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">use-package</span> <span class="nv">eglot</span>
-  <span class="nb">:ensure</span> <span class="no">t</span>
-  <span class="nb">:config</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;eglot-server-programs</span>
-               <span class="o">`</span><span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="p">(</span><span class="s">&quot;/path/to/virtualenv/bin/python&quot;</span>
-                             <span class="s">&quot;-m&quot;</span> <span class="s">&quot;esbonio&quot;</span><span class="p">))))</span>
+<div class="section" id="server-configuration">
+<h3>Server Configuration<a class="headerlink" href="#server-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The language server provides a number of <a class="reference internal" href="index.html#editor-integration-config"><span class="std std-ref">settings</span></a> that
+for example can be used to control the instance of Sphinx that the server manages.</p>
+<p>To set these values via Eglot it’s necessary to create a subclass of Eglot’s
+<code class="docutils literal notranslate"><span class="pre">eglot-lsp-server</span></code> type and implement the <code class="docutils literal notranslate"><span class="pre">eglot-initialization-options</span></code> method to return
+the settings you wish to set.</p>
+<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">defclass</span> <span class="nv">eglot-esbonio</span> <span class="p">(</span><span class="nv">eglot-lsp-server</span><span class="p">)</span> <span class="p">()</span>
+  <span class="nb">:documentation</span> <span class="s">&quot;Esbonio Language Server.&quot;</span><span class="p">)</span>
 
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">rst</span>
-  <span class="nb">:hook</span> <span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="nv">eglot-ensure</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">cl-defmethod</span> <span class="nv">eglot-initialization-options</span> <span class="p">((</span><span class="nv">server</span> <span class="nv">eglot-esbonio</span><span class="p">))</span>
+  <span class="s">&quot;Passes the initializationOptions required to run the server.&quot;</span>
+  <span class="o">`</span><span class="p">(</span><span class="nb">:sphinx</span> <span class="p">(</span><span class="nb">:confDir</span> <span class="s">&quot;${workspaceRoot}&quot;</span>
+             <span class="nb">:srcDir</span> <span class="s">&quot;${confDir}&quot;</span> <span class="p">)</span>
+    <span class="nb">:server</span> <span class="p">(</span><span class="nb">:logLevel</span> <span class="s">&quot;debug&quot;</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p>To try this config on your machine</p>
+<p>Then when it comes to adding the entry to <code class="docutils literal notranslate"><span class="pre">eglot-server-programs</span></code> the <code class="docutils literal notranslate"><span class="pre">eglot-esbonio</span></code>
+class needs to be prepended to the list specifying the server start command.</p>
+<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;eglot-server-programs</span>
+             <span class="o">`</span><span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="p">(</span><span class="nv">eglot-esbonio</span>
+                           <span class="s">&quot;/path/to/virtualenv/bin/python&quot;</span>
+                           <span class="s">&quot;-m&quot;</span> <span class="s">&quot;esbonio&quot;</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>We provide an extended configuration <code class="docutils literal notranslate"><span class="pre">eglot-extended.el</span></code> that sets a few of these settings
+as well as including a few extras. Feel free to use it to experiment with Elgot and Esbonio
+or use it as a starting point for your own configuration.</p>
 <ol class="arabic">
 <li><p>Make sure you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
-<li><p>Download <a class="reference download internal" download="" href="../../_downloads/630e2fb8fb98ec07d627c49fe004270f/eglot-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-extended.el</span></code></a>
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/67575da7572ff0bb7a1594393f9b2fda/eglot-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">eglot-extended.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">eglot-extended.el</span></code> to set the path to the Python executable to be the one in
 the virtual environment you just installed the language server into.</p></li>
@@ -384,18 +395,24 @@ usual configuration:</p>
 </div>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There seems to be a bug in this config where <code class="docutils literal notranslate"><span class="pre">project.el</span></code> is not being loaded
+correctly preventing <code class="docutils literal notranslate"><span class="pre">eglot</span></code> from starting. However, this only appears to be an
+issue on the first run so if you encounter this try restarting Emacs and it should
+magically fix itself.</p>
 </div>
-<div class="section" id="lsp-mode-minimal-config">
-<h2>LSP Mode – Minimal Config<a class="headerlink" href="#lsp-mode-minimal-config" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id3">
-<a class="reference internal image-reference" href="../../_images/emacs-lsp-mode-minimal.png"><img alt="../../_images/emacs-lsp-mode-minimal.png" src="../../_images/emacs-lsp-mode-minimal.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Using Esbonio and Emacs with the <code class="docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code> configuration</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<p>This should be just enough configuration to get Esbonio working with LSP Mode and Emacs,
-might be useful when tracking down configuration issues.</p>
-<p>Setting up LSP Mode is slightly more complicated than Eglot as there is more
-infrastructure to navigate but it boils down to the same steps, tell LSP Mode how to
-start the server and then tell it when it should be started.</p>
+</div>
+<div class="section" id="lsp-mode">
+<h2>LSP Mode<a class="headerlink" href="#lsp-mode" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/emacs-lsp-mode-extended.png"><img alt="../../_images/emacs-lsp-mode-extended.png" src="../../_images/emacs-lsp-mode-extended.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Using Esbonio and Emacs with the <code class="docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code> configuration.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>Setting up LSP Mode is <em>slightly</em> more complicated than Eglot as there is more
+infrastructure to navigate but it boils down to the same steps, telling LSP Mode how
+and when to start the server.</p>
 <div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;lsp-mode</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;lsp-language-id-configuration</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="s">&quot;rst&quot;</span><span class="p">))</span>
@@ -409,10 +426,12 @@ start the server and then tell it when it should be started.</p>
 <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;rst-mode-hook</span> <span class="ss">&#39;lsp</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>To try this config on your machine</p>
+<p>We provide a barebones configuration <code class="docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code> that you can use to either
+experiment with LSP Mode and Esbonios or as a basis for your own configuration. To try it out
+on your machine.</p>
 <ol class="arabic">
 <li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
-<li><p>Download <a class="reference download internal" download="" href="../../_downloads/0d4308782f9bf33a105e3f709381cf24/lsp-mode-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code></a>
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/a418e16bb8fe12ee9f101491f6fcaf51/lsp-mode-minimal.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">lsp-mode-minimal.el</span></code> to set the path to the Python executable to be the one
 in the virtual environment you just installed the language server into.</p></li>
@@ -423,36 +442,30 @@ usual configuration:</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="lsp-mode-extended-config">
-<h2>LSP Mode – Extended Config<a class="headerlink" href="#lsp-mode-extended-config" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id4">
-<a class="reference internal image-reference" href="../../_images/emacs-lsp-mode-extended.png"><img alt="../../_images/emacs-lsp-mode-extended.png" src="../../_images/emacs-lsp-mode-extended.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Using Esbonio and Emacs with the <code class="docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code> configuration.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<p>Here is a configuration with a few more bells and whistles that aims to showcase what
-can be achieved with some additional configuration.</p>
-<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
-  <span class="nb">:ensure</span> <span class="no">t</span>
-  <span class="nb">:config</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;lsp-language-id-configuration</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="s">&quot;rst&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nv">lsp-register-client</span>
-   <span class="p">(</span><span class="nv">make-lsp-client</span> <span class="nb">:new-connection</span>
-		    <span class="p">(</span><span class="nv">lsp-stdio-connection</span>
-                     <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;/path/to/virtualenv/bin/python&quot;</span> <span class="s">&quot;-m&quot;</span> <span class="s">&quot;esbonio&quot;</span><span class="p">))</span>
-                    <span class="nb">:activation-fn</span> <span class="p">(</span><span class="nv">lsp-activate-on</span> <span class="s">&quot;rst&quot;</span><span class="p">)</span>
-                    <span class="nb">:server-id</span> <span class="ss">&#39;esbonio</span><span class="p">)))</span>
-
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">rst</span>
-  <span class="nb">:hook</span> <span class="p">(</span><span class="nv">rst-mode</span> <span class="o">.</span> <span class="nv">lsp</span><span class="p">))</span>
+<div class="section" id="id1">
+<h3>Server Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The language server provides a number of <a class="reference internal" href="index.html#editor-integration-config"><span class="std std-ref">settings</span></a> that
+for example can be used to control the instance of Sphinx that the server manages.</p>
+<p>To set these values via LSP Mode you need to extend your call to <code class="docutils literal notranslate"><span class="pre">make-lsp-client</span></code> to
+include an <code class="docutils literal notranslate"><span class="pre">initialization-options</span></code> field which is set to a function that returns a
+list of lists representing the settings you wish to set.</p>
+<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">make-lsp-client</span> <span class="nb">:new-connection</span>
+   <span class="p">(</span><span class="nv">lsp-stdio-connection</span>
+                  <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;/path/to/virtualenv/bin/python&quot;</span> <span class="s">&quot;-m&quot;</span> <span class="s">&quot;esbonio&quot;</span><span class="p">))</span>
+                 <span class="nb">:activation-fn</span> <span class="p">(</span><span class="nv">lsp-activate-on</span> <span class="s">&quot;rst&quot;</span><span class="p">)</span>
+                 <span class="nb">:initialization-options</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="o">`</span><span class="p">((</span><span class="nv">sphinx</span> <span class="o">.</span> <span class="p">((</span><span class="nv">confDir</span> <span class="o">.</span> <span class="s">&quot;${workspaceRoot}&quot;</span><span class="p">)</span>
+                                                                 <span class="p">(</span><span class="nv">srcDir</span> <span class="o">.</span> <span class="s">&quot;${confDir}&quot;</span><span class="p">)))</span>
+                                                      <span class="p">(</span><span class="nv">server</span> <span class="o">.</span> <span class="p">((</span><span class="nv">logLevel</span> <span class="o">.</span> <span class="s">&quot;debug&quot;</span><span class="p">)))))</span>
+                 <span class="nb">:server-id</span> <span class="ss">&#39;esbonio</span><span class="p">)))</span>
 </pre></div>
 </div>
-<p>This time the configuration makes use of <a class="reference external" href="https://github.com/jwiegley/use-package">use-package</a> to install (if necessary) and
-configure packages with a single declaration</p>
+<p>We provide an extended configuration <code class="docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code> that sets a few of these
+settings as well as including a few extras. Feel free to use it to experiment with LSP Mode
+and Esbonio or use it as a starting point for your own configuration</p>
 <p>To try this config on your machine</p>
 <ol class="arabic">
 <li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
-<li><p>Download <a class="reference download internal" download="" href="../../_downloads/696dc759424015e492d0401680b1b2c3/lsp-mode-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code></a>
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/3c249a8741adc18a7140edf9ca7bd316/lsp-mode-extended.el"><code class="xref download docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code></a>
 to a folder of your choosing.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">lsp-mode-extended.el</span></code> to set the path to the Python executable to be the one
 in the virtual environment you just installed the language server into.</p></li>
@@ -465,6 +478,7 @@ usual configuration:</p>
 </ol>
 </div>
 </div>
+</div>
 
 
               </div>
@@ -473,7 +487,7 @@ usual configuration:</p>
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="index.html" title="previous page">Editor Integrations</a>
-    <a class='right-next' id="next-link" href="vscode.html" title="next page">VSCode</a>
+    <a class='right-next' id="next-link" href="kate.html" title="next page">Kate</a>
 
         </div>
         
@@ -482,8 +496,6 @@ usual configuration:</p>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>

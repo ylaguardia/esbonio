@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
     
   <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
@@ -35,6 +36,7 @@
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +56,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
@@ -100,6 +104,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../../lsp/editors/emacs.html">
      Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
     </a>
    </li>
    <li class="toctree-l2">
@@ -253,25 +267,28 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">re</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">quote</span>
 
 <span class="kn">import</span> <span class="nn">appdirs</span>
-
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Diagnostic</span><span class="p">,</span>
-    <span class="n">DiagnosticSeverity</span><span class="p">,</span>
-    <span class="n">DidSaveTextDocumentParams</span><span class="p">,</span>
-    <span class="n">MessageType</span><span class="p">,</span>
-    <span class="n">Position</span><span class="p">,</span>
-    <span class="n">Range</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DiagnosticSeverity</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">MessageType</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">__sphinx_version__</span>
 <span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
 <span class="kn">from</span> <span class="nn">sphinx.domains</span> <span class="kn">import</span> <span class="n">Domain</span>
 <span class="kn">from</span> <span class="nn">sphinx.util</span> <span class="kn">import</span> <span class="n">console</span>
 
 <span class="kn">import</span> <span class="nn">esbonio.lsp</span> <span class="k">as</span> <span class="nn">lsp</span>
+
+
+<span class="n">PATH_VAR_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\${(\w+)}/?.*&quot;</span><span class="p">)</span>
 
 
 <span class="n">PROBLEM_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
@@ -344,7 +361,7 @@
 <span class="sd">       The user provided path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\${(\w+)}/.*&quot;</span><span class="p">,</span> <span class="n">conf_dir</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">PATH_VAR_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span> <span class="ow">or</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;workspaceRoot&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">conf_dir</span>
 
@@ -383,7 +400,7 @@
     <span class="n">src_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">src_dir</span>
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">lsp</span><span class="o">.</span><span class="n">filepath_from_uri</span><span class="p">(</span><span class="n">root_uri</span><span class="p">)</span>
 
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\${(\w+)}/.*&quot;</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">PATH_VAR_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">src_dir</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;workspaceRoot&quot;</span><span class="p">:</span>
         <span class="n">src</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">src_dir</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
@@ -393,6 +410,25 @@
         <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">,</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">src_dir</span></div>
+
+
+<div class="viewcode-block" id="get_build_dir"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.get_build_dir">[docs]</a><span class="k">def</span> <span class="nf">get_build_dir</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">build_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Try to pick a sensible dir based on the project&#39;s location</span>
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">appdirs</span><span class="o">.</span><span class="n">user_cache_dir</span><span class="p">(</span><span class="s2">&quot;esbonio&quot;</span><span class="p">,</span> <span class="s2">&quot;swyddfa&quot;</span><span class="p">)</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span> <span class="o">/</span> <span class="n">project</span>
+
+    <span class="n">build_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">build_dir</span><span class="p">)</span>
+
+    <span class="c1"># Strangely for windows paths, there&#39;s an extra leading slash which we have to</span>
+    <span class="c1"># remove ourselves.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">build_dir</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">WindowsPath</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="n">build_dir</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">build_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">build_dir</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="k">return</span> <span class="n">build_dir</span></div>
 
 
 <div class="viewcode-block" id="find_conf_dir"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.find_conf_dir">[docs]</a><span class="k">def</span> <span class="nf">find_conf_dir</span><span class="p">(</span><span class="n">root_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">]:</span>
@@ -475,12 +511,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;esbonio.sphinx&quot;</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The logger that should be used by a Sphinx application&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SphinxManagement.initialized"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">):</span>
+<div class="viewcode-block" id="SphinxManagement.initialize"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">lsp</span><span class="o">.</span><span class="n">InitializationOptions</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">sphinx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;SphinxConfig </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">build_app</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SphinxManagement.initialized"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">lsp</span><span class="o">.</span><span class="n">SphinxConfig</span><span class="p">(</span>
+            <span class="n">version</span><span class="o">=</span><span class="n">__sphinx_version__</span><span class="p">,</span>
+            <span class="n">confDir</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">confdir</span><span class="p">,</span>
+            <span class="n">srcDir</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span>
+            <span class="n">buildDir</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span>
+            <span class="n">builderName</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Final Sphinx Config: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">by_alias</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">send_notification</span><span class="p">(</span><span class="s2">&quot;esbonio/sphinxConfiguration&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SphinxManagement.save"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
 
@@ -518,21 +570,16 @@
             <span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">cache_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">build_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">cache_dir</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Try to pick a sensible dir based on the project&#39;s location</span>
-            <span class="n">cache</span> <span class="o">=</span> <span class="n">appdirs</span><span class="o">.</span><span class="n">user_cache_dir</span><span class="p">(</span><span class="s2">&quot;esbonio&quot;</span><span class="p">,</span> <span class="s2">&quot;swyddfa&quot;</span><span class="p">)</span>
-            <span class="n">project</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-            <span class="n">build_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span> <span class="o">/</span> <span class="n">project</span>
-
+        <span class="n">builder_name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">builder_name</span>
         <span class="n">src_dir</span> <span class="o">=</span> <span class="n">get_src_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">root_uri</span><span class="p">,</span> <span class="n">conf_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="n">build_dir</span> <span class="o">=</span> <span class="n">get_build_dir</span><span class="p">(</span><span class="n">conf_dir</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
         <span class="n">doctree_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">build_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;doctrees&quot;</span>
+        <span class="n">build_dir</span> <span class="o">/=</span> <span class="n">builder_name</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Config dir </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">conf_dir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Src dir </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">src_dir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Build dir </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">build_dir</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Doctree dir </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">doctree_dir</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Doctree dir </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">doctree_dir</span><span class="p">)</span>
 
         <span class="c1"># Disable color escape codes in Sphinx&#39;s log messages</span>
         <span class="n">console</span><span class="o">.</span><span class="n">nocolor</span><span class="p">()</span>
@@ -547,13 +594,12 @@
                 <span class="n">status</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">warning</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Unable to initialize Sphinx, see output window for details.&quot;</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_conf_dir</span> <span class="o">=</span> <span class="n">conf_dir</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">show_message</span><span class="p">(</span>
-                <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Unable to initialize Sphinx, see output window for details.&quot;</span><span class="p">,</span>
                 <span class="n">msg_type</span><span class="o">=</span><span class="n">MessageType</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span>
             <span class="p">)</span></div>
 
@@ -564,15 +610,16 @@
 
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Unable to build documentation, see output window for details.&quot;</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">show_message</span><span class="p">(</span>
                 <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
                 <span class="n">msg_type</span><span class="o">=</span><span class="n">MessageType</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span>
             <span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">send_notification</span><span class="p">(</span><span class="s2">&quot;esbonio/buildComplete&quot;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">report_diagnostics</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="SphinxManagement.report_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxManagement.report_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">report_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -656,8 +703,6 @@
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
-        
-          By Alex Carney<br/>
         
             &copy; Copyright 2021, Alex Carney.<br/>
       </p>
