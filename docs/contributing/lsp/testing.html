@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Testing &#8212; Esbonio 0.6.1 documentation</title>
+    <title>Testing &#8212; Esbonio 0.6.2 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,9 +23,9 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     
@@ -61,13 +61,13 @@
       <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
+      <h1 class="site-logo" id="site-title">Esbonio 0.6.2 documentation</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -152,28 +152,33 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="directives.html">
      Directives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="filepaths.html">
-     Filepaths
+    <a class="reference internal" href="feature.html">
+     Feature
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="intersphinx.html">
-     Intersphinx
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="logger.html">
-     Logger
+    <a class="reference internal" href="log.html">
+     Log
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="roles.html">
      Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rst.html">
+     Rst
     </a>
    </li>
    <li class="toctree-l2">
@@ -283,6 +288,45 @@
   <div class="section" id="module-esbonio.lsp.testing">
 <span id="testing"></span><h1>Testing<a class="headerlink" href="#module-esbonio.lsp.testing" title="Permalink to this headline">¶</a></h1>
 <p>Utility functions to help with testing Language Server features.</p>
+<dl class="py class">
+<dt id="esbonio.lsp.testing.ClientServer">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">ClientServer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class that returns a client server pair for use in tests.</p>
+<p>Originally based on:
+<a class="reference external" href="https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53">https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53</a></p>
+<dl class="py method">
+<dt id="esbonio.lsp.testing.ClientServer.start">
+<em class="property"><span class="pre">async</span> </em><code class="sig-name descname"><span class="pre">start</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the client and server components ready for testing.</p>
+<p>As well as starting the event loops for them both it also
+initializes the server based on the <code class="docutils literal notranslate"><span class="pre">root_uri</span></code> and
+<code class="docutils literal notranslate"><span class="pre">initialization_options</span></code> parameters. Once the response for
+the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> request is received, it will proceed to send the
+<code class="docutils literal notranslate"><span class="pre">initialized</span></code> notification to trigger the initial build of the
+documentation.</p>
+<p>By default this method will <code class="docutils literal notranslate"><span class="pre">await</span></code> until the client receives the
+<code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code> notification, though this can be disabled
+by passing <code class="docutils literal notranslate"><span class="pre">wait=False</span></code> (useful for preventing deadlocks in situations
+where the server is not expected to start successfully).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The root uri of the project to initialize the server within</p></li>
+<li><p><strong>initialization_options</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Any</em><em>]</em><em>]</em>) – The initializaion options to pass to the server</p></li>
+<li><p><strong>wait</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, await until the client receives the <code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code>
+notification.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.testing.ClientServer.stop">
+<em class="property"><span class="pre">async</span> </em><code class="sig-name descname"><span class="pre">stop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt id="esbonio.lsp.testing.sphinx_version">
 <code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">sphinx_version</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#sphinx_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.sphinx_version" title="Permalink to this definition">¶</a></dt>
@@ -371,58 +415,94 @@ generated.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="esbonio.lsp.testing.completion_test">
-<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">completion_test</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'index.rst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unexpected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#completion_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check to see if a feature provides the correct completion suggestions.</p>
-<div class="admonition-assumptions admonition">
-<p class="admonition-title">Assumptions</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">feature</span></code> has access to a valid Sphinx application via <code class="docutils literal notranslate"><span class="pre">rst.app</span></code></p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">feature</span></code> requires initialisation, it has already been done.</p></li>
-</ul>
-</div>
-<div class="admonition-limitations admonition">
-<p class="admonition-title">Limitations</p>
-<ul class="simple">
-<li><p>Only checking <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> labels is supported, if you want to check
-other aspects of the results, write a dedicated test method.</p></li>
-</ul>
-</div>
-<p>This function takes the given <code class="docutils literal notranslate"><span class="pre">feature</span></code> and calls it in the same manner as the
-real language server so that it can simulate real usage without being a full blown
-integration test.</p>
-<p>This requires <code class="docutils literal notranslate"><span class="pre">suggest_triggers</span></code> to be set and it to have a working <code class="docutils literal notranslate"><span class="pre">suggest</span></code>
-method.</p>
-<p>Completions will be asked for with the cursor’s position to be at the end of the
-inserted <code class="docutils literal notranslate"><span class="pre">text</span></code> in a blank document by default. If your test case requires
-additional context this can be included in <code class="docutils literal notranslate"><span class="pre">text</span></code> delimited by a <code class="docutils literal notranslate"><span class="pre">\f</span></code> character.</p>
-<p>For example to pass text representing the following scenario (<code class="docutils literal notranslate"><span class="pre">^</span></code> represents the
-user’s cursor):</p>
+<dt id="esbonio.lsp.testing.completion_request">
+<em class="property"><span class="pre">async</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">completion_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">character</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#completion_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a completion request to a language server.</p>
+<p>Intended for use within test cases, this function simulates the opening of a
+document, inserting some text, triggering a completion request and closing it
+again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> does not have to exist.</p>
+<p>The text to be inserted is specified through the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter. By default
+it’s assumed that the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter consists of a single line of text, in fact
+this function will error if that is not the case.</p>
+<p>If your request requires additional context (such as directive option completions)
+it can be included but it must be delimited with a <code class="docutils literal notranslate"><span class="pre">\f</span></code> character. For example,
+to represent the following scenario:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">filename</span><span class="o">.</span><span class="n">png</span>
    <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span>
    <span class="p">:</span>
     <span class="o">^</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter should be set to
-<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>&#160;&#160; <span class="pre">:align:</span> <span class="pre">center\n\f</span>&#160;&#160; <span class="pre">:</span></code>. It’s important to note
-that newlines <strong>cannot</strong> come after the <code class="docutils literal notranslate"><span class="pre">\f</span></code> character.</p>
-<p>If you want to test the case where no completions should be suggested, set
-<code class="docutils literal notranslate"><span class="pre">expected</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<p>By default completion suggestions will be asked for the main <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file at
-the root of the docs project. If you want them to be asked for a file with a
-different path (like for filepath completion tests) this can be overridden with the
-<code class="docutils literal notranslate"><span class="pre">filepath</span></code> argument.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">^</span></code> represents the position from which we trigger the completion request.
+We would set <code class="docutils literal notranslate"><span class="pre">text</span></code> to the following
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>&#160;&#160; <span class="pre">:align:</span> <span class="pre">center\n\f</span>&#160;&#160; <span class="pre">:</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>feature</strong> (<a class="reference internal" href="../lsp.html#esbonio.lsp.LanguageFeature" title="esbonio.lsp.LanguageFeature"><em>esbonio.lsp.LanguageFeature</em></a>) – An instance of the language service feature to test.</p></li>
-<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The text to offer completion suggestions for.</p></li>
-<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path of the file that completion suggestions are being asked for. Relative
-to the Sphinx application’s srcdir.</p></li>
-<li><p><strong>expected</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – The set of completion item labels you expect to see in the output.</p></li>
-<li><p><strong>unexpected</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>]</em><em>]</em>) – The set of completion item labels you do <em>not</em> expect to see in the output.</p></li>
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) – The client-server pair to be used to make the request.</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The uri the completion request should be made within.</p></li>
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The text that provides the context for the completion request.</p></li>
+<li><p><strong>character</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>]</em>) – The character index at which to make the completion request from.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will default to the end of the inserted text.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionList</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.testing.definition_request">
+<em class="property"><span class="pre">async</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">definition_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#definition_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.definition_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a definition request to a language server.</p>
+<p>Intended for use within test cases, this function simulates opening an
+existing file and making a definition request and closing it again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> <em>must</em> exist as the actual content of the file
+will be used by the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) – The client-server pair to be used to make the request</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The uri of the file the definition request should be made within.</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – The position at which to trigger the completion request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="esbonio.lsp.testing.ClientProtocol">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">ClientProtocol</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>A slightly modified version of the base protocol that allows
+us to await on notifications.</p>
+<dl class="py method">
+<dt id="esbonio.lsp.testing.ClientProtocol.wait_for_notification">
+<code class="sig-name descname"><span class="pre">wait_for_notification</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol.wait_for_notification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol.wait_for_notification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.testing.ClientProtocol.wait_for_notification_async">
+<code class="sig-name descname"><span class="pre">wait_for_notification_async</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol.wait_for_notification_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol.wait_for_notification_async" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="esbonio.lsp.testing.Client">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">Client</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#Client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.Client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.testing.new_test_client">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></code><code class="sig-name descname"><span class="pre">new_test_client</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#new_test_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.new_test_client" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#esbonio.lsp.testing.Client" title="esbonio.lsp.testing.Client">esbonio.lsp.testing.Client</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -433,11 +513,23 @@ to the Sphinx application’s srcdir.</p></li>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="sphinx.html" title="previous page">Sphinx</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="sphinx.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Sphinx</p>
+            </div>
+        </a>
+    </div>
+
+</div>
         
         </div>
     </div>

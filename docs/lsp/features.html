@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Features &#8212; Esbonio 0.6.1 documentation</title>
+    <title>Features &#8212; Esbonio 0.6.2 documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,9 +23,9 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
@@ -62,13 +62,13 @@
       <img src="../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Esbonio 0.6.1 documentation</h1>
+      <h1 class="site-logo" id="site-title">Esbonio 0.6.2 documentation</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -153,28 +153,33 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../contributing/lsp/directives.html">
      Directives
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../contributing/lsp/filepaths.html">
-     Filepaths
+    <a class="reference internal" href="../contributing/lsp/feature.html">
+     Feature
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../contributing/lsp/intersphinx.html">
-     Intersphinx
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../contributing/lsp/logger.html">
-     Logger
+    <a class="reference internal" href="../contributing/lsp/log.html">
+     Log
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../contributing/lsp/roles.html">
      Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/rst.html">
+     Rst
     </a>
    </li>
    <li class="toctree-l2">
@@ -276,7 +281,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#completion">
@@ -286,6 +291,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#diagnostics">
    Diagnostics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goto-definition">
+   Goto Definition
   </a>
  </li>
 </ul>
@@ -305,7 +315,7 @@
 Server</p>
 <div class="section" id="completion">
 <h2>Completion<a class="headerlink" href="#completion" title="Permalink to this headline">¶</a></h2>
-<p>The Language Server can offer auto complete suggestions in a variety of contexts</p>
+<p>The language server can offer auto complete suggestions in a variety of contexts</p>
 <div class="figure align-center">
 <img alt="../_images/completion-demo.gif" src="../_images/completion-demo.gif" />
 </div>
@@ -319,18 +329,46 @@ building and publish them as diagnostic messages</p>
 <p class="caption"><span class="caption-text">Example diagnostic messages from Sphinx</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+<div class="section" id="goto-definition">
+<h2>Goto Definition<a class="headerlink" href="#goto-definition" title="Permalink to this headline">¶</a></h2>
+<p>The language server can look up the definition of certain role targets.
+Currently this is limited to just the <code class="docutils literal notranslate"><span class="pre">:ref:</span></code> and <code class="docutils literal notranslate"><span class="pre">:doc:</span></code> roles.</p>
+<div class="figure align-center">
+<img alt="../_images/definition-demo.gif" src="../_images/definition-demo.gif" />
+</div>
+</div>
 </div>
 
 
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../extensions/tutorial.html" title="previous page">Tutorial</a>
-    <a class='right-next' id="next-link" href="editors/index.html" title="next page">Editor Integrations</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../extensions/tutorial.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Tutorial</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="editors/index.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Editor Integrations</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Completion &#8212; Esbonio 0.6.2 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Directives" href="directives.html" />
+    <link rel="prev" title="Language Server" href="../lsp.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.6.2 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim.html">
+     Vim/Neovim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../lsp.html">
+   Language Server
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="feature.html">
+     Feature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/contributing/lsp/completion.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Fcontributing/lsp/completion.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/contributing/lsp/completion.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#providers">
+   Providers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#module-esbonio.lsp.completion.domains">
+     Domains
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#module-esbonio.lsp.completion.filepaths">
+     Filepaths
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-esbonio.lsp.completion">
+<span id="completion"></span><h1>Completion<a class="headerlink" href="#module-esbonio.lsp.completion" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="esbonio.lsp.completion.esbonio_setup">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.</span></code><code class="sig-name descname"><span class="pre">esbonio_setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion.html#esbonio_setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.esbonio_setup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><em>esbonio.lsp.rst.RstLanguageServer</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="providers">
+<h2>Providers<a class="headerlink" href="#providers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#domain-completion-provider"><span class="std std-ref">Domains</span></a></p></li>
+<li><p><a class="reference internal" href="#filepath-completion-provider"><span class="std std-ref">Filepaths</span></a></p></li>
+</ul>
+<div class="section" id="module-esbonio.lsp.completion.domains">
+<span id="domains"></span><span id="domain-completion-provider"></span><h3>Domains<a class="headerlink" href="#module-esbonio.lsp.completion.domains" title="Permalink to this headline">¶</a></h3>
+<p>Completion provider for Sphinx domains.</p>
+<dl class="py function">
+<dt id="esbonio.lsp.completion.domains.intersphinx_target_to_completion_item">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.domains.</span></code><code class="sig-name descname"><span class="pre">intersphinx_target_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#intersphinx_target_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.intersphinx_target_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – </p></li>
+<li><p><strong>type_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.completion.domains.object_to_completion_item">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.domains.</span></code><code class="sig-name descname"><span class="pre">object_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#object_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.object_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.completion.domains.project_to_completion_item">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.domains.</span></code><code class="sig-name descname"><span class="pre">project_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#project_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.project_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="esbonio.lsp.completion.domains.Domain">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.domains.</span></code><code class="sig-name descname"><span class="pre">Domain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#Domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.Domain" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="esbonio.lsp.completion.domains.Domain.complete_targets">
+<code class="sig-name descname"><span class="pre">complete_targets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#Domain.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.Domain.complete_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – The completion context</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.completion.domains.Domain.complete_intersphinx_targets">
+<code class="sig-name descname"><span class="pre">complete_intersphinx_targets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/domains.html#Domain.complete_intersphinx_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.domains.Domain.complete_intersphinx_targets" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-esbonio.lsp.completion.filepaths">
+<span id="filepaths"></span><span id="filepath-completion-provider"></span><h3>Filepaths<a class="headerlink" href="#module-esbonio.lsp.completion.filepaths" title="Permalink to this headline">¶</a></h3>
+<p>Completion provider for filepaths.</p>
+<dl class="py function">
+<dt id="esbonio.lsp.completion.filepaths.path_to_completion_item">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.filepaths.</span></code><code class="sig-name descname"><span class="pre">path_to_completion_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#path_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.path_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> for the given path.</p>
+<p>In the case where there are multiple filepath components, this function needs to
+provide an appropriate <code class="docutils literal notranslate"><span class="pre">TextEdit</span></code> so that the most recent entry in the path can
+be easily edited - without clobbering the existing path.</p>
+<p>Also bear in mind that this function must play nice with both role target and
+directive argument completions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – </p></li>
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><em>pathlib.Path</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="esbonio.lsp.completion.filepaths.find_start_char">
+<code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.filepaths.</span></code><code class="sig-name descname"><span class="pre">find_start_char</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#find_start_char"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.find_start_char" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="esbonio.lsp.completion.filepaths.Filepath">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">esbonio.lsp.completion.filepaths.</span></code><code class="sig-name descname"><span class="pre">Filepath</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#Filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.Filepath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filepath completion support.</p>
+<dl class="py method">
+<dt id="esbonio.lsp.completion.filepaths.Filepath.complete_arguments">
+<code class="sig-name descname"><span class="pre">complete_arguments</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#Filepath.complete_arguments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.Filepath.complete_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – The completion context</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.completion.filepaths.Filepath.complete_targets">
+<code class="sig-name descname"><span class="pre">complete_targets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#Filepath.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.Filepath.complete_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – The completion context</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="esbonio.lsp.completion.filepaths.Filepath.complete_filepaths">
+<code class="sig-name descname"><span class="pre">complete_filepaths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/completion/filepaths.html#Filepath.complete_filepaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.completion.filepaths.Filepath.complete_filepaths" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="feature.html#esbonio.lsp.feature.CompletionContext" title="esbonio.lsp.feature.CompletionContext"><em>esbonio.lsp.feature.CompletionContext</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../lsp.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Language Server</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="directives.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Directives</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
