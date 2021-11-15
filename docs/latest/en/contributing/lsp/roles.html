@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roles &#8212; Esbonio 0.7.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Rst" href="rst.html" />
+    <link rel="prev" title="Log" href="log.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.7.0 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim.html">
+     Vim/Neovim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/formatting-example.html">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/hello-world.html">
+     Hello World
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../lsp.html">
+   Language Server
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/contributing/lsp/roles.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Fcontributing/lsp/roles.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/contributing/lsp/roles.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-cases">
+   Test Cases
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-esbonio.lsp.roles">
+<span id="roles"></span><h1>Roles<a class="headerlink" href="#module-esbonio.lsp.roles" title="Permalink to this headline">¶</a></h1>
+<p>Role support.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.ROLE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">ROLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">([^\\w:]|^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">letter</span> <span class="pre">chars\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">begin</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'</span> <span class="pre">character\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.roles.ROLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A regular expression to detect and parse parial and complete roles.</p>
+<p>I’m not sure if there are offical names for the components of a role, but the
+language server breaks a role down into a number of parts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              vvvvvv label
+             v modifier(optional)
+            vvvvvvvv target
+:c:function:`!malloc`
+^^^^^^^^^^^^ role
+   ^^^^^^^^ name
+ ^ domain (optional)
+</pre></div>
+</div>
+<p>The language server sometimes refers to the above as a “plain” role, in that the
+role’s target contains just the label of the object it is linking to. However it’s
+also possible to define “aliased” roles, where the link text in the final document
+is overriden, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             vvvvvvvvvvvvvvvvvvvvvvvv alias
+                                       vvvvvv label
+                                      v modifier (optional)
+            vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv target
+:c:function:`used to allocate memory &lt;~malloc&gt;`
+^^^^^^^^^^^^ role
+   ^^^^^^^^ name
+ ^ domain (optional)
+</pre></div>
+</div>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">tests.test_roles.test_role_regex()</span></code> for a list of example strings this pattern
+is expected to match.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.DEFAULT_ROLE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_ROLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?&lt;![:`])\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;target&gt;\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">targets</span> <span class="pre">begin</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">'`'</span> <span class="pre">character\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">((?P&lt;alias&gt;[^&lt;`&gt;]*?)&lt;)?</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">targets</span> <span class="pre">may</span> <span class="pre">specify</span> <span class="pre">an</span> <span class="pre">alias\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">(?P&lt;modifier&gt;,</span> <span class="pre">re.VERBOSE)</span></em><a class="headerlink" href="#esbonio.lsp.roles.DEFAULT_ROLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A regular expression to detect and parse parial and complete “default” roles.</p>
+<p>A “default” role is the target part of a normal role - but without the <code class="docutils literal notranslate"><span class="pre">:name:</span></code> part.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetDefinition</span></span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetDefinition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>A definition provider for role targets</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition.find_definitions">
+<span class="sig-name descname"><span class="pre">find_definitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetDefinition.find_definitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition.find_definitions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of locations representing the definition of the given role
+target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – The document containing the match</p></li>
+<li><p><strong>match</strong> (<em>re.Match</em>) – The match object that triggered the definition request</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the role</p></li>
+<li><p><strong>domain</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – The domain the role is part of, if applicable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetCompletion</span></span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion" title="Permalink to this definition">¶</a></dt>
+<dd><p>A completion provider for role targets</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion.complete_targets">
+<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The completion context</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">Roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Role support for the language server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_definition_provider">
+<span class="sig-name descname"><span class="pre">add_definition_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_definition_provider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_definition_provider" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.roles.TargetDefinition" title="esbonio.lsp.roles.TargetDefinition"><em>esbonio.lsp.roles.TargetDefinition</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_target_provider">
+<span class="sig-name descname"><span class="pre">add_target_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_target_provider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_target_provider" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.roles.TargetCompletion" title="esbonio.lsp.roles.TargetCompletion"><em>esbonio.lsp.roles.TargetCompletion</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.completion_triggers">
+<span class="sig-name descname"><span class="pre">completion_triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">re.Pattern</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">([^\\w:]|^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">letter</span> <span class="pre">chars\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">begin</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'</span> <span class="pre">character\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE),</span> <span class="pre">re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">(?&lt;![:`])\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;target&gt;\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">targets</span> <span class="pre">begin</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">'`'</span> <span class="pre">character\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">((?P&lt;alias&gt;[^&lt;`&gt;]*?)&lt;)?</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">targets</span> <span class="pre">may</span> <span class="pre">specify</span> <span class="pre">an</span> <span class="pre">alias\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">(?P&lt;modifier&gt;,</span> <span class="pre">re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.roles.Roles.completion_triggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of regular expressions used to determine if the
+:meth`~esbonio.lsp.rst.LanguageFeature.complete` method should be called on the
+current line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.definition_triggers">
+<span class="sig-name descname"><span class="pre">definition_triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">re.Pattern</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[re.compile(&quot;\n</span>&#160;&#160;&#160; <span class="pre">([^\\w:]|^\\s*)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">preceeded</span> <span class="pre">by</span> <span class="pre">letter</span> <span class="pre">chars\n</span>&#160;&#160;&#160; <span class="pre">(?P&lt;role&gt;\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">roles</span> <span class="pre">begin</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">':'</span> <span class="pre">character\n</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">(?!:)</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">,</span> <span class="pre">re.VERBOSE)]</span></em><a class="headerlink" href="#esbonio.lsp.roles.Roles.definition_triggers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of regular expressions used to determine if the
+<a class="reference internal" href="rst.html#esbonio.lsp.rst.LanguageFeature.definition" title="esbonio.lsp.rst.LanguageFeature.definition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">definition()</span></code></a> method should be called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.definition">
+<span class="sig-name descname"><span class="pre">definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.definition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called if any of the given <code class="docutils literal notranslate"><span class="pre">definition_triggers</span></code> match the current line.</p>
+<p>This method should return a list of <code class="docutils literal notranslate"><span class="pre">Location</span></code> objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match</strong> (<em>re.Match</em>) – The match object generated from the corresponding regular expression.</p></li>
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – The document the definition has been requested within</p></li>
+<li><p><strong>pos</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – The position of the request within the document.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.complete">
+<span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.complete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate completion suggestions relevant to the current context.</p>
+<p>This function is a little intense, but its sole purpose is to determine the
+context in which the completion request is being made and either return
+nothing, or the results of <a class="reference internal" href="#esbonio.lsp.roles.Roles.complete_roles" title="esbonio.lsp.roles.Roles.complete_roles"><code class="xref py py-meth docutils literal notranslate"><span class="pre">complete_roles()</span></code></a> or
+<a class="reference internal" href="#esbonio.lsp.roles.Roles.complete_targets" title="esbonio.lsp.roles.Roles.complete_targets"><code class="xref py py-meth docutils literal notranslate"><span class="pre">esbonio.lsp.roles.Roles.complete_targets()</span></code></a> whichever is appropriate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The context of the completion request.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.complete_roles">
+<span class="sig-name descname"><span class="pre">complete_roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.complete_roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.complete_roles" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.complete_targets">
+<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.complete_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the list of role target completion suggestions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.role_to_completion_item">
+<span class="sig-name descname"><span class="pre">role_to_completion_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.role_to_completion_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.role_to_completion_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an rst role to its CompletionItem representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the role as a user would type into an reStructuredText document.</p></li>
+<li><p><strong>role</strong> – The implementation of the role.</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The completion context</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.esbonio_setup">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">esbonio_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#esbonio_setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.esbonio_setup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><em>esbonio.lsp.rst.RstLanguageServer</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="test-cases">
+<h2>Test Cases<a class="headerlink" href="#test-cases" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="log.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Log</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="rst.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rst</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

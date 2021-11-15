@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>esbonio.lsp.rst &#8212; Esbonio 0.7.0 documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.7.0 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vim.html">
+     Vim/Neovim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../extensions/tutorial.html">
+   Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../extensions/tutorial/formatting-example.html">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../extensions/tutorial/hello-world.html">
+     Hello World
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../extensions/tutorial/solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2F_modules/esbonio/lsp/rst.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Source code for esbonio.lsp.rst</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">pygls.uris</span> <span class="k">as</span> <span class="nn">Uri</span>
+<span class="kn">from</span> <span class="nn">docutils.nodes</span> <span class="kn">import</span> <span class="n">NodeVisitor</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">directives</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">pygls</span> <span class="kn">import</span> <span class="n">IS_WIN</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DocumentSymbol</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Location</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">SymbolKind</span>
+<span class="kn">from</span> <span class="nn">pygls.server</span> <span class="kn">import</span> <span class="n">LanguageServer</span>
+<span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="kn">from</span> <span class="nn">.log</span> <span class="kn">import</span> <span class="n">LOG_LEVELS</span>
+<span class="kn">from</span> <span class="nn">.log</span> <span class="kn">import</span> <span class="n">LogFilter</span>
+<span class="kn">from</span> <span class="nn">.log</span> <span class="kn">import</span> <span class="n">LspHandler</span>
+
+<span class="n">TRIPLE_QUOTE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;(</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s2">|&#39;&#39;&#39;)&quot;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;A regular expression matching the triple quotes used to delimit python docstrings.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="CompletionContext"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.CompletionContext">[docs]</a><span class="k">class</span> <span class="nc">CompletionContext</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A class that captures the context within which a completion request has been</span>
+<span class="sd">    made.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
+        <span class="sd">&quot;&quot;&quot;The document within which the completion request was made.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="sd">&quot;&quot;&quot;The location type where the request was made.</span>
+<span class="sd">        See :meth:`~esbonio.lsp.rst.RstLanguageServer.get_location_type` for details.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">match</span>
+        <span class="sd">&quot;&quot;&quot;The match object describing the site of the completion request.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="sd">&quot;&quot;&quot;The position at which the completion request was made.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">character</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;CompletionContext&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">uri</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="si">}</span><span class="s2">) -- </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">match</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LanguageFeature"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature">[docs]</a><span class="k">class</span> <span class="nc">LanguageFeature</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base class for language features.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rst</span><span class="p">:</span> <span class="s2">&quot;RstLanguageServer&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rst</span> <span class="o">=</span> <span class="n">rst</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LanguageFeature.initialize"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Called once when the server is first initialized.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="LanguageFeature.initialized"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Called once upon receipt of the `initialized` notification from the client.&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="LanguageFeature.save"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Called each time a document is saved.&quot;&quot;&quot;</span></div>
+
+    <span class="n">completion_triggers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;re.Pattern&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="sd">&quot;&quot;&quot;A list of regular expressions used to determine if the</span>
+<span class="sd">    :meth`~esbonio.lsp.rst.LanguageFeature.complete` method should be called on the</span>
+<span class="sd">    current line.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LanguageFeature.complete"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature.complete">[docs]</a>    <span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Called if any of the given ``completion_triggers`` match the current line.</span>
+
+<span class="sd">        This method should return a list of ``CompletionItem`` objects.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        context:</span>
+<span class="sd">           The context of the completion request</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+    <span class="n">definition_triggers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;re.Pattern&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="sd">&quot;&quot;&quot;A list of regular expressions used to determine if the</span>
+<span class="sd">    :meth:`~esbonio.lsp.rst.LanguageFeature.definition` method should be called.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LanguageFeature.definition"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.LanguageFeature.definition">[docs]</a>    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Called if any of the given ``definition_triggers`` match the current line.</span>
+
+<span class="sd">        This method should return a list of ``Location`` objects.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        match:</span>
+<span class="sd">           The match object generated from the corresponding regular expression.</span>
+<span class="sd">        doc:</span>
+<span class="sd">           The document the definition has been requested within</span>
+<span class="sd">        pos:</span>
+<span class="sd">           The position of the request within the document.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[]</span></div></div>
+
+
+<div class="viewcode-block" id="DiagnosticList"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.DiagnosticList">[docs]</a><span class="k">class</span> <span class="nc">DiagnosticList</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">UserList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A list type dedicated to holding diagnostics.</span>
+
+<span class="sd">    This is mainly to ensure that only one instance of a diagnostic ever gets</span>
+<span class="sd">    reported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DiagnosticList.append"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.DiagnosticList.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Diagnostic</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Diagnostic</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected Diagnostic&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">existing</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">existing</span><span class="o">.</span><span class="n">range</span> <span class="o">==</span> <span class="n">item</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
+                <span class="n">existing</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="n">item</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="n">existing</span><span class="o">.</span><span class="n">severity</span> <span class="o">==</span> <span class="n">item</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span>
+                <span class="n">existing</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">item</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+                <span class="n">existing</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">item</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+            <span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+                <span class="c1"># Item already added, nothing to do.</span>
+                <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ServerConfig"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.ServerConfig">[docs]</a><span class="k">class</span> <span class="nc">ServerConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configuration options for the server.&quot;&quot;&quot;</span>
+
+    <span class="n">log_level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logLevel&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The logging level of server messages to display.&quot;&quot;&quot;</span>
+
+    <span class="n">log_filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logFilter&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;A list of logger names to restrict output to.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="InitializationOptions"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.InitializationOptions">[docs]</a><span class="k">class</span> <span class="nc">InitializationOptions</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The initialization options we can expect to receive from a client.&quot;&quot;&quot;</span>
+
+    <span class="n">server</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ServerConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ServerConfig</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The ``esbonio.server.*`` namespace of options.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="RstLanguageServer"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer">[docs]</a><span class="k">class</span> <span class="nc">RstLanguageServer</span><span class="p">(</span><span class="n">LanguageServer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A generic reStructuredText language server.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span> <span class="ow">or</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;The base logger that should be used for all language sever log entries.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The user&#39;s configuration.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Diagnostic</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="sd">&quot;&quot;&quot;Where we store and manage diagnostics.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LanguageFeature</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="sd">&quot;&quot;&quot;The list of language features registered with the server.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_directives</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;Cache for known directives.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_roles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;Cache for known roles.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return the server&#39;s actual configuration.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+
+<div class="viewcode-block" id="RstLanguageServer.initialize"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">InitializationOptions</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configure_logging</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.initialized"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.initialized">[docs]</a>    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.save"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.add_feature"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.add_feature">[docs]</a>    <span class="k">def</span> <span class="nf">add_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="s2">&quot;LanguageFeature&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register a language feature with the server.&quot;&quot;&quot;</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_feature"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_feature">[docs]</a>    <span class="k">def</span> <span class="nf">get_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;LanguageFeature&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_doctree"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_doctree">[docs]</a>    <span class="k">def</span> <span class="nf">get_doctree</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_directives"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_directives">[docs]</a>    <span class="k">def</span> <span class="nf">get_directives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return a dictionary of the known directives&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_directives</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_directives</span>
+
+        <span class="n">ignored_directives</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;restructuredtext-test-directive&quot;</span><span class="p">]</span>
+        <span class="n">found_directives</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">directives</span><span class="o">.</span><span class="n">_directive_registry</span><span class="p">,</span> <span class="o">**</span><span class="n">directives</span><span class="o">.</span><span class="n">_directives</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_directives</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">resolve_directive</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found_directives</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ignored_directives</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_directives</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_roles"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_roles">[docs]</a>    <span class="k">def</span> <span class="nf">get_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return a dictionary of known roles.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_roles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_roles</span>
+
+        <span class="n">found_roles</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">roles</span><span class="o">.</span><span class="n">_roles</span><span class="p">,</span> <span class="o">**</span><span class="n">roles</span><span class="o">.</span><span class="n">_role_registry</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_roles</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found_roles</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">roles</span><span class="o">.</span><span class="n">unimplemented_role</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_roles</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_default_role"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_default_role">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_role</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Return the default role for the project.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.clear_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.clear_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">clear_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Clear diagnostics from the given source.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        source:</span>
+<span class="sd">           The source from which to clear diagnostics.</span>
+<span class="sd">        uri:</span>
+<span class="sd">           If given, clear diagnostics from within just this uri. Otherwise, all</span>
+<span class="sd">           diagnostics from the given source are cleared.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">normalise_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">clear_source</span> <span class="o">=</span> <span class="n">source</span> <span class="o">==</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">clear_uri</span> <span class="o">=</span> <span class="n">uri</span> <span class="o">==</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">uri</span> <span class="ow">is</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">clear_source</span> <span class="ow">and</span> <span class="n">clear_uri</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.set_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.set_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">set_diagnostics</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">diagnostics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Diagnostic</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set the diagnostics for the given source and uri.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        source:</span>
+<span class="sd">           The source the diagnostics are from</span>
+<span class="sd">        uri:</span>
+<span class="sd">           The uri the diagnostics are associated with</span>
+<span class="sd">        diagnostics:</span>
+<span class="sd">           The diagnostics themselves</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">normalise_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="p">[(</span><span class="n">source</span><span class="p">,</span> <span class="n">uri</span><span class="p">)]</span> <span class="o">=</span> <span class="n">diagnostics</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.sync_diagnostics"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.sync_diagnostics">[docs]</a>    <span class="k">def</span> <span class="nf">sync_diagnostics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update the client with the currently stored diagnostics.&quot;&quot;&quot;</span>
+
+        <span class="n">uris</span> <span class="o">=</span> <span class="p">{</span><span class="n">uri</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">uri</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+        <span class="n">diagnostics</span> <span class="o">=</span> <span class="p">{</span><span class="n">uri</span><span class="p">:</span> <span class="n">DiagnosticList</span><span class="p">()</span> <span class="k">for</span> <span class="n">uri</span> <span class="ow">in</span> <span class="n">uris</span><span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">uri</span><span class="p">),</span> <span class="n">diags</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">diags</span><span class="p">:</span>
+                <span class="n">diag</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+                <span class="n">diagnostics</span><span class="p">[</span><span class="n">uri</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">uri</span><span class="p">,</span> <span class="n">diags</span> <span class="ow">in</span> <span class="n">diagnostics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Publishing </span><span class="si">%d</span><span class="s2"> diagnostics for: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">diags</span><span class="p">),</span> <span class="n">uri</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">publish_diagnostics</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">diags</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.get_location_type"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.get_location_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_location_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Given a document and a position, return the kind of location that</span>
+<span class="sd">        represents.</span>
+
+<span class="sd">        This will return one of the following values:</span>
+
+<span class="sd">        - ``rst``: Indicates that the position is within an ``*.rst`` document</span>
+<span class="sd">        - ``py``: Indicates that the position is within code in a ``*.py`` document</span>
+<span class="sd">        - ``docstring``: Indicates that the position is within a docstring in a</span>
+<span class="sd">          ``*.py`` document.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        doc:</span>
+<span class="sd">           The document associated with the given position</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position to determine the type of.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ext</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">Uri</span><span class="o">.</span><span class="n">to_fs_path</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">uri</span><span class="p">))</span><span class="o">.</span><span class="n">suffix</span>
+
+        <span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="s2">&quot;.rst&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;rst&quot;</span>
+
+        <span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="s2">&quot;.py&quot;</span><span class="p">:</span>
+
+            <span class="c1"># Let&#39;s count how many pairs of triple quotes are &quot;above&quot; us in the file</span>
+            <span class="c1"># even =&gt; we&#39;re outside a docstring</span>
+            <span class="c1"># odd  =&gt; we&#39;re within a docstring</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_to_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">TRIPLE_QUOTE</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s2">&quot;py&quot;</span> <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;docstring&quot;</span>
+
+        <span class="c1"># Fallback to rst</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Unable to determine location type for uri: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;rst&quot;</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.line_at_position"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.line_at_position">[docs]</a>    <span class="k">def</span> <span class="nf">line_at_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the contents of the line corresponding to the given position.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        doc:</span>
+<span class="sd">           The document associated with the given position</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position representing the line to retrieve</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.line_to_position"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.line_to_position">[docs]</a>    <span class="k">def</span> <span class="nf">line_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the contents of the line up until the given position.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        doc:</span>
+<span class="sd">           The document associated with the given position.</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position representing the line to retrieve.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">line</span><span class="p">[:</span> <span class="n">position</span><span class="o">.</span><span class="n">character</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="RstLanguageServer.text_to_position"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.RstLanguageServer.text_to_position">[docs]</a>    <span class="k">def</span> <span class="nf">text_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the contents of the document up until the given position.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        doc:</span>
+<span class="sd">           The document associated with the given position</span>
+<span class="sd">        position:</span>
+<span class="sd">           The position representing the point at which to stop gathering text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">offset_at_position</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">doc</span><span class="o">.</span><span class="n">source</span><span class="p">[:</span><span class="n">idx</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_configure_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ServerConfig</span><span class="p">):</span>
+
+        <span class="n">level</span> <span class="o">=</span> <span class="n">LOG_LEVELS</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">log_level</span><span class="p">]</span>
+
+        <span class="n">lsp_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;esbonio.lsp&quot;</span><span class="p">)</span>
+        <span class="n">lsp_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+        <span class="n">lsp_handler</span> <span class="o">=</span> <span class="n">LspHandler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">lsp_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">log_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_filter</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lsp_handler</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">LogFilter</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">log_filter</span><span class="p">))</span>
+
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(name)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">lsp_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">lsp_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">lsp_handler</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SymbolVisitor"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor">[docs]</a><span class="k">class</span> <span class="nc">SymbolVisitor</span><span class="p">(</span><span class="n">NodeVisitor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A visitor used to build the hierarchy we return from a</span>
+<span class="sd">    ``textDocument/documentSymbol`` request.</span>
+
+<span class="sd">    Currently this only looks at sections.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rst</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol_stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">current_symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocumentSymbol</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol_stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbol_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SymbolVisitor.push_symbol"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.push_symbol">[docs]</a>    <span class="k">def</span> <span class="nf">push_symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="n">DocumentSymbol</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">SymbolKind</span><span class="o">.</span><span class="n">String</span><span class="p">,</span>
+            <span class="nb">range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">selection_range</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">children</span><span class="o">=</span><span class="p">[],</span>
+        <span class="p">)</span>
+        <span class="n">current_symbol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_symbol</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">current_symbol</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">current_symbol</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.pop_symbol"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.pop_symbol">[docs]</a>    <span class="k">def</span> <span class="nf">pop_symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.visit_section"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.visit_section">[docs]</a>    <span class="k">def</span> <span class="nf">visit_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">push_symbol</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.depart_section"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.depart_section">[docs]</a>    <span class="k">def</span> <span class="nf">depart_section</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pop_symbol</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.visit_title"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.visit_title">[docs]</a>    <span class="k">def</span> <span class="nf">visit_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">symbol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_symbol</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">astext</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">line</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">symbol</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">character</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">selection_range</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">selection_range</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="n">symbol</span><span class="o">.</span><span class="n">selection_range</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">character</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.depart_title"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.depart_title">[docs]</a>    <span class="k">def</span> <span class="nf">depart_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.visit_Text"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.visit_Text">[docs]</a>    <span class="k">def</span> <span class="nf">visit_Text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.depart_Text"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.depart_Text">[docs]</a>    <span class="k">def</span> <span class="nf">depart_Text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.unknown_visit"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.unknown_visit">[docs]</a>    <span class="k">def</span> <span class="nf">unknown_visit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SymbolVisitor.unknown_departure"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.SymbolVisitor.unknown_departure">[docs]</a>    <span class="k">def</span> <span class="nf">unknown_departure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="resolve_directive"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.resolve_directive">[docs]</a><span class="k">def</span> <span class="nf">resolve_directive</span><span class="p">(</span><span class="n">directive</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Directive</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Directive</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Return the directive based on the given reference.</span>
+
+<span class="sd">    &#39;Core&#39; docutils directives are returned as tuples ``(modulename, ClassName)``</span>
+<span class="sd">    so they need to be resolved manually.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">directive</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">mod</span><span class="p">,</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">directive</span>
+
+        <span class="n">modulename</span> <span class="o">=</span> <span class="s2">&quot;docutils.parsers.rst.directives.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">modulename</span><span class="p">)</span>
+        <span class="n">directive</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">directive</span></div>
+
+
+<div class="viewcode-block" id="normalise_uri"><a class="viewcode-back" href="../../../contributing/lsp/rst.html#esbonio.lsp.normalise_uri">[docs]</a><span class="k">def</span> <span class="nf">normalise_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+    <span class="k">if</span> <span class="n">uri</span><span class="p">:</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="n">from_fs_path</span><span class="p">(</span><span class="n">Uri</span><span class="o">.</span><span class="n">to_fs_path</span><span class="p">(</span><span class="n">uri</span><span class="p">))</span>
+
+        <span class="c1"># Paths on windows are case insensitive.</span>
+        <span class="k">if</span> <span class="n">IS_WIN</span><span class="p">:</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">uri</span></div>
+</pre></div>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

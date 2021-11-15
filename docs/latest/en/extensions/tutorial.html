@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial &#8212; Esbonio 0.7.0 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Formatting Example" href="tutorial/formatting-example.html" />
+    <link rel="prev" title="Changelog" href="../changelog.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.7.0 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lsp/editors/vim.html">
+     Vim/Neovim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Tutorial
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial/formatting-example.html">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial/hello-world.html">
+     Hello World
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial/solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/extensions/tutorial.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Fextensions/tutorial.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/extensions/tutorial.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started">
+   Getting Started
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-tutorials">
+   Writing Tutorials
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions">
+     Solutions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#translations">
+     Translations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploying-tutorials">
+   Deploying Tutorials
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local">
+     Local
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#packaging">
+       Packaging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binder">
+     Binder
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>The tutorial extension’s aim is to make it easy to export tutorials written as part of
+your project’s documentation to <a class="reference external" href="https://jupyter.org/">Jupyter Notebooks</a> allowing the reader to follow along
+in an interactive environment and further explore for themselves.</p>
+<p>With online services such as <a class="reference external" href="https://mybinder.org/">Binder</a> it’s also possible to create fully interactive
+online versions of your tutorials allowing the user to just try things out bypassing any
+(potentially) complicated setup steps.</p>
+<p>This extension is available through the <code class="docutils literal notranslate"><span class="pre">esbonio-extensions</span></code> Python package.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install esbonio-extensions
+</pre></div>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Ensure the extension is enabled by including <code class="code docutils literal notranslate"><span class="pre">esbonio.tutorial</span></code> in
+your <code class="docutils literal notranslate"><span class="pre">extensions</span></code> list inside your project’s <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s2">&quot;esbonio.tutorial&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Tutorials are then written in the same way as you would write any other Sphinx based
+documentation. Here is a simple “Hello, World!” Python tutorial.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:tutorial:</span> notebook
+
+<span class="gh">Hello World</span>
+<span class="gh">===========</span>
+
+Here is how you print the string <span class="s">``Hello, World!``</span> in Python::
+
+   print(&quot;Hello, World!&quot;)
+</pre></div>
+</div>
+<p>Note the only thing specific to this extension is the <code class="docutils literal notranslate"><span class="pre">:tutorial:</span> <span class="pre">notebook</span></code>
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-field-lists" title="(in Sphinx v5.0.0+)"><span class="xref std std-ref">field list</span></a> at the start of the document to indicate
+that this document is a tutorial.</p>
+<p>This extension includes a <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/builders/index.html#builders" title="(in Sphinx v5.0.0+)"><span class="xref std std-ref">Sphinx Builder</span></a> called <code class="docutils literal notranslate"><span class="pre">tutorial</span></code>
+that can then be used to export tutorials as <code class="docutils literal notranslate"><span class="pre">*.ipynb</span></code> files.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sphinx-build -b tutorial docs/ docs/_build/
+</pre></div>
+</div>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">docs/_build/tutorial</span></code> directory, there should then be a <code class="docutils literal notranslate"><span class="pre">hello-world.ipynb</span></code>
+file containing the “Hello, World!” tutorial.</p>
+</div>
+<div class="section" id="writing-tutorials">
+<h2>Writing Tutorials<a class="headerlink" href="#writing-tutorials" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h3>
+<p>If you want your tutorials to include exercises that the reader is meant to solve
+the <a class="reference internal" href="#directive-solution" title="solution directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">solution</span></code></a> directive can be used to insert solutions.</p>
+<details class="admonition note">
+<summary class="admonition-title"> Solution (click to reveal)</summary>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</details>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-solution">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">solution::</span></span><a class="headerlink" href="#directive-solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the content of the directive as being the solution to a tutorial exercise.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">solution</span><span class="p">::</span>
+
+<span class="p">   ..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">python</span>
+
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="translations">
+<h3>Translations<a class="headerlink" href="#translations" title="Permalink to this headline">¶</a></h3>
+<p>Since the notebook version of the tutorial is generated from your documentation
+you can also leverage Sphinx’s <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/advanced/intl.html#intl" title="(in Sphinx v5.0.0+)"><span>Internationalization</span></a> support to produce translated
+versions of your tutorials!</p>
+<p>If you are already familair with producing translated versions of your documentation
+then the process is almost identicial, just replace your final build step with one
+that invokes the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code> builder e.g.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">SPHINXOPTS</span><span class="o">=</span>-Dlanguage<span class="o">=</span>cy make tutorial
+</pre></div>
+</div>
+<p>If you haven’t worked with translations before, here is a brief overview of a potential
+translation workflow, be sure to check the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/advanced/intl.html#intl" title="(in Sphinx v5.0.0+)"><span class="xref std std-ref">documentation</span></a> for details.</p>
+<ol class="arabic">
+<li><p>Install the <a class="reference external" href="https://pypi.org/project/sphinx-intl">sphinx-intl</a> package</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install sphinx-intl
+</pre></div>
+</div>
+</li>
+<li><p>Update your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> to specify where to store your translation strings</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locale_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;locale/&quot;</span><span class="p">]</span>
+<span class="n">gettext_compact</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># optional.</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-locale_dirs" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">locale_dirs</span></code></a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-gettext_compact" title="(in Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">gettext_compact</span></code></a> for more
+details.</p>
+</li>
+<li><p>Extract your translation strings from the documentation for each of your target
+languages</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make gettext
+<span class="gp">$ </span>sphinx-intl update -p _build/gettext -l cy  <span class="c1"># -l fr -l de ... etc.</span>
+</pre></div>
+</div>
+<p>This will produce a folder <code class="docutils literal notranslate"><span class="pre">locale/&lt;language_code&gt;/LC_MESSAGES</span></code> for each language
+you specified containing <code class="docutils literal notranslate"><span class="pre">*.po</span></code> files ready to be translated.</p>
+</li>
+<li><p>Translate each of the files in the <code class="docutils literal notranslate"><span class="pre">locale/&lt;language_code&gt;/LC_MESSAGES</span></code>
+folder for your language. A <code class="docutils literal notranslate"><span class="pre">*.po</span></code> file is a long sequence of <code class="docutils literal notranslate"><span class="pre">msgid</span></code>, <code class="docutils literal notranslate"><span class="pre">msgstr</span></code>
+pairs.</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: ../../extensions/tutorial/hello-world.rst:4</span>
+<span class="nv">msgid</span> <span class="s">&quot;Hello World&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">msgid</span></code> corresponds with the text to be translated, to provide a
+translation “simply” replace the empty string next to <code class="docutils literal notranslate"><span class="pre">msgstr</span></code> with the
+translation for the string above and save the file</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: ../../extensions/tutorial/hello-world.rst:4</span>
+<span class="nv">msgid</span> <span class="s">&quot;Hello World&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Shwmae i gyd&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Assuming that you build your docs with something like the <a class="reference external" href="https://github.com/sphinx-doc/sphinx/blob/4.x/sphinx/templates/quickstart/Makefile.new_t">default Makefile</a>
+you can produce a translated build by setting the <code class="docutils literal notranslate"><span class="pre">SPHINXOPTS</span></code> environment
+variable to specify the language.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">SPHINXOPTS</span><span class="o">=</span>-Dlanguage<span class="o">=</span>cy make tutorial
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="deploying-tutorials">
+<h2>Deploying Tutorials<a class="headerlink" href="#deploying-tutorials" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve written and exported your tutorials, you probably want to make them
+accessible to your users. Below are a few examples on ways you could distribute
+them.</p>
+<div class="section" id="local">
+<h3>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h3>
+<p>Perhaps the most straightforward way is to package the tutorial alongside your
+project. You could then provide a cli command that will automate the process
+of copying the tutorial into a location on the user’s machine and starting up
+a <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html">Jupyter Lab</a> instance.</p>
+<div class="section" id="packaging">
+<h4>Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h4>
+<div class="tabbed-set docutils">
+<input checked="checked" id="b7f26ae2-e282-49ed-ad94-8488b61cb5ff" name="5d8e26c7-5234-4c4d-a22d-ae08c25af32a" type="radio">
+</input><label class="tabbed-label" for="b7f26ae2-e282-49ed-ad94-8488b61cb5ff">
+setuptools</label><div class="tabbed-content docutils">
+<p>The exported tutorial can be bundled in your Python package using the
+<a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/datafiles.html">Data Files</a> support built into setuptools. This requires you to add the
+following flag to your <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> (or <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>) file</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[options]</span>
+<span class="na">include_package_data</span> <span class="o">=</span> <span class="s">True</span>
+</pre></div>
+</div>
+<p>Additionally you need to specify the folder(s) to include in your
+<code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> file (create one in the same folder as your <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>)
+file if you don’t have one already). To use the <code class="docutils literal notranslate"><span class="pre">esbonio-extensions</span></code>
+package as an example, you would add the following line</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>recursive-include esbonio/tutorial/demo *
+</pre></div>
+</div>
+<p>If it’s setup correctly, you should see your tutorial files listed in the
+build output when you run</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py sdist bdist_wheel
+<span class="go">...</span>
+<span class="go">adding &#39;esbonio/tutorial/__init__.py&#39;</span>
+<span class="go">adding &#39;esbonio/tutorial/__main__.py&#39;</span>
+<span class="go">adding &#39;esbonio/tutorial/commands.py&#39;</span>
+<span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/extensions/tutorial/formatting-example.ipynb&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/extensions/tutorial/hello-world.ipynb&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/extensions/tutorial/solution-example.ipynb&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/resources/extensions/tutorial/formatting-example/vscode-screenshot.png&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/resources/extensions/tutorial/solution-example/solution-example-soln-01.py&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/resources/extensions/tutorial/solution-example/solution-example-soln-02.py&#39;</span>
+</span><span class="hll"><span class="go">adding &#39;esbonio/tutorial/demo/resources/extensions/tutorial/solution-example/solution-example-soln-03.py&#39;</span>
+</span><span class="go">adding &#39;esbonio_extensions-0.0.2.dist-info/LICENSE&#39;</span>
+<span class="go">adding &#39;esbonio_extensions-0.0.2.dist-info/METADATA&#39;</span>
+<span class="go">adding &#39;esbonio_extensions-0.0.2.dist-info/WHEEL&#39;</span>
+<span class="go">adding &#39;esbonio_extensions-0.0.2.dist-info/top_level.txt&#39;</span>
+<span class="go">adding &#39;esbonio_extensions-0.0.2.dist-info/RECORD&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="binder">
+<h3>Binder<a class="headerlink" href="#binder" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/formatting-example.html">Formatting Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/hello-world.html">Hello World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/solution-example.html">Solution Example</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../changelog.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Changelog</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="tutorial/formatting-example.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Formatting Example</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
