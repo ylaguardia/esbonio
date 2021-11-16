@@ -398,12 +398,16 @@ target.</p>
 <dd><p>A completion provider for role targets</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion.complete_targets">
-<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of completion items representing valid targets for the given
 role.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The completion context</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The completion context</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the domain the role is a member of</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the role to generate completion suggestions for.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[pygls.lsp.types.language_features.completion.CompletionItem]</p>

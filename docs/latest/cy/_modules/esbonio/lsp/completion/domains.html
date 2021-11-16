@@ -373,20 +373,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rst</span> <span class="o">=</span> <span class="n">rst</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Domain.complete_targets"><a class="viewcode-back" href="../../../../contributing/lsp/completion.html#esbonio.lsp.completion.domains.Domain.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+<div class="viewcode-block" id="Domain.complete_targets"><a class="viewcode-back" href="../../../../contributing/lsp/completion.html#esbonio.lsp.completion.domains.Domain.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
 
         <span class="n">groups</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
         <span class="n">label</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
-
-        <span class="c1"># Handle the default role case.</span>
-        <span class="k">if</span> <span class="s2">&quot;role&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
-            <span class="n">domain</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">get_default_role</span><span class="p">()</span>
-
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">[]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-            <span class="n">domain</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">complete_intersphinx_targets</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>

@@ -385,14 +385,9 @@
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;figure&quot;</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">,</span> <span class="s2">&quot;literalinclude&quot;</span><span class="p">}:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">complete_filepaths</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Filepath.complete_targets"><a class="viewcode-back" href="../../../../contributing/lsp/completion.html#esbonio.lsp.completion.filepaths.Filepath.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
-
-        <span class="n">groups</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="s2">&quot;role&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">get_default_role</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+<div class="viewcode-block" id="Filepath.complete_targets"><a class="viewcode-back" href="../../../../contributing/lsp/completion.html#esbonio.lsp.completion.filepaths.Filepath.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
 
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;download&quot;</span><span class="p">}:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">complete_filepaths</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>

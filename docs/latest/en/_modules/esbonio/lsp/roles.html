@@ -406,7 +406,9 @@
 <div class="viewcode-block" id="TargetCompletion"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.TargetCompletion">[docs]</a><span class="k">class</span> <span class="nc">TargetCompletion</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A completion provider for role targets&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TargetCompletion.complete_targets"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.TargetCompletion.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
+<div class="viewcode-block" id="TargetCompletion.complete_targets"><a class="viewcode-back" href="../../../contributing/lsp/roles.html#esbonio.lsp.roles.TargetCompletion.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Return a list of completion items representing valid targets for the given</span>
 <span class="sd">        role.</span>
 
@@ -414,6 +416,10 @@
 <span class="sd">        ----------</span>
 <span class="sd">        context:</span>
 <span class="sd">           The completion context</span>
+<span class="sd">        domain:</span>
+<span class="sd">           The name of the domain the role is a member of</span>
+<span class="sd">        name:</span>
+<span class="sd">           The name of the role to generate completion suggestions for.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[]</span></div></div>
 
@@ -553,7 +559,16 @@
 
         <span class="n">groups</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
 
-        <span class="c1"># Only generate suggestions for &quot;aliased&quot; targets, if the request comes from</span>
+        <span class="c1"># Handle the default role case.</span>
+        <span class="k">if</span> <span class="s2">&quot;role&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="n">domain</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rst</span><span class="o">.</span><span class="n">get_default_role</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Only generate suggestions for &quot;aliased&quot; targets if the request comes from</span>
         <span class="c1"># within the &lt;&gt; chars.</span>
         <span class="k">if</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;alias&quot;</span><span class="p">]:</span>
             <span class="n">text</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -578,7 +593,7 @@
         <span class="n">modifier</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;modifier&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">provide</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_providers</span><span class="p">:</span>
-            <span class="n">candidates</span> <span class="o">=</span> <span class="n">provide</span><span class="o">.</span><span class="n">complete_targets</span><span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">provide</span><span class="o">.</span><span class="n">complete_targets</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
 
             <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
 
