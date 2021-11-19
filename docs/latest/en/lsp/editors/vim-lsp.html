@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vim/Neovim - vim-lsp &#8212; Esbonio 0.7.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VSCode" href="vscode.html" />
+    <link rel="prev" title="Vim/Neovim - coc.nvim" href="vim-coc.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Esbonio 0.7.0 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Editor Integrations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nvim.html">
+     Neovim - lspconfig
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vim-coc.html">
+     Vim/Neovim - coc.nvim
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Vim/Neovim - vim-lsp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/formatting-example.html">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/hello-world.html">
+     Hello World
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lsp/editors/vim-lsp.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Flsp/editors/vim-lsp.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/lsp/editors/vim-lsp.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging">
+   Debugging
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="vim-neovim-vim-lsp">
+<h1>Vim/Neovim - vim-lsp<a class="headerlink" href="#vim-neovim-vim-lsp" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/nvim-vim-lsp.png"><img alt="../../_images/nvim-vim-lsp.png" src="../../_images/nvim-vim-lsp.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Using Esbonio and Neovim with <code class="docutils literal notranslate"><span class="pre">vim-lsp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>There are multiple ways to make use of a language server within the vim ecosystem.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="vim-coc.html"><span class="doc">coc.nvim</span></a> a fully featured language client that aims to closely follow the
+way VSCode works. Despite what the name implies it includes supports for both
+vim8 and neovim</p></li>
+<li><p><a class="reference internal" href="#"><span class="doc">vim-lsp</span></a> an async LSP plugin for vim8 and neovim.</p></li>
+<li><p><a class="reference internal" href="nvim.html"><span class="doc">neovim</span></a> neovim v0.5+ comes with built-in support for the language server protocol.</p></li>
+</ul>
+<p>This page documents how you can use the Esbonio language server with <a class="reference external" href="https://github.com/prabirshrestha/vim-lsp">vim-lsp</a></p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Basic configuration for the language server is provided by the
+<a class="reference external" href="https://github.com/mattn/vim-lsp-settings">vim-lsp-settings</a> plugin.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="bcbbb5b7-81eb-4be0-9edc-3d8c29ef8ef2" name="1cab9cdc-ff97-46f7-b3fc-57efa1e4fe42" type="radio">
+</input><label class="tabbed-label" for="bcbbb5b7-81eb-4be0-9edc-3d8c29ef8ef2">
+vim-plug</label><div class="tabbed-content docutils">
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nb">expandtab</span>
+<span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">3</span>
+<span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">3</span>
+<span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">3</span>
+
+<span class="k">call</span> plug#begin<span class="p">(</span><span class="s1">&#39;./plugins&#39;</span><span class="p">)</span>
+
+Plug <span class="s1">&#39;prabirshrestha/vim-lsp&#39;</span>
+Plug <span class="s1">&#39;mattn/vim-lsp-settings&#39;</span>
+
+<span class="k">call</span> plug#<span class="k">end</span><span class="p">()</span>
+
+<span class="c">&quot; The following is based on the example setup found in vim-lsp&#39;s README</span>
+<span class="c">&quot; https://github.com/prabirshrestha/vim-lsp</span>
+<span class="c">&quot;</span>
+<span class="c">&quot; Only the methods currently supported by the language server are bound.</span>
+<span class="k">function</span><span class="p">!</span> s:on_lsp_buffer_enabled<span class="p">()</span> abort
+    <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span><span class="nb">lsp</span>#<span class="nb">complete</span>
+    <span class="k">setlocal</span> signcolumn<span class="p">=</span>yes
+    <span class="k">if</span> exists<span class="p">(</span><span class="s1">&#39;+tagfunc&#39;</span><span class="p">)</span> <span class="p">|</span> <span class="k">setlocal</span> tagfunc<span class="p">=</span><span class="nb">lsp</span>#tagfunc <span class="p">|</span> <span class="k">endif</span>
+    nmap <span class="p">&lt;</span>buffer<span class="p">&gt;</span> <span class="nb">gd</span> <span class="p">&lt;</span>plug<span class="p">&gt;(</span><span class="nb">lsp</span><span class="p">-</span>definition<span class="p">)</span>
+    nmap <span class="p">&lt;</span>buffer<span class="p">&gt;</span> gs <span class="p">&lt;</span>plug<span class="p">&gt;(</span><span class="nb">lsp</span><span class="p">-</span>document<span class="p">-</span>symbol<span class="p">-</span>search<span class="p">)</span>
+    nmap <span class="p">&lt;</span>buffer<span class="p">&gt;</span> [<span class="k">g</span> <span class="p">&lt;</span>plug<span class="p">&gt;(</span><span class="nb">lsp</span><span class="p">-</span><span class="k">previous</span><span class="p">-</span>diagnostic<span class="p">)</span>
+    nmap <span class="p">&lt;</span>buffer<span class="p">&gt;</span> ]<span class="k">g</span> <span class="p">&lt;</span>plug<span class="p">&gt;(</span><span class="nb">lsp</span><span class="p">-</span>next<span class="p">-</span>diagnostic<span class="p">)</span>
+<span class="k">endfunction</span>
+
+augroup lsp_install
+    <span class="k">au</span><span class="p">!</span>
+<span class="c">    &quot; call s:on_lsp_buffer_enabled only for languages that has the server registered.</span>
+    autocmd <span class="nb">User</span> lsp_buffer_enabled <span class="k">call</span> s:on_lsp_buffer_enabled<span class="p">()</span>
+augroup END
+</pre></div>
+</div>
+<p>To try this configuration on your machine.</p>
+<ol class="arabic">
+<li><p>Make sure that you’ve followed the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">Common Setup</span></a>.</p></li>
+<li><p>Download <a class="reference download internal" download="" href="../../_downloads/aa71f0f8843ff11c488a009478f66e6d/vim-lsp.vim"><code class="xref download docutils literal notranslate"><span class="pre">vim-lsp.vim</span></code></a> to a folder of your choosing.</p></li>
+<li><p>Ensure that you have vim-plug’s <code class="docutils literal notranslate"><span class="pre">plug.vim</span></code> file installed in your autoload directory.
+See <a class="reference external" href="https://github.com/junegunn/vim-plug#installation">this guide</a> for details.</p></li>
+<li><p>Open a terminal in the directory containing this file and run the following command
+to load this config isolated from your existing configuration:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(n)vim -u vim-lsp.vim
+</pre></div>
+</div>
+</li>
+<li><p>Install the required plugins:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>:PlugInstall
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<p>As mentioned in the <a class="reference internal" href="index.html#editor-integration-setup"><span class="std std-ref">common setup</span></a>, the language server works
+best when it’s run from the same Python environment as the one used to build your documentation.
+The easiest way to make sure <code class="docutils literal notranslate"><span class="pre">(n)vim</span></code> uses the right Python interpreter, is to activate your
+environment before launching <code class="docutils literal notranslate"><span class="pre">(n)vim</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>       $ source .env/bin/activate
+(.env) $ (n)vim
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The language server’s configuration options can be passed a <code class="docutils literal notranslate"><span class="pre">initialization_options</span></code> during the
+server’s setup. These can be set on a per-project basis by creating a <code class="docutils literal notranslate"><span class="pre">.vim-lsp-settings/settings.json</span></code>
+file in the root of your project</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;esbonio&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;initialization_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;server&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;logLevel&quot;</span><span class="p">:</span> <span class="s2">&quot;debug&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;sphinx&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;confDir&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/docs&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;srcDir&quot;</span><span class="p">:</span> <span class="s2">&quot;${confDir}/../docs-src&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="index.html#editor-integration-config"><span class="std std-ref">here</span></a> for a full list of supported options.</p>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>In the event of something not working as you’d expect you can set the following options to enable logging.
+See <a class="reference external" href="/home/alex/Projects/esbonio/docs/images/nvim-vim-lsp.png">here</a> for more details.</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="k">let</span> <span class="k">g</span>:lsp_log_verbose <span class="p">=</span> <span class="m">1</span>
+<span class="k">let</span> <span class="k">g</span>:lsp_log_file <span class="p">=</span> expand<span class="p">(</span><span class="s1">&#39;~/vim-lsp.log&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Be sure to also increase the log level of Esbonio by setting the <code class="docutils literal notranslate"><span class="pre">server.logLevel</span></code> initialization option
+to <code class="docutils literal notranslate"><span class="pre">debug</span></code></p>
+</div>
+</div>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="vim-coc.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Vim/Neovim - coc.nvim</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="vscode.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">VSCode</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
