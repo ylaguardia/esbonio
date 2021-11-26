@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+
+<html lang="cy">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formatting Example &#8212; Dogfennaeth Esbonio 0.7.0 </title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Indecs" href="../../genindex.html" />
+    <link rel="search" title="Chwilio" href="../../search.html" />
+    <link rel="next" title="Shwmae i gyd" href="hello-world.html" />
+    <link rel="prev" title="Tutorial" href="../tutorial.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cy">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dogfennaeth Esbonio 0.7.0 </h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/nvim.html">
+     Neovim - lspconfig
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim-coc.html">
+     Vim/Neovim - coc.nvim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim-lsp.html">
+     Vim/Neovim - vim-lsp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../tutorial.html">
+   Tutorial
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hello-world.html">
+     Shwmae i gyd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing/devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributing/lsp.html">
+   Language Server
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributing/lsp/testing.html">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/extensions/tutorial/formatting-example.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Fextensions/tutorial/formatting-example.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/extensions/tutorial/formatting-example.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-formatting">
+   Basic Formatting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lists">
+   Lists
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unordered-lists">
+     Unordered Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ordered-lists">
+     Ordered Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition-lists">
+     Definition Lists
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blocks">
+   Blocks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quoted-blocks">
+     Quoted Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-blocks">
+     Line Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#literal-blocks">
+     Literal Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-blocks">
+     Code Blocks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#images">
+   Images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#admonitions">
+   Admonitions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attention">
+     Attention
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caution">
+     Caution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#danger">
+     Danger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error">
+     Error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hint">
+     Hint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#important">
+     Important
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note">
+     Note
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tip">
+     Tip
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning">
+     Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="formatting-example">
+<h1>Formatting Example<a class="headerlink" href="#formatting-example" title="Permalink i'r pennawd hwn">¶</a></h1>
+<p>This tutorial demonstrates how different features of your reStructuredText document are
+rendered in the exported notebook.</p>
+<div class="section" id="basic-formatting">
+<h2>Basic Formatting<a class="headerlink" href="#basic-formatting" title="Permalink i'r pennawd hwn">¶</a></h2>
+<p>Your explanations are converted into markdown and included as markdown cells within the
+exported notebook.</p>
+<p><strong>Bold</strong>, <em>Italics</em>, <code class="docutils literal notranslate"><span class="pre">inline</span> <span class="pre">code</span></code>, and math (e.g. <span class="math notranslate nohighlight">\(\sqrt{b^2 - 4ac}\)</span>) work as you would expect.</p>
+<p>More exotic inline markup like <span class="guilabel">GUI Labels</span> and <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Key</kbd> <kbd class="kbd docutils literal notranslate">bindings</kbd></kbd> are simply rendered
+as inline code.</p>
+<p>reStructuredText style <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html?highlight=raw%3A%3A#hyperlinks">inline hyperlinks</a>
+are converted to their markdown equivalents. <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html?highlight=raw%3A%3A#hyperlinks">Named hyperlinks</a> are also converted into inline
+markdown links.</p>
+</div>
+<div class="section" id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink i'r pennawd hwn">¶</a></h2>
+<div class="section" id="unordered-lists">
+<h3>Unordered Lists<a class="headerlink" href="#unordered-lists" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>aka. bullet point lists.</p>
+<ul>
+<li><p>Item A</p></li>
+<li><p>Some items may be larger than others.
+There could be multiple lines of text</p>
+<p>There could even be content spread over multiple paragraphs</p>
+</li>
+<li><p>Some items</p>
+<ul class="simple">
+<li><p>may include</p></li>
+<li><p>nested lists</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ordered-lists">
+<h3>Ordered Lists<a class="headerlink" href="#ordered-lists" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>Typically used to describe a sequence of steps.</p>
+<ol class="arabic">
+<li><p>Step one</p></li>
+<li><p>Step two.
+This one is more involved</p>
+<p>And requires more explanation</p>
+</li>
+<li><p>Step three</p></li>
+</ol>
+</div>
+<div class="section" id="definition-lists">
+<h3>Definition Lists<a class="headerlink" href="#definition-lists" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>Definition lists don't have an obvious counterpart in markdown. Currently they are
+transformed into a normal bulleted list, with the <code class="docutils literal notranslate"><span class="pre">term</span></code> being defined rendered as
+inline code.</p>
+<dl>
+<dt>print</dt><dd><p>Function to display text in the console.</p>
+<p>Accepts a number of different options that control the formatting.</p>
+</dd>
+<dt>open</dt><dd><p>Function that can be used to open files.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="blocks">
+<h2>Blocks<a class="headerlink" href="#blocks" title="Permalink i'r pennawd hwn">¶</a></h2>
+<div class="section" id="quoted-blocks">
+<h3>Quoted Blocks<a class="headerlink" href="#quoted-blocks" title="Permalink i'r pennawd hwn">¶</a></h3>
+<blockquote>
+<div><p>To be or not to be.</p>
+</div></blockquote>
+<p>Quoted blocks are translated into their markdown equivalents</p>
+</div>
+<div class="section" id="line-blocks">
+<h3>Line Blocks<a class="headerlink" href="#line-blocks" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>Line blocks are translated into a fenced block</p>
+<div class="line-block">
+<div class="line">Abc</div>
+<div class="line">def ghi</div>
+<div class="line">zxy</div>
+</div>
+</div>
+<div class="section" id="literal-blocks">
+<h3>Literal Blocks<a class="headerlink" href="#literal-blocks" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>A literal block is by default treated as python code and rendered as an executable
+cell in the exported notebook. To change how these blocks are handled, see the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-highlight" title="(yn Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">highlight</span></code></a> directive and  <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-highlight_language" title="(yn Sphinx v5.0.0+)"><code class="docutils literal notranslate"><span class="pre">highlight_language</span></code></a>
+configuration option for more details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>Literal blocks that do not contain python code, will instead be rendered as fenced
+blocks inside a markdown cell</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>this cell
+   does not
+      contain code
+</pre></div>
+</div>
+<p>Currently this also applies to any block that might otherwise be executable within a
+notebook given the appropriate kernel.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span><span class="o">*</span><span class="nx">n</span><span class="p">)</span>
+       <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">m</span><span class="o">+</span><span class="nx">n</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-blocks">
+<h3>Code Blocks<a class="headerlink" href="#code-blocks" title="Permalink i'r pennawd hwn">¶</a></h3>
+<p>Code blocks follow the same rules as outlined above for literal blocks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+<span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>this block
+  contains
+no code
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink i'r pennawd hwn">¶</a></h2>
+<img alt="../../_images/vscode-screenshot.png" class="align-center" src="../../_images/vscode-screenshot.png" />
+</div>
+<div class="section" id="admonitions">
+<h2>Admonitions<a class="headerlink" href="#admonitions" title="Permalink i'r pennawd hwn">¶</a></h2>
+<p>Since there is no direct counterpart to admonitions in markdown, the extension does its
+best to approximate them using quoted blocks. Below are some example admonitions.</p>
+<div class="section" id="attention">
+<h3>Attention<a class="headerlink" href="#attention" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Sylw</p>
+<p>Be sure to save your changes before closing.</p>
+</div>
+</div>
+<div class="section" id="caution">
+<h3>Caution<a class="headerlink" href="#caution" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition caution">
+<p class="admonition-title">Gofal</p>
+<p>This feature is a work in progress, be sure to back up your data.</p>
+</div>
+</div>
+<div class="section" id="danger">
+<h3>Danger<a class="headerlink" href="#danger" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Perygl</p>
+<p>Migrating from v1 to v3 directly is not supported! You may experience
+data loss!</p>
+</div>
+</div>
+<div class="section" id="error">
+<h3>Error<a class="headerlink" href="#error" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition error">
+<p class="admonition-title">Gwall</p>
+<p>Something happended that prevented the configurator from configurating
+the thing. Pray that this message might mean something to someone because
+I can't help you.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+----------------------------------------------------------------+
+|                          !Error!                               |
+|                                                                |
+| Configurator sprocket was misaligned to the flange, revert the |
+| combobulator to base level inductance before trying to dis     |
+| the belated combo.                                             |
++----------------------------------------------------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="hint">
+<h3>Hint<a class="headerlink" href="#hint" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition hint">
+<p class="admonition-title">Awgrym</p>
+<p>Try turining it off and on again.</p>
+</div>
+</div>
+<div class="section" id="important">
+<h3>Important<a class="headerlink" href="#important" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Pwysig</p>
+<p>Switch on before use.</p>
+</div>
+</div>
+<div class="section" id="note">
+<h3>Note<a class="headerlink" href="#note" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nodyn</p>
+<p>There are some situations where this may not apply.</p>
+</div>
+</div>
+<div class="section" id="tip">
+<h3>Tip<a class="headerlink" href="#tip" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Awgrym</p>
+<p>For best results:</p>
+<ul class="simple">
+<li><p>try on a Thursday afternoon.</p></li>
+<li><p>do not submerge in water</p></li>
+<li><p>never throw it out a window.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="warning">
+<h3>Warning<a class="headerlink" href="#warning" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Rhybudd</p>
+<p>This feature will be removed in future versions.</p>
+<p>Be sure to check the release notes before upgrading.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../tutorial.html" title="blaenorol page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">blaenorol</p>
+            <p class="prev-next-title">Tutorial</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="hello-world.html" title="nesaf page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">nesaf</p>
+        <p class="prev-next-title">Shwmae i gyd</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

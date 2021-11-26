@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+
+<html lang="cy">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing &#8212; Dogfennaeth Esbonio 0.7.0 </title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Indecs" href="../../genindex.html" />
+    <link rel="search" title="Chwilio" href="../../search.html" />
+    <link rel="prev" title="Sphinx" href="sphinx.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cy">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dogfennaeth Esbonio 0.7.0 </h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Server
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lsp/features.html">
+   Features
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../lsp/editors/index.html">
+   Editor Integrations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/emacs.html">
+     Emacs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/kate.html">
+     Kate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/nvim.html">
+     Neovim - lspconfig
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim-coc.html">
+     Vim/Neovim - coc.nvim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vim-lsp.html">
+     Vim/Neovim - vim-lsp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../lsp/editors/vscode.html">
+     VSCode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sphinx Extensions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../extensions/tutorial.html">
+   Tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/formatting-example.html">
+     Formatting Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/hello-world.html">
+     Shwmae i gyd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../extensions/tutorial/solution-example.html">
+     Solution Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../devenvs.html">
+   Development Environments
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../lsp.html">
+   Language Server
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="completion.html">
+     Completion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="directives.html">
+     Directives
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="log.html">
+     Log
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="roles.html">
+     Roles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rst.html">
+     Rst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sphinx.html">
+     Sphinx
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/contributing/lsp/testing.rst.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/swyddfa/esbonio"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/swyddfa/esbonio/issues/new?title=Issue%20on%20page%20%2Fcontributing/lsp/testing.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/swyddfa/esbonio/edit/release/docs/contributing/lsp/testing.rst"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="module-esbonio.lsp.testing">
+<span id="testing"></span><h1>Testing<a class="headerlink" href="#module-esbonio.lsp.testing" title="Permalink i'r pennawd hwn">¶</a></h1>
+<p>Utility functions to help with testing Language Server features.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">ClientServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>A class that returns a client server pair for use in tests.</p>
+<p>Originally based on:
+<a class="reference external" href="https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53">https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>server</strong> (<em>pygls.server.LanguageServer</em>) -- </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientServer.start">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer.start"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer.start" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Start the client and server components ready for testing.</p>
+<p>As well as starting the event loops for them both it also
+initializes the server based on the <code class="docutils literal notranslate"><span class="pre">root_uri</span></code> and
+<code class="docutils literal notranslate"><span class="pre">initialization_options</span></code> parameters. Once the response for
+the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> request is received, it will proceed to send the
+<code class="docutils literal notranslate"><span class="pre">initialized</span></code> notification to trigger the initial build of the
+documentation.</p>
+<p>By default this method will <code class="docutils literal notranslate"><span class="pre">await</span></code> until the client receives the
+<code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code> notification, though this can be disabled
+by passing <code class="docutils literal notranslate"><span class="pre">wait=False</span></code> (useful for preventing deadlocks in situations
+where the server is not expected to start successfully).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The root uri of the project to initialize the server within</p></li>
+<li><p><strong>initialization_options</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><em>Any</em><em>]</em><em>]</em>) -- The initializaion options to pass to the server</p></li>
+<li><p><strong>wait</strong> -- If <code class="docutils literal notranslate"><span class="pre">True</span></code>, await until the client receives the <code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code>
+notification.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientServer.stop">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientServer.stop"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer.stop" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.sphinx_version">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">sphinx_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#sphinx_version"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.sphinx_version" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Helper function for determining which version of Sphinx we are
+testing with.</p>
+<p>Currently this only cares about the major version number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>eq</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(yn Python v3.10)"><em>int</em></a><em>]</em>) -- When set returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the Sphinx version exactly matches
+what's given.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.directive_argument_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">directive_argument_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#directive_argument_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.directive_argument_patterns" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return a number of example directive argument patterns.</p>
+<p>These correspond to test cases where directive argument suggestions should be
+generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the directive to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial argument that the user has already entered.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.role_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">role_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#role_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_patterns" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return a number of example role patterns.</p>
+<p>These correspond to when role suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial role name that the user has already entered</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.role_target_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">role_target_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#role_target_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_target_patterns" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return a number of example role target patterns.</p>
+<p>These correspond to test cases where role target suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial target that the user as already entered.</p></li>
+<li><p><strong>include_modifiers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)"><em>bool</em></a>) -- A flag to indicate if additional modifiers like <code class="docutils literal notranslate"><span class="pre">!</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> should be
+included in the generated patterns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.intersphinx_target_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">intersphinx_target_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#intersphinx_target_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.intersphinx_target_patterns" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return a number of example intersphinx target patterns.</p>
+<p>These correspond to cases where target completions may be generated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role to generate examples for</p></li>
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the project to generate examples for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.completion_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">completion_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">character</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#completion_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_request" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Make a completion request to a language server.</p>
+<p>Intended for use within test cases, this function simulates the opening of a
+document, inserting some text, triggering a completion request and closing it
+again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> does not have to exist.</p>
+<p>The text to be inserted is specified through the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter. By default
+it's assumed that the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter consists of a single line of text, in fact
+this function will error if that is not the case.</p>
+<p>If your request requires additional context (such as directive option completions)
+it can be included but it must be delimited with a <code class="docutils literal notranslate"><span class="pre">\f</span></code> character. For example,
+to represent the following scenario:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">filename</span><span class="o">.</span><span class="n">png</span>
+   <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span>
+   <span class="p">:</span>
+    <span class="o">^</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">^</span></code> represents the position from which we trigger the completion request.
+We would set <code class="docutils literal notranslate"><span class="pre">text</span></code> to the following
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>&#160;&#160; <span class="pre">:align:</span> <span class="pre">center\n\f</span>&#160;&#160; <span class="pre">:</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used to make the request.</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri the completion request should be made within.</p></li>
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The text that provides the context for the completion request.</p></li>
+<li><p><strong>character</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(yn Python v3.10)"><em>int</em></a><em>]</em>) -- The character index at which to make the completion request from.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will default to the end of the inserted text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionList</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.definition_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">definition_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#definition_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.definition_request" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Make a definition request to a language server.</p>
+<p>Intended for use within test cases, this function simulates opening an
+existing file and making a definition request and closing it again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> <em>must</em> exist as the actual content of the file
+will be used by the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used to make the request</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri of the file the definition request should be made within.</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position at which to trigger the completion request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.document_symbols_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">document_symbols_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#document_symbols_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.document_symbols_request" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Make a <code class="docutils literal notranslate"><span class="pre">textDocument/documentSymbols</span></code> request to a language server.</p>
+<p>Intended for use with test cases, this function simulates opening an existing
+file, making a document symbols request and closing it again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> <em>must</em> exist as the content of the file will
+be used by the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri of the file to make the <code class="docutils literal notranslate"><span class="pre">textDocument/documentSymbols</span></code> request within</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[pygls.lsp.types.language_features.document_symbol.DocumentSymbol]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">ClientProtocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>A slightly modified version of the base protocol that allows
+us to await on notifications.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientProtocol.wait_for_notification">
+<span class="sig-name descname"><span class="pre">wait_for_notification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol.wait_for_notification"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol.wait_for_notification" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientProtocol.wait_for_notification_async">
+<span class="sig-name descname"><span class="pre">wait_for_notification_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#ClientProtocol.wait_for_notification_async"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol.wait_for_notification_async" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.Client">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#Client"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.Client" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.new_test_client">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">new_test_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/testing.html#new_test_client"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.new_test_client" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#esbonio.lsp.testing.Client" title="esbonio.lsp.testing.Client">esbonio.lsp.testing.Client</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="sphinx.html" title="blaenorol page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">blaenorol</p>
+            <p class="prev-next-title">Sphinx</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+            &copy; Copyright 2021, Alex Carney.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
