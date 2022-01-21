@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VSCode &#8212; Dogfennaeth Esbonio 0.7.0 </title>
+    <title>VSCode &#8212; Dogfennaeth Esbonio 0.8.0 </title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -36,7 +36,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../../_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Indecs" href="../../genindex.html" />
     <link rel="search" title="Chwilio" href="../../search.html" />
@@ -58,7 +58,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
@@ -70,7 +75,7 @@
       <img src="../../_static/io.github.swyddfa.Esbonio.svg" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Dogfennaeth Esbonio 0.7.0 </h1>
+      <h1 class="site-logo" id="site-title">Dogfennaeth Esbonio 0.8.0 </h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -245,22 +250,22 @@
 
 
           
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
     <div class="topbar container-xl fixed-top">
     <div class="topbar-contents row">
         <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
         <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
             
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
@@ -275,7 +280,7 @@
                 data-placement="left">.rst</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -311,7 +316,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -334,8 +339,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#v0-7-1-2021-09-13">
-     v0.7.1 - 2021-09-13
+    <a class="reference internal nav-link" href="#v0-7-2-2021-11-26">
+     v0.7.2 - 2021-11-26
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -345,6 +350,23 @@
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#enhancements">
+       Enhancements
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-7-1-2021-09-13">
+     v0.7.1 - 2021-09-13
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
        Enhancements
       </a>
      </li>
@@ -366,12 +388,12 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
+      <a class="reference internal nav-link" href="#id16">
        Fixes
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id11">
+      <a class="reference internal nav-link" href="#id19">
        Misc
       </a>
      </li>
@@ -383,7 +405,7 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
+      <a class="reference internal nav-link" href="#id22">
        Fixes
       </a>
      </li>
@@ -395,12 +417,12 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id16">
+      <a class="reference internal nav-link" href="#id24">
        Fixes
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id20">
+      <a class="reference internal nav-link" href="#id28">
        Misc
       </a>
      </li>
@@ -412,17 +434,17 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id22">
+      <a class="reference internal nav-link" href="#id30">
        Features
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id25">
+      <a class="reference internal nav-link" href="#id33">
        Fixes
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id27">
+      <a class="reference internal nav-link" href="#id35">
        Misc
       </a>
      </li>
@@ -434,7 +456,7 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id29">
+      <a class="reference internal nav-link" href="#id37">
        Misc
       </a>
      </li>
@@ -446,17 +468,17 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id31">
+      <a class="reference internal nav-link" href="#id39">
        Features
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id37">
+      <a class="reference internal nav-link" href="#id45">
        Fixes
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id47">
+      <a class="reference internal nav-link" href="#id55">
        Misc
       </a>
      </li>
@@ -468,12 +490,12 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id51">
+      <a class="reference internal nav-link" href="#id59">
        Features
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id55">
+      <a class="reference internal nav-link" href="#id63">
        Fixes
       </a>
      </li>
@@ -485,7 +507,7 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id60">
+      <a class="reference internal nav-link" href="#id68">
        Misc
       </a>
      </li>
@@ -497,12 +519,12 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id62">
+      <a class="reference internal nav-link" href="#id70">
        Features
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id65">
+      <a class="reference internal nav-link" href="#id73">
        Fixes
       </a>
      </li>
@@ -514,7 +536,7 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id67">
+      <a class="reference internal nav-link" href="#id75">
        Misc
       </a>
      </li>
@@ -526,7 +548,7 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id71">
+      <a class="reference internal nav-link" href="#id79">
        Features
       </a>
      </li>
@@ -538,12 +560,12 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id73">
+      <a class="reference internal nav-link" href="#id81">
        Features
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id75">
+      <a class="reference internal nav-link" href="#id83">
        Misc
       </a>
      </li>
@@ -559,14 +581,282 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>VSCode</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#commands">
+   Commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changelog">
+   Changelog
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-7-2-2021-11-26">
+     v0.7.2 - 2021-11-26
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fixes">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#enhancements">
+       Enhancements
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-7-1-2021-09-13">
+     v0.7.1 - 2021-09-13
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Enhancements
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#misc">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-7-0-2021-06-05">
+     v0.7.0 - 2021-06-05
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#features">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-2-2021-05-14">
+     v0.6.2 - 2021-05-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-1-2021-05-13">
+     v0.6.1 - 2021-05-13
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id28">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-6-0-2021-05-07">
+     v0.6.0 - 2021-05-07
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id33">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id35">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-5-1-2021-03-01">
+     v0.5.1 - 2021-03-01
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id37">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-5-0-2021-03-01">
+     v0.5.0 - 2021-03-01
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id39">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id45">
+       Fixes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id55">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-4-0-2021-02-03">
+     v0.4.0 - 2021-02-03
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id59">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id63">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-3-1-2020-12-14">
+     v0.3.1 - 2020-12-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id68">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-3-0-2020-12-14">
+     v0.3.0 - 2020-12-14
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id70">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id73">
+       Fixes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-2-1-2020-11-28">
+     v0.2.1 - 2020-11-28
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id75">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-2-0-2020-11-27">
+     v0.2.0 - 2020-11-27
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id79">
+       Features
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v0-1-0-2020-11-23">
+     v0.1.0 - 2020-11-23
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id81">
+       Features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id83">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="vscode">
 <span id="editor-itegration-vscode"></span><h1>VSCode<a class="headerlink" href="#vscode" title="Permalink i'r pennawd hwn">¶</a></h1>
-<div class="figure align-center" id="id79">
+<div class="figure align-center" id="id87">
 <img alt="../../_images/vscode-screenshot.png" src="../../_images/vscode-screenshot.png" />
-<p class="caption"><span class="caption-text">The VSCode extension editing this page</span><a class="headerlink" href="#id79" title="Permalink i'r ddelwedd hon">¶</a></p>
+<p class="caption"><span class="caption-text">The VSCode extension editing this page</span><a class="headerlink" href="#id87" title="Permalink i'r ddelwedd hon">¶</a></p>
 </div>
 <p>Integration with <a class="reference external" href="https://code.visualstudio.com/">VSCode</a> is provided by the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=swyddfa.esbonio">Esbonio</a> extension.</p>
 <div class="section" id="configuration">
@@ -669,17 +959,38 @@ currently working on.</p>
 </div>
 <div class="section" id="changelog">
 <h2>Changelog<a class="headerlink" href="#changelog" title="Permalink i'r pennawd hwn">¶</a></h2>
-<div class="section" id="v0-7-1-2021-09-13">
-<h3>v0.7.1 - 2021-09-13<a class="headerlink" href="#v0-7-1-2021-09-13" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="section" id="v0-7-2-2021-11-26">
+<h3>v0.7.2 - 2021-11-26<a class="headerlink" href="#v0-7-2-2021-11-26" title="Permalink i'r pennawd hwn">¶</a></h3>
 <div class="section" id="fixes">
 <h4>Fixes<a class="headerlink" href="#fixes" title="Permalink i'r pennawd hwn">¶</a></h4>
+<ul class="simple">
+<li><p>Simplified highlighting of footnote references to prevent edge cases from
+effectively disabling highlighting of a document. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/252">#252</a>)</p></li>
+<li><p>Literal block markers no longer disable highlighting of any preceeding content. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/254">#254</a>)</p></li>
+<li><p>Code blocks that have injected grammars (e.g. python code blocks) now correctly highlight any options
+on the directive (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/255">#255</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="enhancements">
+<h4>Enhancements<a class="headerlink" href="#enhancements" title="Permalink i'r pennawd hwn">¶</a></h4>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">esbonio.server.enabled</span></code> option which gives the user the ability to disable the language sever if they wish. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/239">#239</a>)</p></li>
+<li><p>Code blocks that contain a language that's not recognised, are now highlighted as strings. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/253">#253</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.buildDir</span></code> option which allows the user to specify where Sphinx's build files get written to. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/258">#258</a>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-7-1-2021-09-13">
+<h3>v0.7.1 - 2021-09-13<a class="headerlink" href="#v0-7-1-2021-09-13" title="Permalink i'r pennawd hwn">¶</a></h3>
+<div class="section" id="id7">
+<h4>Fixes<a class="headerlink" href="#id7" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix handling of <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> tags without a <code class="docutils literal notranslate"><span class="pre">src</span></code> attribute when generating the
 HTML preview of a page. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/214">#214</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="enhancements">
-<h4>Enhancements<a class="headerlink" href="#enhancements" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id9">
+<h4>Enhancements<a class="headerlink" href="#id9" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>When the user is using an environment with an incompatible Python version but have
 the Python extension available, they are given the option of picking a new environment to use. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/176">#176</a>)</p></li>
@@ -704,16 +1015,16 @@ they now also have the option of picking a new environment to use instead. (<a c
 <li><p>VSCode will now syntax highlight C, C++, Javascript and Typescript code blocks (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/205">#205</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h4>Fixes<a class="headerlink" href="#id8" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id16">
+<h4>Fixes<a class="headerlink" href="#id16" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix incorrect syntax highlighting of multiple links on a single line (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/203">#203</a>)</p></li>
 <li><p>VSCode now treats <code class="docutils literal notranslate"><span class="pre">*</span></code> characters as quotes, meaning selecting some text and entering
 a <code class="docutils literal notranslate"><span class="pre">*</span></code> will automatically surround that text rather than replacing it. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/204">#204</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h4>Misc<a class="headerlink" href="#id11" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id19">
+<h4>Misc<a class="headerlink" href="#id19" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>The cli arguments <code class="docutils literal notranslate"><span class="pre">--cache-dir</span></code>, <code class="docutils literal notranslate"><span class="pre">--log-filter</span></code>, <code class="docutils literal notranslate"><span class="pre">--log-level</span></code> and
 <code class="docutils literal notranslate"><span class="pre">--hide-sphinx-output</span></code> have been replaced with the configuration
@@ -727,8 +1038,8 @@ in the <code class="docutils literal notranslate"><span class="pre">initialize</
 </div>
 <div class="section" id="v0-6-2-2021-05-14">
 <h3>v0.6.2 - 2021-05-14<a class="headerlink" href="#v0-6-2-2021-05-14" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id14">
-<h4>Fixes<a class="headerlink" href="#id14" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id22">
+<h4>Fixes<a class="headerlink" href="#id22" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix minimum required language server version (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/183">#183</a>)</p></li>
 </ul>
@@ -736,16 +1047,16 @@ in the <code class="docutils literal notranslate"><span class="pre">initialize</
 </div>
 <div class="section" id="v0-6-1-2021-05-13">
 <h3>v0.6.1 - 2021-05-13<a class="headerlink" href="#v0-6-1-2021-05-13" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id16">
-<h4>Fixes<a class="headerlink" href="#id16" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id24">
+<h4>Fixes<a class="headerlink" href="#id24" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Literal blocks now have the correct syntax highlighting (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/138">#138</a>)</p></li>
 <li><p>The language server is now reloaded when the Python environment is changed. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/140">#140</a>)</p></li>
 <li><p>It's now possible to test dev builds of the language server with the extension (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/168">#168</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id20">
-<h4>Misc<a class="headerlink" href="#id20" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id28">
+<h4>Misc<a class="headerlink" href="#id28" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Improvements to the development experience (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/170">#170</a>)</p></li>
 </ul>
@@ -753,8 +1064,8 @@ in the <code class="docutils literal notranslate"><span class="pre">initialize</
 </div>
 <div class="section" id="v0-6-0-2021-05-07">
 <h3>v0.6.0 - 2021-05-07<a class="headerlink" href="#v0-6-0-2021-05-07" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id22">
-<h4>Features<a class="headerlink" href="#id22" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id30">
+<h4>Features<a class="headerlink" href="#id30" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.confDir</span></code> option that allows for a project's config
 directory to be explictly set should the automatic discovery in the Language
@@ -764,14 +1075,14 @@ language server's assumption that source files are located in the same
 place as the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/142">#142</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id25">
-<h4>Fixes<a class="headerlink" href="#id25" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id33">
+<h4>Fixes<a class="headerlink" href="#id33" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Editor keybindings now only apply in <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> files. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/141">#141</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id27">
-<h4>Misc<a class="headerlink" href="#id27" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id35">
+<h4>Misc<a class="headerlink" href="#id35" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">vscode-languageclient</span></code> to v7.0.0 (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/152">#152</a>)</p></li>
 </ul>
@@ -779,8 +1090,8 @@ place as the <code class="docutils literal notranslate"><span class="pre">conf.p
 </div>
 <div class="section" id="v0-5-1-2021-03-01">
 <h3>v0.5.1 - 2021-03-01<a class="headerlink" href="#v0-5-1-2021-03-01" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id29">
-<h4>Misc<a class="headerlink" href="#id29" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id37">
+<h4>Misc<a class="headerlink" href="#id37" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix release pipeline (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/135">#135</a>)</p></li>
 </ul>
@@ -788,8 +1099,8 @@ place as the <code class="docutils literal notranslate"><span class="pre">conf.p
 </div>
 <div class="section" id="v0-5-0-2021-03-01">
 <h3>v0.5.0 - 2021-03-01<a class="headerlink" href="#v0-5-0-2021-03-01" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id31">
-<h4>Features<a class="headerlink" href="#id31" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id39">
+<h4>Features<a class="headerlink" href="#id39" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Add new <code class="docutils literal notranslate"><span class="pre">esbonio.server.installBehavior</span></code> option that gives greater control
 over how Language Server installation is handled. <code class="docutils literal notranslate"><span class="pre">automatic</span></code> will install the
@@ -804,8 +1115,8 @@ extension's configuration is updated (<a class="reference external" href="https:
 <li><p><code class="docutils literal notranslate"><span class="pre">css</span></code>, <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">yaml</span></code> code blocks are now syntax highlighted. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/125">#125</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id37">
-<h4>Fixes<a class="headerlink" href="#id37" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id45">
+<h4>Fixes<a class="headerlink" href="#id45" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>The extension now checks that the configured Python verison is compatible with
 the Language Server. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/97">#97</a>)</p></li>
@@ -823,8 +1134,8 @@ syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/
 syntax. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/128">#128</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id47">
-<h4>Misc<a class="headerlink" href="#id47" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id55">
+<h4>Misc<a class="headerlink" href="#id55" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>The language server's logging level is set to match the logging level defined in
 the extension. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/86">#86</a>)</p></li>
@@ -838,8 +1149,8 @@ on restarts. (<a class="reference external" href="https://github.com/swyddfa/esb
 </div>
 <div class="section" id="v0-4-0-2021-02-03">
 <h3>v0.4.0 - 2021-02-03<a class="headerlink" href="#v0-4-0-2021-02-03" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id51">
-<h4>Features<a class="headerlink" href="#id51" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id59">
+<h4>Features<a class="headerlink" href="#id59" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Expose an <code class="docutils literal notranslate"><span class="pre">esbonio.log.level</span></code> config option that allows the level of logging
 output to be configured (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/85">#85</a>)</p></li>
@@ -850,8 +1161,8 @@ extension should check for updates. Valid values are <code class="docutils liter
 applied. Valid values are <code class="docutils literal notranslate"><span class="pre">promptAlways</span></code>, <code class="docutils literal notranslate"><span class="pre">promptMajor</span></code> and <code class="docutils literal notranslate"><span class="pre">automatic</span></code> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/89">#89</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id55">
-<h4>Fixes<a class="headerlink" href="#id55" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id63">
+<h4>Fixes<a class="headerlink" href="#id63" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix edge cases around syntax highlighting bold/italic elements. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/47">#47</a>)</p></li>
 <li><p>The extension now activates when it detects a sphinx project (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/49">#49</a>)</p></li>
@@ -863,8 +1174,8 @@ pick up changes in the project's <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="v0-3-1-2020-12-14">
 <h3>v0.3.1 - 2020-12-14<a class="headerlink" href="#v0-3-1-2020-12-14" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id60">
-<h4>Misc<a class="headerlink" href="#id60" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id68">
+<h4>Misc<a class="headerlink" href="#id68" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">vsix</span></code> packaging so that grammar tests are not included. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/44">#44</a>)</p></li>
 </ul>
@@ -872,16 +1183,16 @@ pick up changes in the project's <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="v0-3-0-2020-12-14">
 <h3>v0.3.0 - 2020-12-14<a class="headerlink" href="#v0-3-0-2020-12-14" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id62">
-<h4>Features<a class="headerlink" href="#id62" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id70">
+<h4>Features<a class="headerlink" href="#id70" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Add 2 commands that can be used to insert links. One that uses the inline syntax
 <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd>, the other, the named reference syntax <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd> (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/37">#37</a>)</p></li>
 <li><p>Add command that will restart the language server (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/39">#39</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id65">
-<h4>Fixes<a class="headerlink" href="#id65" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id73">
+<h4>Fixes<a class="headerlink" href="#id73" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Support syntax highligting for more header styles. Support highligting python code
 under directives from Sphinx's <code class="docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> extension (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/42">#42</a>)</p></li>
@@ -890,8 +1201,8 @@ under directives from Sphinx's <code class="docutils literal notranslate"><span 
 </div>
 <div class="section" id="v0-2-1-2020-11-28">
 <h3>v0.2.1 - 2020-11-28<a class="headerlink" href="#v0-2-1-2020-11-28" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id67">
-<h4>Misc<a class="headerlink" href="#id67" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id75">
+<h4>Misc<a class="headerlink" href="#id75" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>The published <code class="docutils literal notranslate"><span class="pre">vsix</span></code> now contains a changelog in a format that's compatible with the
 VSCode marketplace. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/16">#16</a>)</p></li>
@@ -902,8 +1213,8 @@ VSCode marketplace. (<a class="reference external" href="https://github.com/swyd
 </div>
 <div class="section" id="v0-2-0-2020-11-27">
 <h3>v0.2.0 - 2020-11-27<a class="headerlink" href="#v0-2-0-2020-11-27" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id71">
-<h4>Features<a class="headerlink" href="#id71" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id79">
+<h4>Features<a class="headerlink" href="#id79" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>If there is no Python interpreter configured and the
 <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension</a>
@@ -914,15 +1225,15 @@ Python extension (<a class="reference external" href="https://github.com/swyddfa
 </div>
 <div class="section" id="v0-1-0-2020-11-23">
 <h3>v0.1.0 - 2020-11-23<a class="headerlink" href="#v0-1-0-2020-11-23" title="Permalink i'r pennawd hwn">¶</a></h3>
-<div class="section" id="id73">
-<h4>Features<a class="headerlink" href="#id73" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id81">
+<h4>Features<a class="headerlink" href="#id81" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>If the language server is not installed, the extension will now prompt to install it.
 It will also prompt to update it when new versions are available. (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/12">#12</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="id75">
-<h4>Misc<a class="headerlink" href="#id75" title="Permalink i'r pennawd hwn">¶</a></h4>
+<div class="section" id="id83">
+<h4>Misc<a class="headerlink" href="#id83" title="Permalink i'r pennawd hwn">¶</a></h4>
 <ul class="simple">
 <li><p>Update build pipeline to use <code class="docutils literal notranslate"><span class="pre">towncrier</span></code> to autogenerate release notes and changelog
 entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/issues/10">#10</a>)</p></li>
@@ -935,8 +1246,8 @@ entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="vim-lsp.html" title="blaenorol page">
         <i class="fas fa-angle-left"></i>
@@ -953,17 +1264,15 @@ entries (<a class="reference external" href="https://github.com/swyddfa/esbonio/
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-            &copy; Copyright 2021, Alex Carney.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+        &copy; Copyright 2021, Alex Carney.<br/>
+  </p>
+</footer>
 </main>
 
 
