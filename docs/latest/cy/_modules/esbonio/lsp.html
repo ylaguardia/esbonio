@@ -206,11 +206,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../contributing/lsp/log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../../contributing/lsp/roles.html">
      Roles
     </a>
@@ -386,40 +381,44 @@
     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
         <span class="n">_load_module</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
 
-    <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZE</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_initialize</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_configure_lsp_methods</span><span class="p">(</span><span class="n">server</span><span class="p">)</span></div>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+
+<span class="k">def</span> <span class="nf">_configure_lsp_methods</span><span class="p">(</span><span class="n">server</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RstLanguageServer</span><span class="p">:</span>
+    <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZE</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_initialize</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">feature</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">INITIALIZED</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_initialized</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">initialized</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_initialized</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">initialized</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">feature</span><span class="o">.</span><span class="n">initialized</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_OPEN</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_open</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidOpenTextDocumentParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_open</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidOpenTextDocumentParams</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_CHANGE</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_change</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidChangeTextDocumentParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_change</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidChangeTextDocumentParams</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_save</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_save</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">feature</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">CODE_ACTION</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_code_action</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CodeActionParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_code_action</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CodeActionParams</span><span class="p">):</span>
         <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">actions</span> <span class="o">+=</span> <span class="n">feature</span><span class="o">.</span><span class="n">code_action</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">actions</span>
@@ -427,17 +426,17 @@
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span>
         <span class="n">COMPLETION</span><span class="p">,</span> <span class="n">CompletionOptions</span><span class="p">(</span><span class="n">trigger_characters</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;`&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">])</span>
     <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_completion</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CompletionParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_completion</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CompletionParams</span><span class="p">):</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">position</span>
 
-        <span class="n">doc</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
-        <span class="n">location</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">get_location_type</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">get_location_type</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
         <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">feature</span><span class="o">.</span><span class="n">completion_triggers</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">pattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
@@ -450,22 +449,22 @@
                         <span class="n">context</span> <span class="o">=</span> <span class="n">CompletionContext</span><span class="p">(</span>
                             <span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">pos</span>
                         <span class="p">)</span>
-                        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Completion context: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+                        <span class="n">ls</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Completion context: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
                         <span class="n">items</span> <span class="o">+=</span> <span class="n">feature</span><span class="o">.</span><span class="n">complete</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">CompletionList</span><span class="p">(</span><span class="n">is_incomplete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">DEFINITION</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_definition</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DefinitionParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_definition</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DefinitionParams</span><span class="p">):</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">position</span>
 
-        <span class="n">doc</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
         <span class="n">definitions</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">rst</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">feature</span><span class="o">.</span><span class="n">definition_triggers</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">pattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
@@ -478,19 +477,19 @@
         <span class="k">return</span> <span class="n">definitions</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">DOCUMENT_SYMBOL</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">on_document_symbol</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DocumentSymbolParams</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_document_symbol</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DocumentSymbolParams</span><span class="p">):</span>
 
-        <span class="n">doctree</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">get_doctree</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+        <span class="n">doctree</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">get_doctree</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">doctree</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
 
-        <span class="n">visitor</span> <span class="o">=</span> <span class="n">SymbolVisitor</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
+        <span class="n">visitor</span> <span class="o">=</span> <span class="n">SymbolVisitor</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
         <span class="n">doctree</span><span class="o">.</span><span class="n">walkabout</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">visitor</span><span class="o">.</span><span class="n">symbols</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;esbonio.server.configuration&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="n">rst</span><span class="p">:</span> <span class="n">server_cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the server&#39;s configuration.</span>
 
 <span class="sd">        Not to be confused with the ``workspace/configuration`` request where the server</span>
@@ -499,12 +498,12 @@
 
 <span class="sd">        As far as I know, there isn&#39;t anything built into the spec to cater for this?</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">configuration</span>
-        <span class="n">rst</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;esbonio.server.configuration&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">configuration</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;esbonio.server.configuration&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">config</span>
 
-    <span class="k">return</span> <span class="n">server</span></div>
+    <span class="k">return</span> <span class="n">server</span>
 
 
 <span class="k">def</span> <span class="nf">_load_module</span><span class="p">(</span><span class="n">server</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>

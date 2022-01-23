@@ -41,7 +41,7 @@
     <link rel="index" title="Indecs" href="../../genindex.html" />
     <link rel="search" title="Chwilio" href="../../search.html" />
     <link rel="next" title="Rst" href="rst.html" />
-    <link rel="prev" title="Log" href="log.html" />
+    <link rel="prev" title="Directives" href="directives.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="cy">
     
@@ -205,11 +205,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="directives.html">
      Directives
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="log.html">
-     Log
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -407,7 +402,7 @@ is expected to match.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetDefinition</span></span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetDefinition"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetDefinition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetDefinition"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>A definition provider for role targets</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition.find_definitions">
@@ -433,7 +428,7 @@ target.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetCompletion</span></span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetCompletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#TargetCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>A completion provider for role targets</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion.complete_targets">
@@ -461,8 +456,8 @@ role.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">Roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Role support for the language server.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_definition_provider">
-<span class="sig-name descname"><span class="pre">add_definition_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_definition_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_definition_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_target_definition_provider">
+<span class="sig-name descname"><span class="pre">add_target_definition_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_target_definition_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_target_definition_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.roles.TargetDefinition" title="esbonio.lsp.roles.TargetDefinition"><em>esbonio.lsp.roles.TargetDefinition</em></a>) -- </p>
@@ -474,8 +469,8 @@ role.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_target_provider">
-<span class="sig-name descname"><span class="pre">add_target_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_target_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_target_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_target_completion_provider">
+<span class="sig-name descname"><span class="pre">add_target_completion_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/roles.html#Roles.add_target_completion_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_target_completion_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.roles.TargetCompletion" title="esbonio.lsp.roles.TargetCompletion"><em>esbonio.lsp.roles.TargetCompletion</em></a>) -- </p>
@@ -606,11 +601,11 @@ nothing, or the results of <a class="reference internal" href="#esbonio.lsp.role
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="log.html" title="blaenorol page">
+    <a class='left-prev' id="prev-link" href="directives.html" title="blaenorol page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">blaenorol</p>
-            <p class="prev-next-title">Log</p>
+            <p class="prev-next-title">Directives</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="rst.html" title="nesaf page">

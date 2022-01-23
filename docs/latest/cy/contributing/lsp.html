@@ -208,11 +208,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="lsp/log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="lsp/roles.html">
      Roles
     </a>
@@ -562,6 +557,20 @@ current line.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.RstLanguageServer.get_directive_options">
+<span class="sig-name descname"><span class="pre">get_directive_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_directive_options"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.RstLanguageServer.get_directive_options" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return the options specification for the given directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.RstLanguageServer.get_roles">
 <span class="sig-name descname"><span class="pre">get_roles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.RstLanguageServer.get_roles" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Return a dictionary of known roles.</p>
@@ -578,7 +587,7 @@ current line.</p>
 <dd><p>Return the default role for the project.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -736,7 +745,6 @@ constructor.</p></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lsp/directives.html">Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lsp/log.html">Log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lsp/roles.html">Roles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lsp/roles.html#test-cases">Test Cases</a></li>
 </ul>

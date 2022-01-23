@@ -40,7 +40,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.svg"/>
     <link rel="index" title="Indecs" href="../../genindex.html" />
     <link rel="search" title="Chwilio" href="../../search.html" />
-    <link rel="next" title="Log" href="log.html" />
+    <link rel="next" title="Roles" href="roles.html" />
     <link rel="prev" title="Completion" href="completion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="cy">
@@ -208,11 +208,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="roles.html">
      Roles
     </a>
@@ -371,16 +366,20 @@ of parts:</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="esbonio.lsp.directives.ArgumentCompletion">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">ArgumentCompletion</span></span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#ArgumentCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">ArgumentCompletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#ArgumentCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>A completion provider for directive arguments.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.directives.ArgumentCompletion.complete_arguments">
-<span class="sig-name descname"><span class="pre">complete_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#ArgumentCompletion.complete_arguments"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion.complete_arguments" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">complete_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#ArgumentCompletion.complete_arguments"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion.complete_arguments" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Return a list of completion items representing valid targets for the given
 directive.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
-<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) -- The completion context</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference internal" href="rst.html#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) -- The completion context</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain the directive is a member of</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.completion.CompletionItem]</p>
@@ -395,8 +394,8 @@ directive.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">Directives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Directive support for the language server.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.add_argument_provider">
-<span class="sig-name descname"><span class="pre">add_argument_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.add_argument_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.add_argument_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.add_argument_completion_provider">
+<span class="sig-name descname"><span class="pre">add_argument_completion_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/directives.html#Directives.add_argument_completion_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.add_argument_completion_provider" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.directives.ArgumentCompletion" title="esbonio.lsp.directives.ArgumentCompletion"><em>esbonio.lsp.directives.ArgumentCompletion</em></a>) -- </p>
@@ -548,10 +547,10 @@ be included</p></li>
             <p class="prev-next-title">Completion</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="log.html" title="nesaf page">
+    <a class='right-next' id="next-link" href="roles.html" title="nesaf page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">nesaf</p>
-        <p class="prev-next-title">Log</p>
+        <p class="prev-next-title">Roles</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

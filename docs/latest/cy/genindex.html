@@ -206,11 +206,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="contributing/lsp/log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="contributing/lsp/roles.html">
      Roles
     </a>
@@ -344,9 +339,7 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.add_argument_provider">add_argument_provider() (esbonio.lsp.directives.Directives method)</a>
-</li>
-      <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.add_definition_provider">add_definition_provider() (esbonio.lsp.roles.Roles method)</a>
+      <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.add_argument_completion_provider">add_argument_completion_provider() (esbonio.lsp.directives.Directives method)</a>
 </li>
       <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.RstLanguageServer.add_feature">add_feature() (esbonio.lsp.rst.RstLanguageServer method)</a>
 
@@ -354,9 +347,11 @@
         <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.add_feature">(esbonio.lsp.RstLanguageServer method)</a>
 </li>
       </ul></li>
+      <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.add_target_completion_provider">add_target_completion_provider() (esbonio.lsp.roles.Roles method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.add_target_provider">add_target_provider() (esbonio.lsp.roles.Roles method)</a>
+      <li><a href="contributing/lsp/roles.html#esbonio.lsp.roles.Roles.add_target_definition_provider">add_target_definition_provider() (esbonio.lsp.roles.Roles method)</a>
 </li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.app">app (esbonio.lsp.sphinx.SphinxLanguageServer attribute)</a>
 </li>
@@ -524,7 +519,7 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/log.html#esbonio.lsp.log.LspHandler.emit">emit() (esbonio.lsp.log.LspHandler method)</a>
+      <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.LspHandler.emit">emit() (esbonio.lsp.rst.LspHandler method)</a>
 
       <ul>
         <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLogHandler.emit">(esbonio.lsp.sphinx.SphinxLogHandler method)</a>
@@ -542,13 +537,6 @@
 
       <ul>
         <li><a href="contributing/lsp/directives.html#module-esbonio.lsp.directives">modiwl</a>
-</li>
-      </ul></li>
-      <li>
-    esbonio.lsp.log
-
-      <ul>
-        <li><a href="contributing/lsp/log.html#module-esbonio.lsp.log">modiwl</a>
 </li>
       </ul></li>
       <li>
@@ -595,7 +583,7 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="contributing/lsp/log.html#esbonio.lsp.log.LogFilter.filter">filter() (esbonio.lsp.log.LogFilter method)</a>
+      <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.LogFilter.filter">filter() (esbonio.lsp.rst.LogFilter method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -621,8 +609,14 @@
       </ul></li>
       <li><a href="contributing/lsp/directives.html#esbonio.lsp.directives.Directives.get_directive_context">get_directive_context() (esbonio.lsp.directives.Directives method)</a>
 </li>
-      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_directive_options">get_directive_options() (esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
+      <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.RstLanguageServer.get_directive_options">get_directive_options() (esbonio.lsp.rst.RstLanguageServer method)</a>
+
+      <ul>
+        <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.get_directive_options">(esbonio.lsp.RstLanguageServer method)</a>
 </li>
+        <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_directive_options">(esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
+</li>
+      </ul></li>
       <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.RstLanguageServer.get_directives">get_directives() (esbonio.lsp.rst.RstLanguageServer method)</a>
 
       <ul>
@@ -639,10 +633,10 @@
         <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_doctree">(esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
 </li>
       </ul></li>
-      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_domain">get_domain() (esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_domain">get_domain() (esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
+</li>
       <li><a href="contributing/lsp/sphinx.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_domains">get_domains() (esbonio.lsp.sphinx.SphinxLanguageServer method)</a>
 </li>
       <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.RstLanguageServer.get_feature">get_feature() (esbonio.lsp.rst.RstLanguageServer method)</a>
@@ -761,7 +755,7 @@
 </li>
       <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.ServerConfig.log_level">log_level (esbonio.lsp.rst.ServerConfig attribute)</a>
 </li>
-      <li><a href="contributing/lsp/log.html#esbonio.lsp.log.LogFilter">LogFilter (class in esbonio.lsp.log)</a>
+      <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.LogFilter">LogFilter (class in esbonio.lsp.rst)</a>
 </li>
       <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.RstLanguageServer.logger">logger (esbonio.lsp.rst.RstLanguageServer attribute)</a>
 
@@ -769,7 +763,7 @@
         <li><a href="contributing/lsp.html#esbonio.lsp.RstLanguageServer.logger">(esbonio.lsp.RstLanguageServer attribute)</a>
 </li>
       </ul></li>
-      <li><a href="contributing/lsp/log.html#esbonio.lsp.log.LspHandler">LspHandler (class in esbonio.lsp.log)</a>
+      <li><a href="contributing/lsp/rst.html#esbonio.lsp.rst.LspHandler">LspHandler (class in esbonio.lsp.rst)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -788,8 +782,6 @@
         <li><a href="contributing/lsp.html#module-esbonio.lsp">esbonio.lsp</a>
 </li>
         <li><a href="contributing/lsp/directives.html#module-esbonio.lsp.directives">esbonio.lsp.directives</a>
-</li>
-        <li><a href="contributing/lsp/log.html#module-esbonio.lsp.log">esbonio.lsp.log</a>
 </li>
         <li><a href="contributing/lsp/roles.html#module-esbonio.lsp.roles">esbonio.lsp.roles</a>
 </li>

@@ -208,11 +208,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="roles.html">
      Roles
     </a>
@@ -340,7 +335,7 @@
 <span id="sphinx"></span><h1>Sphinx<a class="headerlink" href="#module-esbonio.lsp.sphinx" title="Permalink i'r pennawd hwn">¶</a></h1>
 <dl class="py data">
 <dt class="sig sig-object py" id="esbonio.lsp.sphinx.DEFAULT_MODULES">
-<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.sphinx.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_MODULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['esbonio.lsp.directives',</span> <span class="pre">'esbonio.lsp.roles',</span> <span class="pre">'esbonio.lsp.sphinx.domains',</span> <span class="pre">'esbonio.lsp.sphinx.filepaths']</span></em><a class="headerlink" href="#esbonio.lsp.sphinx.DEFAULT_MODULES" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.sphinx.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_MODULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['esbonio.lsp.directives',</span> <span class="pre">'esbonio.lsp.roles',</span> <span class="pre">'esbonio.lsp.sphinx.codeblocks',</span> <span class="pre">'esbonio.lsp.sphinx.domains',</span> <span class="pre">'esbonio.lsp.sphinx.filepaths']</span></em><a class="headerlink" href="#esbonio.lsp.sphinx.DEFAULT_MODULES" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>The modules to load in the default configuration of the server.</p>
 </dd></dl>
 
@@ -419,7 +414,7 @@ are located.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxServerConfig.hide_sphinx_output">
-<span class="sig-name descname"><span class="pre">hide_sphinx_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxServerConfig.hide_sphinx_output" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">hide_sphinx_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxServerConfig.hide_sphinx_output" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>A flag to indicate if Sphinx build output should be omitted from the log.</p>
 </dd></dl>
 
@@ -432,8 +427,8 @@ are located.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sphinx</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxConfig" title="esbonio.lsp.sphinx.SphinxConfig"><em>esbonio.lsp.sphinx.SphinxConfig</em></a><em>]</em>) -- </p></li>
-<li><p><strong>server</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxServerConfig" title="esbonio.lsp.sphinx.SphinxServerConfig"><em>esbonio.lsp.sphinx.SphinxServerConfig</em></a><em>]</em>) -- </p></li>
+<li><p><strong>sphinx</strong> (<a class="reference internal" href="#esbonio.lsp.sphinx.SphinxConfig" title="esbonio.lsp.sphinx.SphinxConfig"><em>esbonio.lsp.sphinx.SphinxConfig</em></a>) -- </p></li>
+<li><p><strong>server</strong> (<a class="reference internal" href="#esbonio.lsp.sphinx.SphinxServerConfig" title="esbonio.lsp.sphinx.SphinxServerConfig"><em>esbonio.lsp.sphinx.SphinxServerConfig</em></a>) -- </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -442,13 +437,13 @@ are located.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.sphinx.InitializationOptions.sphinx">
-<span class="sig-name descname"><span class="pre">sphinx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxConfig" title="esbonio.lsp.sphinx.SphinxConfig"><span class="pre">esbonio.lsp.sphinx.SphinxConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.sphinx.InitializationOptions.sphinx" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">sphinx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxConfig" title="esbonio.lsp.sphinx.SphinxConfig"><span class="pre">esbonio.lsp.sphinx.SphinxConfig</span></a></em><a class="headerlink" href="#esbonio.lsp.sphinx.InitializationOptions.sphinx" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">esbonio.sphinx.*</span></code> namespace of options.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.sphinx.InitializationOptions.server">
-<span class="sig-name descname"><span class="pre">server</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxServerConfig" title="esbonio.lsp.sphinx.SphinxServerConfig"><span class="pre">esbonio.lsp.sphinx.SphinxServerConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.sphinx.InitializationOptions.server" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">server</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#esbonio.lsp.sphinx.SphinxServerConfig" title="esbonio.lsp.sphinx.SphinxServerConfig"><span class="pre">esbonio.lsp.sphinx.SphinxServerConfig</span></a></em><a class="headerlink" href="#esbonio.lsp.sphinx.InitializationOptions.server" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">esbonio.server.*</span></code> namespace of options.</p>
 </dd></dl>
 
@@ -625,6 +620,9 @@ in the domain</p></li>
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
 </dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -645,7 +643,7 @@ in the domain</p></li>
 <dd><p>Return the project's default role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -658,7 +656,7 @@ in the domain</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types">
-<span class="sig-name descname"><span class="pre">get_role_target_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_role_target_types"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_role_target_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_role_target_types"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Return a map indicating which object types a role is capable of linking
 with.</p>
 <p>For example</p>
@@ -672,7 +670,7 @@ with.</p>
 <dt class="field-odd">Paramedrau</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
+<li><p><strong>domain_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -783,7 +781,7 @@ language client.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(yn Python v3.10)">pathlib.Path</a></p>
 </dd>
 </dl>
 </dd></dl>

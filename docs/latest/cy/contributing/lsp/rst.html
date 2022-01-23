@@ -208,11 +208,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="log.html">
-     Log
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="roles.html">
      Roles
     </a>
@@ -544,13 +539,13 @@ reported.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.ServerConfig.log_level">
-<span class="sig-name descname"><span class="pre">log_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.ServerConfig.log_level" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">log_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#esbonio.lsp.rst.ServerConfig.log_level" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>The logging level of server messages to display.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.ServerConfig.log_filter">
-<span class="sig-name descname"><span class="pre">log_filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.ServerConfig.log_filter" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">log_filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.ServerConfig.log_filter" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>A list of logger names to restrict output to.</p>
 </dd></dl>
 
@@ -562,7 +557,7 @@ reported.</p>
 <dd><p>The initialization options we can expect to receive from a client.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
-<dd class="field-odd"><p><strong>server</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference internal" href="#esbonio.lsp.rst.ServerConfig" title="esbonio.lsp.rst.ServerConfig"><em>esbonio.lsp.rst.ServerConfig</em></a><em>]</em>) -- </p>
+<dd class="field-odd"><p><strong>server</strong> (<a class="reference internal" href="#esbonio.lsp.rst.ServerConfig" title="esbonio.lsp.rst.ServerConfig"><em>esbonio.lsp.rst.ServerConfig</em></a>) -- </p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None</p>
@@ -570,7 +565,7 @@ reported.</p>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.InitializationOptions.server">
-<span class="sig-name descname"><span class="pre">server</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#esbonio.lsp.rst.ServerConfig" title="esbonio.lsp.rst.ServerConfig"><span class="pre">esbonio.lsp.rst.ServerConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.InitializationOptions.server" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<span class="sig-name descname"><span class="pre">server</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#esbonio.lsp.rst.ServerConfig" title="esbonio.lsp.rst.ServerConfig"><span class="pre">esbonio.lsp.rst.ServerConfig</span></a></em><a class="headerlink" href="#esbonio.lsp.rst.InitializationOptions.server" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>The <code class="docutils literal notranslate"><span class="pre">esbonio.server.*</span></code> namespace of options.</p>
 </dd></dl>
 
@@ -682,6 +677,20 @@ reported.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_directive_options">
+<span class="sig-name descname"><span class="pre">get_directive_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_directive_options"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_directive_options" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Return the options specification for the given directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_roles">
 <span class="sig-name descname"><span class="pre">get_roles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_roles" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><p>Return a dictionary of known roles.</p>
@@ -698,7 +707,7 @@ reported.</p>
 <dd><p>Return the default role for the project.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -836,7 +845,7 @@ represents.</p>
 <p>Currently this only looks at sections.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.SymbolVisitor.current_symbol">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pygls.lsp.types.language_features.document_symbol.DocumentSymbol</span></em><a class="headerlink" href="#esbonio.lsp.rst.SymbolVisitor.current_symbol" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pygls.lsp.types.language_features.document_symbol.DocumentSymbol</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.SymbolVisitor.current_symbol" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -959,6 +968,45 @@ represents.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LogFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">LogFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#LogFilter"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LogFilter" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>A log filter that accepts message from any of the listed logger names.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LogFilter.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#LogFilter.filter"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LogFilter.filter" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Determine if the specified record is to be logged.</p>
+<p>Returns True if the record should be logged, or False otherwise.
+If deemed appropriate, the record may be modified in-place.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LspHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">LspHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#LspHandler"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LspHandler" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>A logging handler that will send log records to an LSP client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>server</strong> (<a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><em>esbonio.lsp.rst.RstLanguageServer</em></a>) -- </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LspHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#LspHandler.emit"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LspHandler.emit" title="Permalink i'r diffiniad hwn">¶</a></dt>
+<dd><p>Sends the record to the client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>record</strong> (<a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.LogRecord" title="(yn Python v3.10)"><em>logging.LogRecord</em></a>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.resolve_directive">
 <span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">resolve_directive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directive</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#resolve_directive"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.resolve_directive" title="Permalink i'r diffiniad hwn">¶</a></dt>
@@ -967,7 +1015,7 @@ represents.</p>
 so they need to be resolved manually.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
-<dd class="field-odd"><p><strong>directive</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(yn Python v3.10)"><em>Union</em></a><em>[</em><a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(yn Sphinx v5.0.0+)"><em>docutils.parsers.rst.Directive</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em><em>]</em>) -- </p>
+<dd class="field-odd"><p><strong>directive</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(yn Python v3.10)"><em>Union</em></a><em>[</em><a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(yn Sphinx v5.0.0+)"><em>docutils.parsers.rst.Directive</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em><em>]</em>) -- </p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(yn Sphinx v5.0.0+)">docutils.parsers.rst.Directive</a></p>
@@ -980,10 +1028,10 @@ so they need to be resolved manually.</p>
 <span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">normalise_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/esbonio/lsp/rst.html#normalise_uri"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.normalise_uri" title="Permalink i'r diffiniad hwn">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Paramedrau</dt>
-<dd class="field-odd"><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- </p>
+<dd class="field-odd"><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
