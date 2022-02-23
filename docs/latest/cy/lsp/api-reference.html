@@ -1,0 +1,1400 @@
+<!doctype html>
+<html class="no-js" lang="cy">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Indecs" href="../genindex.html" /><link rel="search" title="Chwilio" href="../search.html" /><link rel="next" title="Changelog" href="../changelog.html" /><link rel="prev" title="Extending" href="extending.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.svg"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+        <title>API Reference - Esbonio</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Esbonio</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Esbonio</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Chwilio name="q" aria-label="Chwilio">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Language Server</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/formatting-example.html">Formatting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/hello-world.html">Shwmae i gyd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/solution-example.html">Solution Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/devenvs.html">Development Environments</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink i'r pennawd hwn">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Rhybudd</p>
+<p>While we will try not to break the API outlined below, until the language server
+reaches <code class="docutils literal notranslate"><span class="pre">v1.0</span></code> we do not offer any stability guarantees.</p>
+</div>
+<section id="language-servers">
+<h2>Language Servers<a class="headerlink" href="#language-servers" title="Permalink i'r pennawd hwn">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.create_language_server">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.</span></span><span class="sig-name descname"><span class="pre">create_language_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp.html#create_language_server"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.create_language_server" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Create a new language server instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>server_cls</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(yn Python v3.10)"><em>Type</em></a><em>[</em><a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><em>esbonio.lsp.rst.RstLanguageServer</em></a><em>]</em>) -- The class definition to create the server from.</p></li>
+<li><p><strong>modules</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(yn Python v3.10)"><em>Iterable</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- The list of modules that should be loaded.</p></li>
+<li><p><strong>args</strong> -- Any additional arguments that should be passed to the language server's
+constructor.</p></li>
+<li><p><strong>kwargs</strong> -- Any additional arguments that should be passed to the language server's
+constructor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer">esbonio.lsp.rst.RstLanguageServer</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">RstLanguageServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pygls.server.LanguageServer</span></code></p>
+<p>A generic reStructuredText language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>logger</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(yn Python v3.10)"><em>logging.Logger</em></a><em>]</em>) -- </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.add_feature">
+<span class="sig-name descname"><span class="pre">add_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.add_feature"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.add_feature" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Register a language feature with the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>feature</strong> (<a class="reference internal" href="#esbonio.lsp.rst.LanguageFeature" title="esbonio.lsp.rst.LanguageFeature"><em>esbonio.lsp.rst.LanguageFeature</em></a>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.clear_diagnostics">
+<span class="sig-name descname"><span class="pre">clear_diagnostics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.clear_diagnostics"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.clear_diagnostics" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Clear diagnostics from the given source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The source from which to clear diagnostics.</p></li>
+<li><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- If given, clear diagnostics from within just this uri. Otherwise, all
+diagnostics from the given source are cleared.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configuration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.configuration" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the server's actual configuration.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_default_role">
+<span class="sig-name descname"><span class="pre">get_default_role</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_default_role"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_default_role" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the default role for the project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_directive_options">
+<span class="sig-name descname"><span class="pre">get_directive_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_directive_options"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_directive_options" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the options specification for the given directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_directives">
+<span class="sig-name descname"><span class="pre">get_directives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_directives"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_directives" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a dictionary of the known directives</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(yn Sphinx v5.0.0+)">docutils.parsers.rst.Directive</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_location_type">
+<span class="sig-name descname"><span class="pre">get_location_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_location_type"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_location_type" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Given a document and a position, return the kind of location that
+represents.</p>
+<p>This will return one of the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rst</span></code>: Indicates that the position is within an <code class="docutils literal notranslate"><span class="pre">*.rst</span></code> document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">py</span></code>: Indicates that the position is within code in a <code class="docutils literal notranslate"><span class="pre">*.py</span></code> document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docstring</span></code>: Indicates that the position is within a docstring in a
+<code class="docutils literal notranslate"><span class="pre">*.py</span></code> document.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document associated with the given position</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position to determine the type of.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.get_roles">
+<span class="sig-name descname"><span class="pre">get_roles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.get_roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.get_roles" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a dictionary of known roles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.line_at_position">
+<span class="sig-name descname"><span class="pre">line_at_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.line_at_position"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.line_at_position" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the contents of the line corresponding to the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document associated with the given position</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position representing the line to retrieve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.line_to_position">
+<span class="sig-name descname"><span class="pre">line_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.line_to_position"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.line_to_position" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the contents of the line up until the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document associated with the given position.</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position representing the line to retrieve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.logger" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The base logger that should be used for all language sever log entries.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.set_diagnostics">
+<span class="sig-name descname"><span class="pre">set_diagnostics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagnostics</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.set_diagnostics"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.set_diagnostics" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Set the diagnostics for the given source and uri.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The source the diagnostics are from</p></li>
+<li><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri the diagnostics are associated with</p></li>
+<li><p><strong>diagnostics</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a><em>[</em><em>pygls.lsp.types.basic_structures.Diagnostic</em><em>]</em>) -- The diagnostics themselves</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.sync_diagnostics">
+<span class="sig-name descname"><span class="pre">sync_diagnostics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.sync_diagnostics"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.sync_diagnostics" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Update the client with the currently stored diagnostics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.text_to_position">
+<span class="sig-name descname"><span class="pre">text_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#RstLanguageServer.text_to_position"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.text_to_position" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the contents of the document up until the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document associated with the given position</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position representing the point at which to stop gathering text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.RstLanguageServer.user_config">
+<span class="sig-name descname"><span class="pre">user_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pydantic.main.BaseModel</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.rst.RstLanguageServer.user_config" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The user's configuration.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.sphinx.</span></span><span class="sig-name descname"><span class="pre">SphinxLanguageServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">esbonio.lsp.rst.RstLanguageServer</span></code></a></p>
+<p>A language server dedicated to working with Sphinx projects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.app">
+<span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Sphinx</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.app" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The Sphinx application instance.</p>
+</dd></dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configuration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.configuration" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the server's actual configuration.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.create_sphinx_app">
+<span class="sig-name descname"><span class="pre">create_sphinx_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.create_sphinx_app"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.create_sphinx_app" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Create a Sphinx application instance with the given config.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>esbonio.lsp.sphinx.InitializationOptions</em>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/appapi.html#sphinx.application.Sphinx" title="(yn Sphinx v5.0.0+)">sphinx.application.Sphinx</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_default_role">
+<span class="sig-name descname"><span class="pre">get_default_role</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_default_role"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_default_role" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the project's default role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_directive_options">
+<span class="sig-name descname"><span class="pre">get_directive_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_directive_options"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_directive_options" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the options specification for the given directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_directives">
+<span class="sig-name descname"><span class="pre">get_directives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_directives"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_directives" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a dictionary of the known directives</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/markupapi.html#docutils.parsers.rst.Directive" title="(yn Sphinx v5.0.0+)">docutils.parsers.rst.Directive</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_doctree">
+<span class="sig-name descname"><span class="pre">get_doctree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_doctree"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_doctree" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the doctree that corresponds with the specified document.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">docname</span></code> of a document is its path relative to the project's <code class="docutils literal notranslate"><span class="pre">srcdir</span></code>
+minus the extension e.g. the docname of the file <code class="docutils literal notranslate"><span class="pre">docs/lsp/features.rst</span></code>
+would be <code class="docutils literal notranslate"><span class="pre">lsp/features</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>docname</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- Returns the doctree that corresponds with the given docname</p></li>
+<li><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- Returns the doctree that corresponds with the given uri.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_domain">
+<span class="sig-name descname"><span class="pre">get_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_domain"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_domain" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the domain with the given name.</p>
+<p>If a domain with the given name cannot be found, this method will return None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a>[<a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/domainapi.html#sphinx.domains.Domain" title="(yn Sphinx v5.0.0+)">sphinx.domains.Domain</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_domains">
+<span class="sig-name descname"><span class="pre">get_domains</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_domains"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_domains" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Get all the domains registered with an applications.</p>
+<p>Returns a generator that iterates through all of an application's domains,
+taking into account configuration variables such as <code class="docutils literal notranslate"><span class="pre">primary_domain</span></code>.
+Yielded values will be a tuple of the form <code class="docutils literal notranslate"><span class="pre">(prefix,</span> <span class="pre">domain)</span></code> where</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prefix</span></code> is the namespace that should be used when referencing items
+in the domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domain</span></code> is the domain object itself.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(yn Python v3.10)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(yn Python v3.10)"><em>Tuple</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://www.sphinx-doc.org/en/master/extdev/domainapi.html#sphinx.domains.Domain" title="(yn Sphinx v5.0.0+)">sphinx.domains.Domain</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_projects">
+<span class="sig-name descname"><span class="pre">get_intersphinx_projects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_intersphinx_projects"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_projects" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the list of configured intersphinx project names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_targets">
+<span class="sig-name descname"><span class="pre">get_intersphinx_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_intersphinx_targets"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_targets" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return the intersphinx objects targeted by the given role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The project to return targets from</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The domain the role is a part of, if applicable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(yn Python v3.10)">tuple</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types">
+<span class="sig-name descname"><span class="pre">get_role_target_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_role_target_types"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a map indicating which object types a role is capable of linking
+with.</p>
+<p>For example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"func"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"py:function"</span><span class="p">],</span>
+    <span class="s2">"class"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"py:class"</span><span class="p">,</span> <span class="s2">"py:exception"</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
+<li><p><strong>domain_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_role_targets">
+<span class="sig-name descname"><span class="pre">get_role_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_role_targets"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_targets" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a list of objects targeted by the given role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The domain the role is a part of, if applicable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(yn Python v3.10)">tuple</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.get_roles">
+<span class="sig-name descname"><span class="pre">get_roles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.get_roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.get_roles" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a dictionary of known roles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.sphinx.SphinxLanguageServer.has_intersphinx_targets">
+<span class="sig-name descname"><span class="pre">has_intersphinx_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/sphinx.html#SphinxLanguageServer.has_intersphinx_targets"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.sphinx.SphinxLanguageServer.has_intersphinx_targets" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the given intersphinx project has targets targeted by the
+given role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The project to check</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The domain the role is a part of, if applicable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="language-features">
+<h2>Language Features<a class="headerlink" href="#language-features" title="Permalink i'r pennawd hwn">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">LanguageFeature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rst</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Base class for language features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>rst</strong> (<a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer" title="esbonio.lsp.rst.RstLanguageServer"><em>RstLanguageServer</em></a>) -- </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.code_action">
+<span class="sig-name descname"><span class="pre">code_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.code_action"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.code_action" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called when code actions should be computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>pygls.lsp.types.language_features.code_action.CodeActionParams</em>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.code_action.CodeAction]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.complete">
+<span class="sig-name descname"><span class="pre">complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.complete"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.complete" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called if any of the given <code class="docutils literal notranslate"><span class="pre">completion_triggers</span></code> match the current line.</p>
+<p>This method should return a list of <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) -- The context of the completion request</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.completion_resolve">
+<span class="sig-name descname"><span class="pre">completion_resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.completion_resolve"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.completion_resolve" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called with a completion item the user has selected in the UI,
+allowing for additional details to be provided e.g. documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>pygls.lsp.types.language_features.completion.CompletionItem</em>) -- The completion item to provide additional details for.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.completion_triggers">
+<span class="sig-name descname"><span class="pre">completion_triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">re.Pattern</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.completion_triggers" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A list of regular expressions used to determine if the
+:meth`~esbonio.lsp.rst.LanguageFeature.complete` method should be called on the
+current line.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.definition">
+<span class="sig-name descname"><span class="pre">definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.definition"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.definition" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called if any of the given <code class="docutils literal notranslate"><span class="pre">definition_triggers</span></code> match the current line.</p>
+<p>This method should return a list of <code class="docutils literal notranslate"><span class="pre">Location</span></code> objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>match</strong> (<em>re.Match</em>) -- The match object generated from the corresponding regular expression.</p></li>
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document the definition has been requested within</p></li>
+<li><p><strong>pos</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position of the request within the document.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.definition_triggers">
+<span class="sig-name descname"><span class="pre">definition_triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">re.Pattern</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.definition_triggers" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A list of regular expressions used to determine if the
+<a class="reference internal" href="#esbonio.lsp.rst.LanguageFeature.definition" title="esbonio.lsp.rst.LanguageFeature.definition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">definition()</span></code></a> method should be called.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.initialize"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.initialize" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called once when the server is first initialized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>pygls.lsp.types.general_messages.InitializeParams</em>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.initialized">
+<span class="sig-name descname"><span class="pre">initialized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.initialized"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.initialized" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called once upon receipt of the <cite>initialized</cite> notification from the client.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>pygls.lsp.types.general_messages.InitializedParams</em>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.save"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.save" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Called each time a document is saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>pygls.lsp.types.workspace.DidSaveTextDocumentParams</em>) -- </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.CompletionContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.rst.</span></span><span class="sig-name descname"><span class="pre">CompletionContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#CompletionContext"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.CompletionContext" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A class that captures the context within which a completion request has been
+made.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- </p></li>
+<li><p><strong>location</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- </p></li>
+<li><p><strong>match</strong> (<em>re.Match</em>) -- </p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.CompletionContext.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><a class="headerlink" href="#esbonio.lsp.rst.CompletionContext.doc" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The document within which the completion request was made.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.CompletionContext.location">
+<span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#esbonio.lsp.rst.CompletionContext.location" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The location type where the request was made.
+See <a class="reference internal" href="#esbonio.lsp.rst.RstLanguageServer.get_location_type" title="esbonio.lsp.rst.RstLanguageServer.get_location_type"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_location_type()</span></code></a> for details.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.CompletionContext.match">
+<span class="sig-name descname"><span class="pre">match</span></span><a class="headerlink" href="#esbonio.lsp.rst.CompletionContext.match" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The match object describing the site of the completion request.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.CompletionContext.position">
+<span class="sig-name descname"><span class="pre">position</span></span><a class="headerlink" href="#esbonio.lsp.rst.CompletionContext.position" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>The position at which the completion request was made.</p>
+</dd></dl>
+</dd></dl>
+<section id="directives">
+<h3>Directives<a class="headerlink" href="#directives" title="Permalink i'r pennawd hwn">#</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.DIRECTIVE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">DIRECTIVE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">re.compile(...)</span></em><a class="headerlink" href="#esbonio.lsp.directives.DIRECTIVE" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A regular expression to detect and parse partial and complete directives.</p>
+<p>This does <strong>not</strong> include any options or content that may be included underneath
+the initial declaration. The language server breaks a directive down into a number
+of parts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                <span class="n">vvvvvv</span> <span class="n">argument</span>
+<span class="o">..</span> <span class="n">c</span><span class="p">:</span><span class="n">function</span><span class="p">::</span> <span class="n">malloc</span>
+<span class="o">^^^^^^^^^^^^^^^</span> <span class="n">directive</span>
+     <span class="o">^^^^^^^^</span> <span class="n">name</span>
+   <span class="o">^</span> <span class="n">domain</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.DIRECTIVE_OPTION">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">DIRECTIVE_OPTION</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">re.compile(...)</span></em><a class="headerlink" href="#esbonio.lsp.directives.DIRECTIVE_OPTION" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A regular expression used to detect and parse partial and complete directive options.</p>
+<p>The language server breaks an option down into a number of parts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">vvvvvv</span> <span class="n">value</span>
+<span class="o">|</span>   <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span>
+    <span class="o">^^^^^^^</span> <span class="n">option</span>
+     <span class="o">^^^^^</span> <span class="n">name</span>
+ <span class="o">^^^</span> <span class="n">indent</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.ArgumentCompletion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">ArgumentCompletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/directives.html#ArgumentCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A completion provider for directive arguments.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.ArgumentCompletion.complete_arguments">
+<span class="sig-name descname"><span class="pre">complete_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/directives.html#ArgumentCompletion.complete_arguments"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.ArgumentCompletion.complete_arguments" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+directive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference internal" href="#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) -- The completion context</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain the directive is a member of</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.directives.</span></span><span class="sig-name descname"><span class="pre">Directives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/directives.html#Directives"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Directive support for the language server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.add_argument_completion_provider">
+<span class="sig-name descname"><span class="pre">add_argument_completion_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/directives.html#Directives.add_argument_completion_provider"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.add_argument_completion_provider" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Register an <a class="reference internal" href="#esbonio.lsp.directives.ArgumentCompletion" title="esbonio.lsp.directives.ArgumentCompletion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentCompletion</span></code></a> provider.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>provider</strong> (<a class="reference internal" href="#esbonio.lsp.directives.ArgumentCompletion" title="esbonio.lsp.directives.ArgumentCompletion"><em>esbonio.lsp.directives.ArgumentCompletion</em></a>) -- The provider to register.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.directives.Directives.add_documentation">
+<span class="sig-name descname"><span class="pre">add_documentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documentation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/directives.html#Directives.add_documentation"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.directives.Directives.add_documentation" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Register directive documentation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">documentation</span></code> should be a dictionary with the following structure</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">documentation</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"raw(docutils.parsers.rst.directives.misc.Raw)"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"is_markdown"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">"license"</span><span class="p">:</span> <span class="s2">"https://..."</span><span class="p">,</span>
+        <span class="s2">"source"</span><span class="p">:</span> <span class="s2">"https://..."</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"# .. raw::"</span><span class="p">,</span>
+            <span class="s2">"The raw directive is used for..."</span><span class="p">,</span>
+            <span class="o">...</span>
+         <span class="p">]</span>
+        <span class="s2">"options"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"file"</span><span class="p">:</span> <span class="s2">"The file option allows..."</span><span class="p">,</span>
+            <span class="o">...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>where the key has the form <code class="docutils literal notranslate"><span class="pre">name(dotted_name)</span></code>. There are cases where a
+directive's implementation is not sufficient to uniquely identify it as
+multiple directives can be provided by a single class.</p>
+<p>This means the key has to be a combination of the <code class="docutils literal notranslate"><span class="pre">name</span></code> the user writes
+in a reStructuredText document and <code class="docutils literal notranslate"><span class="pre">dotted_name</span></code> is the fully qualified
+class name of the directive's implementation.</p>
+<div class="admonition note">
+<p class="admonition-title">Nodyn</p>
+<p>If there is a clash with an existing key, the existing value will be
+overwritten with the new value.</p>
+</div>
+<p>The values in this dictionary are themselves dictionaries with the following
+fields.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>A list of strings for the directive's main documentation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">options</span></code>,</dt><dd><p>A dictionary, with a field for the documentaton of each of the directive's
+options.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">is_markdown</span></code></dt><dd><p>A boolean flag used to indicate whether the <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">options</span></code>
+are written in plain text or markdown.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">source</span></code></dt><dd><p>The url to the documentation's source</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">license</span></code></dt><dd><p>The url to the documentation's license</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>documentation</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a><em>]</em><em>]</em>) -- The documentation to register.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink i'r pennawd hwn">#</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.ROLE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">ROLE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">re.compile(...)</span></em><a class="headerlink" href="#esbonio.lsp.roles.ROLE" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A regular expression to detect and parse parial and complete roles.</p>
+<p>I'm not sure if there are offical names for the components of a role, but the
+language server breaks a role down into a number of parts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              vvvvvv label
+             v modifier(optional)
+            vvvvvvvv target
+:c:function:`!malloc`
+^^^^^^^^^^^^ role
+   ^^^^^^^^ name
+ ^ domain (optional)
+</pre></div>
+</div>
+<p>The language server sometimes refers to the above as a "plain" role, in that the
+role's target contains just the label of the object it is linking to. However it's
+also possible to define "aliased" roles, where the link text in the final document
+is overriden, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             vvvvvvvvvvvvvvvvvvvvvvvv alias
+                                       vvvvvv label
+                                      v modifier (optional)
+            vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv target
+:c:function:`used to allocate memory &lt;~malloc&gt;`
+^^^^^^^^^^^^ role
+   ^^^^^^^^ name
+ ^ domain (optional)
+</pre></div>
+</div>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">tests.test_roles.test_role_regex()</span></code> for a list of example strings this pattern
+is expected to match.</p>
+</dd></dl>
+<dl class="py data">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.DEFAULT_ROLE">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_ROLE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">re.compile(...)</span></em><a class="headerlink" href="#esbonio.lsp.roles.DEFAULT_ROLE" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A regular expression to detect and parse parial and complete "default" roles.</p>
+<p>A "default" role is the target part of a normal role - but without the <code class="docutils literal notranslate"><span class="pre">:name:</span></code> part.</p>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">Roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#Roles"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Role support for the language server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.Roles.add_documentation">
+<span class="sig-name descname"><span class="pre">add_documentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">documentation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#Roles.add_documentation"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.Roles.add_documentation" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Register role documentation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">documentation</span></code> should be a dictionary of the form</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">documentation</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"raw(docutils.parsers.rst.roles.raw_role)"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"is_markdown"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">"license"</span><span class="p">:</span> <span class="s2">"https://..."</span><span class="p">,</span>
+        <span class="s2">"source"</span><span class="p">:</span> <span class="s2">"https://..."</span><span class="p">,</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"# :raw:"</span><span class="p">,</span>
+            <span class="s2">"The raw role is used for..."</span><span class="p">,</span>
+            <span class="o">...</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>where the key is of the form <cite>name(dotted_name)</cite>. There are cases where a role's
+implementation is not sufficient to uniquely identify it as multiple roles can
+be provided by a single class.</p>
+<p>This means the key has to be a combination of the <code class="docutils literal notranslate"><span class="pre">name</span></code> the user writes in
+an reStructuredText document and <code class="docutils literal notranslate"><span class="pre">dotted_name</span></code> is the fully qualified name of
+the role's implementation.</p>
+<div class="admonition note">
+<p class="admonition-title">Nodyn</p>
+<p>If there is a clash with an existing key, the existing value will be
+overwritten with the new value.</p>
+</div>
+<p>The values in this dictionary are themselves dictionaries with the following
+fields.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>A list of strings for the role's usage.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">is_markdown</span></code></dt><dd><p>A boolean flag used to indicate whether the <code class="docutils literal notranslate"><span class="pre">description</span></code> is written in
+plain text or markdown.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">source</span></code></dt><dd><p>The url to the documentation's source.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">license</span></code></dt><dd><p>The url to the documentation's license.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>documentation</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a><em>]</em><em>]</em>) -- The documentation to register.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetCompletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetCompletion"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A completion provider for role targets</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion.complete_targets">
+<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a list of completion items representing valid targets for the given
+role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference internal" href="#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) -- The completion context</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the domain the role is a member of</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role to generate completion suggestions for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.completion.CompletionItem]</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.roles.</span></span><span class="sig-name descname"><span class="pre">TargetDefinition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetDefinition"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A definition provider for role targets</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition.find_definitions">
+<span class="sig-name descname"><span class="pre">find_definitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetDefinition.find_definitions"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition.find_definitions" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a list of locations representing the definition of the given role
+target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) -- The document containing the match</p></li>
+<li><p><strong>match</strong> (<em>re.Match</em>) -- The match object that triggered the definition request</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>]</em>) -- The domain the role is part of, if applicable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+</section>
+</section>
+<section id="module-esbonio.lsp.testing">
+<span id="testing"></span><h2>Testing<a class="headerlink" href="#module-esbonio.lsp.testing" title="Permalink i'r pennawd hwn">#</a></h2>
+<p>Utility functions to help with testing Language Server features.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.Client">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#Client"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.Client" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd></dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">ClientProtocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#ClientProtocol"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientProtocol" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A slightly modified version of the base protocol that allows
+us to await on notifications.</p>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">ClientServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#ClientServer"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>A class that returns a client server pair for use in tests.</p>
+<p>Originally based on:
+<a class="reference external" href="https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53">https://github.com/openlawlibrary/pygls/blob/704ff607a2a993a633fc2ad05eb95120dd34cad5/tests/conftest.py#L53</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>server</strong> (<em>pygls.server.LanguageServer</em>) -- </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.ClientServer.start">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#ClientServer.start"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.ClientServer.start" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Start the client and server components ready for testing.</p>
+<p>As well as starting the event loops for them both it also
+initializes the server based on the <code class="docutils literal notranslate"><span class="pre">root_uri</span></code> and
+<code class="docutils literal notranslate"><span class="pre">initialization_options</span></code> parameters. Once the response for
+the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> request is received, it will proceed to send the
+<code class="docutils literal notranslate"><span class="pre">initialized</span></code> notification to trigger the initial build of the
+documentation.</p>
+<p>By default this method will <code class="docutils literal notranslate"><span class="pre">await</span></code> until the client receives the
+<code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code> notification, though this can be disabled
+by passing <code class="docutils literal notranslate"><span class="pre">wait=False</span></code> (useful for preventing deadlocks in situations
+where the server is not expected to start successfully).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The root uri of the project to initialize the server within</p></li>
+<li><p><strong>initialization_options</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(yn Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(yn Python v3.10)"><em>Any</em></a><em>]</em><em>]</em>) -- The initializaion options to pass to the server</p></li>
+<li><p><strong>wait</strong> -- If <code class="docutils literal notranslate"><span class="pre">True</span></code>, await until the client receives the <code class="docutils literal notranslate"><span class="pre">esbonio/buildComplete</span></code>
+notification.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.completion_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">completion_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">character</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#completion_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_request" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Make a completion request to a language server.</p>
+<p>Intended for use within test cases, this function simulates the opening of a
+document, inserting some text, triggering a completion request and closing it
+again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> does not have to exist.</p>
+<p>The text to be inserted is specified through the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter. By default
+it's assumed that the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter consists of a single line of text, in fact
+this function will error if that is not the case.</p>
+<p>If your request requires additional context (such as directive option completions)
+it can be included but it must be delimited with a <code class="docutils literal notranslate"><span class="pre">\f</span></code> character. For example,
+to represent the following scenario:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">filename</span><span class="o">.</span><span class="n">png</span>
+   <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span>
+   <span class="p">:</span>
+    <span class="o">^</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">^</span></code> represents the position from which we trigger the completion request.
+We would set <code class="docutils literal notranslate"><span class="pre">text</span></code> to the following
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span> <span class="pre">filename.png\n</span>   <span class="pre">:align:</span> <span class="pre">center\n\f</span>   <span class="pre">:</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used to make the request.</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri the completion request should be made within.</p></li>
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The text that provides the context for the completion request.</p></li>
+<li><p><strong>character</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(yn Python v3.10)"><em>int</em></a><em>]</em>) -- The character index at which to make the completion request from.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will default to the end of the inserted text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionList</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.completion_resolve_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">completion_resolve_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#completion_resolve_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.completion_resolve_request" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Make a <code class="docutils literal notranslate"><span class="pre">completionItem/resolve</span></code> request to a language server.</p>
+<p>Intented for use within test cases, this function assumes that a
+<code class="docutils literal notranslate"><span class="pre">textDocument/completion</span></code> request has already been performed resulting in a list
+of <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> candidates being generated. This function can then be used
+to simulate the user selecting an item and the client making a follow up
+<code class="docutils literal notranslate"><span class="pre">completionItem/resolve</span></code> request to the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- </p></li>
+<li><p><strong>item</strong> (<em>pygls.lsp.types.language_features.completion.CompletionItem</em>) -- </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pygls.lsp.types.language_features.completion.CompletionItem</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.definition_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">definition_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#definition_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.definition_request" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Make a definition request to a language server.</p>
+<p>Intended for use within test cases, this function simulates opening an
+existing file and making a definition request and closing it again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> <em>must</em> exist as the actual content of the file
+will be used by the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used to make the request</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri of the file the definition request should be made within.</p></li>
+<li><p><strong>position</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) -- The position at which to trigger the completion request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.basic_structures.Location]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.directive_argument_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">directive_argument_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#directive_argument_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.directive_argument_patterns" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a number of example directive argument patterns.</p>
+<p>These correspond to test cases where directive argument suggestions should be
+generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the directive to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial argument that the user has already entered.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.document_symbols_request">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">document_symbols_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_uri</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#document_symbols_request"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.document_symbols_request" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Make a <code class="docutils literal notranslate"><span class="pre">textDocument/documentSymbols</span></code> request to a language server.</p>
+<p>Intended for use with test cases, this function simulates opening an existing
+file, making a document symbols request and closing it again.</p>
+<p>The file referenced by <code class="docutils literal notranslate"><span class="pre">test_uri</span></code> <em>must</em> exist as the content of the file will
+be used by the language server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test</strong> (<a class="reference internal" href="#esbonio.lsp.testing.ClientServer" title="esbonio.lsp.testing.ClientServer"><em>esbonio.lsp.testing.ClientServer</em></a>) -- The client-server pair to be used</p></li>
+<li><p><strong>test_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The uri of the file to make the <code class="docutils literal notranslate"><span class="pre">textDocument/documentSymbols</span></code> request within</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[pygls.lsp.types.language_features.document_symbol.DocumentSymbol]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.intersphinx_target_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">intersphinx_target_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#intersphinx_target_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.intersphinx_target_patterns" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a number of example intersphinx target patterns.</p>
+<p>These correspond to cases where target completions may be generated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role to generate examples for</p></li>
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the project to generate examples for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.role_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">role_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#role_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_patterns" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a number of example role patterns.</p>
+<p>These correspond to when role suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial role name that the user has already entered</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.role_target_patterns">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">role_target_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#role_target_patterns"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.role_target_patterns" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Return a number of example role target patterns.</p>
+<p>These correspond to test cases where role target suggestions should be generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The name of the role to generate suggestions for.</p></li>
+<li><p><strong>partial</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)"><em>str</em></a>) -- The partial target that the user as already entered.</p></li>
+<li><p><strong>include_modifiers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)"><em>bool</em></a>) -- A flag to indicate if additional modifiers like <code class="docutils literal notranslate"><span class="pre">!</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> should be
+included in the generated patterns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(yn Python v3.10)"><em>List</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(yn Python v3.10)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="esbonio.lsp.testing.sphinx_version">
+<span class="sig-prename descclassname"><span class="pre">esbonio.lsp.testing.</span></span><span class="sig-name descname"><span class="pre">sphinx_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/testing.html#sphinx_version"><span class="viewcode-link"><span class="pre">[ffynhonnell]</span></span></a><a class="headerlink" href="#esbonio.lsp.testing.sphinx_version" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Helper function for determining which version of Sphinx we are
+testing with.</p>
+<p>Currently this only cares about the major version number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramedrau</dt>
+<dd class="field-odd"><p><strong>eq</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(yn Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(yn Python v3.10)"><em>int</em></a><em>]</em>) -- When set returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the Sphinx version exactly matches
+what's given.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(yn Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../changelog.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Changelog</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="extending.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Extending</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Cynnwys
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#language-servers">Language Servers</a></li>
+<li><a class="reference internal" href="#language-features">Language Features</a><ul>
+<li><a class="reference internal" href="#directives">Directives</a></li>
+<li><a class="reference internal" href="#roles">Roles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-esbonio.lsp.testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>
