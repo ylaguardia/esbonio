@@ -230,6 +230,7 @@
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">pygls</span> <span class="kn">import</span> <span class="n">IS_WIN</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DiagnosticSeverity</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
@@ -259,12 +260,15 @@
             <span class="k">return</span> <span class="kc">True</span>
 
 
+<span class="c1"># Order matters!</span>
 <span class="n">DEFAULT_MODULES</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"esbonio.lsp.directives"</span><span class="p">,</span>
     <span class="s2">"esbonio.lsp.roles"</span><span class="p">,</span>
     <span class="s2">"esbonio.lsp.sphinx.codeblocks"</span><span class="p">,</span>
     <span class="s2">"esbonio.lsp.sphinx.domains"</span><span class="p">,</span>
-    <span class="s2">"esbonio.lsp.sphinx.filepaths"</span><span class="p">,</span>
+    <span class="s2">"esbonio.lsp.sphinx.images"</span><span class="p">,</span>
+    <span class="s2">"esbonio.lsp.sphinx.includes"</span><span class="p">,</span>
+    <span class="s2">"esbonio.lsp.sphinx.roles"</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="sd">"""The modules to load in the default configuration of the server."""</span>
 
@@ -496,6 +500,15 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_sphinx</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">clear_diagnostics</span><span class="p">(</span><span class="s2">"sphinx"</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DeleteFilesParams</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Deleted files: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
+
+        <span class="c1"># Files don't exist anymore, so diagnostics must be cleared.</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear_diagnostics</span><span class="p">(</span><span class="s2">"sphinx"</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 

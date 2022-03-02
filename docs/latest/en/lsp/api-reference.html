@@ -705,16 +705,12 @@ current line.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.definition">
-<span class="sig-name descname"><span class="pre">definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.definition" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">definition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.definition" title="Permalink to this definition">#</a></dt>
 <dd><p>Called if any of the given <code class="docutils literal notranslate"><span class="pre">definition_triggers</span></code> match the current line.</p>
 <p>This method should return a list of <code class="docutils literal notranslate"><span class="pre">Location</span></code> objects.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>match</strong> (<em>re.Match</em>) – The match object generated from the corresponding regular expression.</p></li>
-<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – The document the definition has been requested within</p></li>
-<li><p><strong>pos</strong> (<em>pygls.lsp.types.basic_structures.Position</em>) – The position of the request within the document.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>context</strong> (<em>esbonio.lsp.rst.DefinitionContext</em>) – The context of the definition request.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><em>List</em></a>[pygls.lsp.types.basic_structures.Location]</p>
@@ -726,6 +722,19 @@ current line.</p>
 <span class="sig-name descname"><span class="pre">definition_triggers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">re.Pattern</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.definition_triggers" title="Permalink to this definition">#</a></dt>
 <dd><p>A list of regular expressions used to determine if the
 <a class="reference internal" href="#esbonio.lsp.rst.LanguageFeature.definition" title="esbonio.lsp.rst.LanguageFeature.definition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">definition()</span></code></a> method should be called.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.delete_files">
+<span class="sig-name descname"><span class="pre">delete_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/rst.html#LanguageFeature.delete_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.rst.LanguageFeature.delete_files" title="Permalink to this definition">#</a></dt>
+<dd><p>Called each time files are deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>pygls.lsp.types.file_operations.DeleteFilesParams</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.rst.LanguageFeature.initialize">
@@ -1038,14 +1047,14 @@ plain text or markdown.</p>
 <dd><p>A completion provider for role targets</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetCompletion.complete_targets">
-<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">complete_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetCompletion.complete_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetCompletion.complete_targets" title="Permalink to this definition">#</a></dt>
 <dd><p>Return a list of completion items representing valid targets for the given
 role.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>context</strong> (<a class="reference internal" href="#esbonio.lsp.rst.CompletionContext" title="esbonio.lsp.rst.CompletionContext"><em>esbonio.lsp.rst.CompletionContext</em></a>) – The completion context</p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the domain the role is a member of</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – The name of the domain the role is a member of</p></li>
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the role to generate completion suggestions for.</p></li>
 </ul>
 </dd>
@@ -1061,16 +1070,17 @@ role.</p>
 <dd><p>A definition provider for role targets</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="esbonio.lsp.roles.TargetDefinition.find_definitions">
-<span class="sig-name descname"><span class="pre">find_definitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetDefinition.find_definitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition.find_definitions" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">find_definitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/esbonio/lsp/roles.html#TargetDefinition.find_definitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#esbonio.lsp.roles.TargetDefinition.find_definitions" title="Permalink to this definition">#</a></dt>
 <dd><p>Return a list of locations representing the definition of the given role
 target.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>doc</strong> (<em>pygls.workspace.Document</em>) – The document containing the match</p></li>
-<li><p><strong>match</strong> (<em>re.Match</em>) – The match object that triggered the definition request</p></li>
+<li><p><strong>doc</strong> – The document containing the match</p></li>
+<li><p><strong>match</strong> – The match object that triggered the definition request</p></li>
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The name of the role</p></li>
 <li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em>) – The domain the role is part of, if applicable.</p></li>
+<li><p><strong>context</strong> (<em>esbonio.lsp.rst.DefinitionContext</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>

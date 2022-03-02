@@ -236,6 +236,7 @@
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CodeAction</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CodeActionParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DocumentSymbol</span>
@@ -289,6 +290,34 @@
         <span class="p">)</span></div>
 
 
+<span class="k">class</span> <span class="nc">DefinitionContext</span><span class="p">:</span>
+    <span class="sd">"""A class that captures the context within which a definition request has been</span>
+<span class="sd">    made."""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">"re.Match"</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
+        <span class="sd">"""The document within which the definition request was made."""</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="sd">"""The location type where the request was made.</span>
+<span class="sd">        See :meth:`~esbonio.lsp.rst.RstLanguageServer.get_location_type` for details."""</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">match</span>
+        <span class="sd">"""The match object describing the site of the definition request."""</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+        <span class="sd">"""The position at which the definition request was made."""</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">character</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"DefinitionContext&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">uri</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="si">}</span><span class="s2">) -- </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">match</span><span class="si">}</span><span class="s2">&gt;"</span>
+        <span class="p">)</span>
+
+
 <div class="viewcode-block" id="LanguageFeature"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature">[docs]</a><span class="k">class</span> <span class="nc">LanguageFeature</span><span class="p">:</span>
     <span class="sd">"""Base class for language features."""</span>
 
@@ -304,6 +333,9 @@
 
 <div class="viewcode-block" id="LanguageFeature.save"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">"""Called each time a document is saved."""</span></div>
+
+<div class="viewcode-block" id="LanguageFeature.delete_files"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature.delete_files">[docs]</a>    <span class="k">def</span> <span class="nf">delete_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DeleteFilesParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">"""Called each time files are deleted."""</span></div>
 
 <div class="viewcode-block" id="LanguageFeature.code_action"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature.code_action">[docs]</a>    <span class="k">def</span> <span class="nf">code_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CodeActionParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CodeAction</span><span class="p">]:</span>
         <span class="sd">"""Called when code actions should be computed."""</span>
@@ -341,21 +373,15 @@
     <span class="sd">"""A list of regular expressions used to determine if the</span>
 <span class="sd">    :meth:`~esbonio.lsp.rst.LanguageFeature.definition` method should be called."""</span>
 
-<div class="viewcode-block" id="LanguageFeature.definition"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature.definition">[docs]</a>    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">"re.Match"</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Position</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+<div class="viewcode-block" id="LanguageFeature.definition"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.LanguageFeature.definition">[docs]</a>    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">DefinitionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
         <span class="sd">"""Called if any of the given ``definition_triggers`` match the current line.</span>
 
 <span class="sd">        This method should return a list of ``Location`` objects.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        match:</span>
-<span class="sd">           The match object generated from the corresponding regular expression.</span>
-<span class="sd">        doc:</span>
-<span class="sd">           The document the definition has been requested within</span>
-<span class="sd">        pos:</span>
-<span class="sd">           The position of the request within the document.</span>
+<span class="sd">        context:</span>
+<span class="sd">           The context of the definition request.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="p">[]</span></div></div>
 
@@ -447,6 +473,9 @@
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">delete_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DeleteFilesParams</span><span class="p">):</span>
         <span class="k">pass</span>
 
 <div class="viewcode-block" id="RstLanguageServer.add_feature"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.rst.RstLanguageServer.add_feature">[docs]</a>    <span class="k">def</span> <span class="nf">add_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="s2">"LanguageFeature"</span><span class="p">):</span>
@@ -719,7 +748,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Missing expected current symbol"</span><span class="p">)</span>
 
         <span class="n">name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">astext</span><span class="p">()</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">line</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># type: ignore</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">line</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
         <span class="n">symbol</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="n">symbol</span><span class="o">.</span><span class="n">range</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span>

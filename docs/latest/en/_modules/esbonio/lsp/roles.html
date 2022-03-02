@@ -229,10 +229,10 @@
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Range</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">TextEdit</span>
-<span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
 <span class="kn">from</span> <span class="nn">esbonio.lsp.directives</span> <span class="kn">import</span> <span class="n">DIRECTIVE</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.rst</span> <span class="kn">import</span> <span class="n">CompletionContext</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.rst</span> <span class="kn">import</span> <span class="n">DefinitionContext</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.rst</span> <span class="kn">import</span> <span class="n">LanguageFeature</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.rst</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.sphinx</span> <span class="kn">import</span> <span class="n">SphinxLanguageServer</span>
@@ -321,7 +321,7 @@
     <span class="sd">"""A definition provider for role targets"""</span>
 
 <div class="viewcode-block" id="TargetDefinition.find_definitions"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.roles.TargetDefinition.find_definitions">[docs]</a>    <span class="k">def</span> <span class="nf">find_definitions</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">"re.Match"</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">DefinitionContext</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
         <span class="sd">"""Return a list of locations representing the definition of the given role</span>
 <span class="sd">        target.</span>
@@ -343,7 +343,7 @@
     <span class="sd">"""A completion provider for role targets"""</span>
 
 <div class="viewcode-block" id="TargetCompletion.complete_targets"><a class="viewcode-back" href="../../../lsp/api-reference.html#esbonio.lsp.roles.TargetCompletion.complete_targets">[docs]</a>    <span class="k">def</span> <span class="nf">complete_targets</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
         <span class="sd">"""Return a list of completion items representing valid targets for the given</span>
 <span class="sd">        role.</span>
@@ -453,24 +453,15 @@
     <span class="n">completion_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">ROLE</span><span class="p">,</span> <span class="n">DEFAULT_ROLE</span><span class="p">]</span>
     <span class="n">definition_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">ROLE</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">"re.Match"</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Position</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">DefinitionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
 
-        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-        <span class="n">domain</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">"domain"</span><span class="p">]</span> <span class="ow">or</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">"domain"</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">"name"</span><span class="p">)</span>
 
         <span class="n">definitions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="s2">"Suggesting definitions for </span><span class="si">%s%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
-            <span class="n">domain</span> <span class="ow">or</span> <span class="s2">":"</span><span class="p">,</span>
-            <span class="n">name</span><span class="p">,</span>
-            <span class="k">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">(),</span>
-        <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">provide</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_definition_providers</span><span class="p">:</span>
-            <span class="n">definitions</span> <span class="o">+=</span> <span class="n">provide</span><span class="o">.</span><span class="n">find_definitions</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
+            <span class="n">definitions</span> <span class="o">+=</span> <span class="n">provide</span><span class="o">.</span><span class="n">find_definitions</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
 
         <span class="k">return</span> <span class="n">definitions</span>
 
@@ -645,7 +636,7 @@
         <span class="n">modifier</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">"modifier"</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">""</span>
 
         <span class="k">for</span> <span class="n">provide</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_target_completion_providers</span><span class="p">:</span>
-            <span class="n">candidates</span> <span class="o">=</span> <span class="n">provide</span><span class="o">.</span><span class="n">complete_targets</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">provide</span><span class="o">.</span><span class="n">complete_targets</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
 
             <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
 

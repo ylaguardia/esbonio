@@ -230,20 +230,28 @@
 <span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">TEXT_DOCUMENT_DID_CHANGE</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">TEXT_DOCUMENT_DID_OPEN</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">TEXT_DOCUMENT_DID_SAVE</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.methods</span> <span class="kn">import</span> <span class="n">WORKSPACE_DID_DELETE_FILES</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CodeActionParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionList</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionOptions</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DefinitionParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidChangeTextDocumentParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidOpenTextDocumentParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DocumentSymbolParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">FileOperationFilter</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">FileOperationPattern</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">FileOperationRegistrationOptions</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
 <span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
+<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">ServerCapabilities</span>
+<span class="kn">from</span> <span class="nn">pygls.protocol</span> <span class="kn">import</span> <span class="n">LanguageServerProtocol</span>
 
 <span class="kn">from</span> <span class="nn">.rst</span> <span class="kn">import</span> <span class="n">CompletionContext</span>
+<span class="kn">from</span> <span class="nn">.rst</span> <span class="kn">import</span> <span class="n">DefinitionContext</span>
 <span class="kn">from</span> <span class="nn">.rst</span> <span class="kn">import</span> <span class="n">LanguageFeature</span>
 <span class="kn">from</span> <span class="nn">.rst</span> <span class="kn">import</span> <span class="n">RstLanguageServer</span>
 <span class="kn">from</span> <span class="nn">.rst</span> <span class="kn">import</span> <span class="n">SymbolVisitor</span>
@@ -257,6 +265,29 @@
 <span class="p">]</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Patched</span><span class="p">(</span><span class="n">LanguageServerProtocol</span><span class="p">):</span>
+    <span class="sd">"""Tweaked version of the protocol allowing us to tweak how the `ServerCapabilities`</span>
+<span class="sd">    are constructed."""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server_capabilities</span> <span class="o">=</span> <span class="n">ServerCapabilities</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">server_capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_capabilities</span>
+
+    <span class="nd">@server_capabilities</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">server_capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ServerCapabilities</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">WORKSPACE_DID_DELETE_FILES</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+            <span class="n">opts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fm</span><span class="o">.</span><span class="n">feature_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">WORKSPACE_DID_DELETE_FILES</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">opts</span><span class="p">:</span>
+                <span class="n">value</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">file_operations</span><span class="o">.</span><span class="n">did_delete</span> <span class="o">=</span> <span class="n">opts</span>  <span class="c1"># type: ignore</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_server_capabilities</span> <span class="o">=</span> <span class="n">value</span>
 
 
 <div class="viewcode-block" id="create_language_server"><a class="viewcode-back" href="../../lsp/api-reference.html#esbonio.lsp.create_language_server">[docs]</a><span class="k">def</span> <span class="nf">create_language_server</span><span class="p">(</span>
@@ -278,7 +309,7 @@
     <span class="k">if</span> <span class="s2">"logger"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">"logger"</span><span class="p">]</span> <span class="o">=</span> <span class="n">logger</span>
 
-    <span class="n">server</span> <span class="o">=</span> <span class="n">server_cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">server_cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">protocol_cls</span><span class="o">=</span><span class="n">Patched</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
         <span class="n">_load_module</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
@@ -315,6 +346,22 @@
 
         <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">feature</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span>
+        <span class="n">WORKSPACE_DID_DELETE_FILES</span><span class="p">,</span>
+        <span class="n">FileOperationRegistrationOptions</span><span class="p">(</span>
+            <span class="n">filters</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">FileOperationFilter</span><span class="p">(</span>
+                    <span class="n">pattern</span><span class="o">=</span><span class="n">FileOperationPattern</span><span class="p">(</span><span class="n">glob</span><span class="o">=</span><span class="s2">"**/*.rst"</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">on_delete_files</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DeleteFilesParams</span><span class="p">):</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">delete_files</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">feature</span><span class="o">.</span><span class="n">delete_files</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">CODE_ACTION</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_code_action</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">CodeActionParams</span><span class="p">):</span>
@@ -387,6 +434,7 @@
 
         <span class="n">doc</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">line_at_position</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">location</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">get_location_type</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
         <span class="n">definitions</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -397,8 +445,11 @@
                         <span class="k">continue</span>
 
                     <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">pos</span><span class="o">.</span><span class="n">character</span> <span class="ow">and</span> <span class="n">pos</span><span class="o">.</span><span class="n">character</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
-                        <span class="n">definitions</span> <span class="o">+=</span> <span class="n">feature</span><span class="o">.</span><span class="n">definition</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">pos</span><span class="o">.</span><span class="n">character</span> <span class="ow">and</span> <span class="n">pos</span><span class="o">.</span><span class="n">character</span> <span class="o">&lt;=</span> <span class="n">stop</span><span class="p">:</span>
+                        <span class="n">context</span> <span class="o">=</span> <span class="n">DefinitionContext</span><span class="p">(</span>
+                            <span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">pos</span>
+                        <span class="p">)</span>
+                        <span class="n">definitions</span> <span class="o">+=</span> <span class="n">feature</span><span class="o">.</span><span class="n">definition</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">definitions</span>
 
