@@ -692,7 +692,7 @@ def find_conf_dir(root_uri: str, config: SphinxConfig) -> Optional[pathlib.Path]
 
     root = Uri.to_fs_path(root_uri)
 
-    if config.conf_dir:
+    if config.get("conf_dir"):
         return expand_conf_dir(root, config.conf_dir)
 
     ignore_paths = [".tox", "site-packages"]
